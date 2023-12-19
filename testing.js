@@ -1,3 +1,6 @@
+// Set start timer to show total run time
+let startTime = new Date();
+
 // Create set of choices. ORDER IS IMPORTANT. 
 // Standard 5-choice game
 // let choices = [
@@ -50,26 +53,18 @@ if (choices.length < 3) {
     const lose = Array.from({ length: r }, (_, i) => r + i + 1);
 
     // Print these to the console to keep track
-    console.log("win :")
-    console.log(win)
-    console.log()
-    console.log("lose :")
-    console.log(lose)
-    console.log()
+    console.log("win : \n" + win + "\n\nlose :\n" + lose + "\n")
 
     // Run through all possibilites of (a,b)
     let a = 0, b = 0;
     while (a < s) {
         while (b < s) {
-            let playerChoice = choices[a];
-            console.log("playerChoice :")
-            console.log(playerChoice)
-            console.log()
+            console.log("\n____________NEW GAME____________\n");
 
+            let playerChoice = choices[a];
             let computerChoice = choices[b];
-            console.log("computerChoice :")
-            console.log(computerChoice)
-            console.log()
+
+            console.log("playerChoice :\n" + playerChoice + "\n\ncomputerChoice :\n" + computerChoice + "\n")
 
             // If choice corresponds to value in win, then win is logged. Similarly for lose and draw. +s to keep modulo values +ve
 
@@ -79,11 +74,7 @@ if (choices.length < 3) {
                 console.log("You lose! " + choices[b] + " beats " + choices[a]);
             } else if (draw.includes((s + b - a) % s)) {
                 console.log("DRAW")
-            } else console.log("Oops, something went wrong!")
-
-            console.log()
-            console.log("NEW GAME")
-            console.log()
+            } else console.log("Oops, something went wrong!");
 
             b++;
         }
@@ -91,3 +82,7 @@ if (choices.length < 3) {
         a++;
     }
 }
+
+let endTime = new Date();
+let timeElapsed = endTime - startTime;
+console.log("\nTotal time taken :\n" + timeElapsed + "ms");
