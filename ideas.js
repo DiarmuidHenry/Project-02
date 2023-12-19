@@ -3,11 +3,32 @@
 
 // Create set of choices. ORDER IS IMPORTANT. 
 
+// Standard 5-choice game
 let choices = [
     "Scissors",
     "Lizard",
     "Paper",
     "Spock",
+    "Rock"
+]
+
+// Example with extended 9-choices game
+let choices = [
+    "Scissors",
+    "Spiderman",
+    "Wizard",
+    "Lizard",
+    "Paper",
+    "Glock",
+    "Batman",
+    "Spock",
+    "Rock"
+]
+
+// Old fashioned 3-choice game
+let choices = [
+    "Scissors",
+    "Paper",
     "Rock"
 ]
   
@@ -68,11 +89,15 @@ let choices = [
   // If choice corresponds to value in win, then win is logged. Similarly for lose and draw. +s to keep modulo values +ve
   
   if (win.includes((s + b - a) % s)) {
-      console.log("You lose! " + choices[a] + " beats " + choices[b]);
+      console.log("You win! " + choices[a] + " beats " + choices[b]);
   } else if (lose.includes((s + b - a) % s)) {
       console.log("You lose! " + choices[b] + " beats " + choices[a]);
   } else if (draw.includes((s + b - a) % s)) {
       console.log("DRAW")
   } else console.log("Oops, something went wrong!")
+
+  console.log()
+  console.log("NEXT GAME")
+  console.log()
   
   }
