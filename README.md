@@ -12,3 +12,4 @@ This can easily be generalised to a game with 2n+1 choices, where each choice lo
 By ordering these 2n+1 items in a certain way, we can assure that each choice beats the following n choices and loses to the proceding n choices. Here, we work modulo n. For example, if we have 9 choices (named 0-8 for simplicity), then choice 7 would lose to 3, 4, 5 and 6, whilst it would win against 8, 0, 1 and 2.
 
 Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of 2n+1 choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
+

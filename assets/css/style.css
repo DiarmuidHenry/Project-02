@@ -1,3 +1,12 @@
 body {
     background-color: lightseagreen; /* just to check it is working */
 }
+
+
+.player-choices-buttons {
+    width: 50px;
+}
+
+.player-choices-images {
+    width: 50%;
+}

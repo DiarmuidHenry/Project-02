@@ -6,27 +6,27 @@ let startTime = new Date();
 
 // Create set of choices. ORDER IS IMPORTANT. 
 
-// Standard 5-choice game
-// let choices = [
-//     "Scissors",
-//     "Lizard",
-//     "Paper",
-//     "Spock",
-//     "Rock"
-// ]
-
-// Example with extended 9-choices game
+Standard 5-choice game
 let choices = [
     "Scissors",
-    "Spiderman",
-    "Wizard",
     "Lizard",
     "Paper",
-    "Glock",
-    "Batman",
     "Spock",
     "Rock"
 ]
+
+// Example with extended 9-choices game
+// let choices = [
+//     "Scissors",
+//     "Spiderman",
+//     "Wizard",
+//     "Lizard",
+//     "Paper",
+//     "Glock",
+//     "Batman",
+//     "Spock",
+//     "Rock"
+// ]
 
 // Old fashioned 3-choice game
 // let choices = [
