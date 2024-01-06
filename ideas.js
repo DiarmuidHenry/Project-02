@@ -35,17 +35,18 @@ let choices = [
 //     "Rock"
 // ]
 
+// Insert code here that takes input from the Create Your Own Game section to give a new choices array.
+
 // Only begin the game if the game conditions are met
 if (choices.length < 3) {
     console.log("Invalid game. Number of choices must be at least 3.");
 } else if (choices.length % 2 == 0) {
     console.log("Invalid game. Number of choices must be odd.");
 } else {
-
-    // Declare a constant s, which is the number of
+    // Declare a constant s, which is the number of choices
     const s = choices.length;
 
-    // Number of winning or losing results
+    // Number of winning results (or losing results)
     const r = (Math.floor(s / 2));
 
     // Get indicies of elements in choices written into an array, c
@@ -68,7 +69,8 @@ if (choices.length < 3) {
     let computerChoice = choices[b];
     console.log("playerChoice :\n" + playerChoice + "\n\ncomputerChoice :\n" + computerChoice + "\n")
 
-    // If choice corresponds to value in win, then win is logged. Similarly for lose and draw. +s to keep modulo values +ve
+    // If choice corresponds to value in win, then win is logged.
+    // Similarly for lose and draw. +s to keep modulo values +ve
     if (win.includes((s + b - a) % s)) {
         console.log("You win! " + choices[a] + " beats " + choices[b]);
     } else if (lose.includes((s + b - a) % s)) {
@@ -77,7 +79,6 @@ if (choices.length < 3) {
         console.log("DRAW")
     } else console.log("Oops, something went wrong!")
 }
-
 let endTime = new Date();
 let timeElapsed = endTime - startTime;
 console.log("\nTotal time taken :\n" + timeElapsed + "ms");

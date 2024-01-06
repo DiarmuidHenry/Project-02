@@ -13,3 +13,6 @@ By ordering these 2n+1 items in a certain way, we can assure that each choice be
 
 Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of 2n+1 choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
 
+
+
+Bugs/fixes:
