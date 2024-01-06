@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
+    <h1 class="heading">Heading</h1>
+    <!-- Anchor, click to new page where user can create their own game -->
+    <h2 id="create-own-game">Make your own game</h2>
+
+    <div class="game-area">
+
+        <div class="player-1-area"></div>
+        <h2 class="player_heading">Player 1 heading</h2>
+            <div class="player-choices" id="player-1-choices">
+                <!-- Images will be reordered to match order of game title -->
+                <img class="player_choices_images" id="player_1_choice_00" src="" alt="">
+                <img class="player_choices_images" id="player_1_choice_01" src="" alt="">
+                <img class="player_choices_images" id="player_1_choice_02" src="" alt="">
+                <img class="player_choices_images" id="player_1_choice_03" src="" alt="">
+                <img class="player_choices_images" id="player_1_choice_04" src="" alt="">
+            </div>
+
+        <div class="player-2-area"></div>
+        <h2 class="player_heading" id="player_2_heading">Player 2 heading</h2>
+            <div class="player-choices" id="player-2-choices">
+                <!-- Images will be reordered to match order of game title -->
+                <img class="player_choices_images" id="player_2_choice_00" src="" alt="">
+                <img class="player_choices_images" id="player_2_choice_01" src="" alt="">
+                <img class="player_choices_images" id="player_2_choice_02" src="" alt="">
+                <img class="player_choices_images" id="player_2_choice_03" src="" alt="">
+                <img class="player_choices_images" id="player_2_choice_04" src="" alt="">
+            </div>
+        <div class="results-area"></div>
+        <div>Player 1s choice</div>
+        <div>Player 2s choice</div>
+        <div class="score-area"></div>
+        <div>
+            <h4>Score</h4>
+            <p class="scores">Player 1<span id="player_1_score"></span>0</p>
+            <p class="scores"><span id="player_2_name"><span id="player_2_score">0</span> </span> </p>
+        </div>
+    </div>
+
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
