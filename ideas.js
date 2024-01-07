@@ -2,11 +2,11 @@
 // As long as the list is written correctly in this manner, then the game functions for any set of choices sized 2n+1
 
 // Set start timer to show total run time
-let startTime = new Date();
+// let startTime = new Date();
 
 // Create set of choices. ORDER IS IMPORTANT. 
 
-Standard 5-choice game
+// Standard 5-choice game
 let choices = [
     "Scissors",
     "Lizard",
@@ -37,6 +37,8 @@ let choices = [
 
 // Insert code here that takes input from the Create Your Own Game section to give a new choices array.
 
+
+function runGame () {
 // Only begin the game if the game conditions are met
 if (choices.length < 3) {
     console.log("Invalid game. Number of choices must be at least 3.");
@@ -57,8 +59,10 @@ if (choices.length < 3) {
     const win = Array.from({ length: r }, (_, i) => i + 1);
     const lose = Array.from({ length: r }, (_, i) => r + i + 1);
 
-    // Print these to the console to keep track
-    console.log("win : \n" + win + "\n\nlose :\n" + lose + "\n")
+    // // Print these to the console to keep track
+    // console.log("win : \n" + win + "\n\nlose :\n" + lose + "\n")
+
+    // Replace this below with code taking the players choice from player-1-choices div
 
     // Player chooses a from c. Here, let this be done randomly. Non-random example is commented out.
     //   let a = 3;
@@ -67,18 +71,27 @@ if (choices.length < 3) {
     let playerChoice = choices[a];
     let b = Math.floor(Math.random() * s);
     let computerChoice = choices[b];
-    console.log("playerChoice :\n" + playerChoice + "\n\ncomputerChoice :\n" + computerChoice + "\n")
+    // change this output below, to the computers choice's icon appearing in the computer-final-choice span
+    console.log("computerChoice :\n" + computerChoice + "\n")
 
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
     if (win.includes((s + b - a) % s)) {
-        console.log("You win! " + choices[a] + " beats " + choices[b]);
+        return ("You win! " + choices[a] + " beats " + choices[b]);
     } else if (lose.includes((s + b - a) % s)) {
-        console.log("You lose! " + choices[b] + " beats " + choices[a]);
+        return ("You lose! " + choices[b] + " beats " + choices[a]);
     } else if (draw.includes((s + b - a) % s)) {
-        console.log("DRAW")
+        return ("DRAW")
     } else console.log("Oops, something went wrong!")
 }
-let endTime = new Date();
-let timeElapsed = endTime - startTime;
-console.log("\nTotal time taken :\n" + timeElapsed + "ms");
+}
+
+let outcome = runGame();
+
+// document.getElementById("result").innerHTML = outcome;
+
+console.log(outcome)
+
+// let endTime = new Date();
+// let timeElapsed = endTime - startTime;
+// console.log("\nTotal time taken :\n" + timeElapsed + "ms");
