@@ -42,6 +42,7 @@ let choices = [
 let playerChoiceIndex;
 let playerScore = 0;
 let computerScore = 0;
+
 // Declare a constant s, which is the number of choices
 const numberOfChoices = choices.length;
 // Number of winning results (or losing results)
@@ -52,13 +53,37 @@ const draw = [0];
 const win = Array.from({ length: numberOfWinningResults }, (_, i) => i + 1);
 const lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWinningResults + i + 1);
 
+let finalResult;
+let gameResult;
+let victory;
+let defeat;
+
 function adjustScore(gameResult) {
-    if (gameResult = "win") {
+    if (gameResult === "win") {
         playerScore +=1;
-    } else if (gameResult = "lose") {
+        let playerScoreSpan = document.getElementById('player-1-score');
+        playerScoreSpan.innerHTML = playerScore;
+            if (playerScore === 10) {
+                gameOver("victory");
+            }
+    } else if (gameResult === "lose") {
         computerScore +=1;
+        let computerScoreSpan = document.getElementById('computer-score');
+        computerScoreSpan.innerHTML = computerScore;
+            if (computerScore === 10) {
+                gameOver("defeat");
+            } 
     }
+    console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
 }
+ 
+function gameOver(finalResult) {
+    if (finalResult === "victory") {
+        console.log("YOU WIN THE GAME");
+    } else {
+        console.log("YOU LOSE THE GAME");
+    }
+}                                                               
 
 
 function setPlayerChoice(clicked) {
@@ -77,25 +102,27 @@ function setPlayerChoice(clicked) {
 
     
     let outcome;
-    let gameResult;
+    
     let indexResult = (numberOfChoices + computerChoiceIndex - playerChoiceIndex) % numberOfChoices;
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
-    if (win.includes(indexResult) {
+    if (win.includes(indexResult)) {
         gameResult = "win";
         outcome = "You win! " + playerChoice + " beats " + computerChoice;
-    } else if (lose.includes(indexResult) {
+    } else if (lose.includes(indexResult)) {
         gameResult = "lose"
         outcome = "You lose! " + computerChoice + " beats " + playerChoice;
-    } else if (draw.includes(indexResult) {
+    } else if (draw.includes(indexResult)) {
         gameResult = "draw";
         outcome = "DRAW";
     } else outcome = "Oops, something went wrong!";
     console.log(outcome);
     let resultSpan = document.getElementById('result');
     resultSpan.innerHTML = outcome;
+
     adjustScore(gameResult);
 }
+
 
 // Iterate through buttons and attach corresponding event listeners to each 1
 function startGame() {
