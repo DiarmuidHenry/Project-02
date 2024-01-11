@@ -1,9 +1,6 @@
 // Set size must be odd, i.e. 2n+1 for some int n. ORDER IS IMPORTANT. Element x defeats the following r elements in the set, where r is as defined further down. x loses to the preceeding r elements.
 // As long as the list is written correctly in this manner, then the game functions for any set of choices sized 2n+1
 
-// Set start timer to show total run time
-// let startTime = new Date();
-
 // Create set of choices. ORDER IS IMPORTANT. 
 
 // Standard 5-choice game
@@ -71,7 +68,7 @@ function runGame() {
         let computerChoice = choices[computerChoiceIndex];
         // change this output below, to the computers choice's icon appearing in the computer-final-choice span
         console.log("computerChoice :\n" + computerChoice + "\n");
-        console.log("playerChoice :\n" + playerChoice + "\n"))
+        console.log("playerChoice :\n" + playerChoice + "\n");
 
         // If choice corresponds to value in win, then win is logged.
         // Similarly for lose and draw. +s to keep modulo values +ve

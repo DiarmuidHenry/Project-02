@@ -4,19 +4,67 @@ body {
 
 .player-choices {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: baseline;
-        align-content: space-around;
-        width: 40%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            align-content: space-around;
+            width: 100%;
     }
 
-.player-choices-buttons {
+#player-1-choices > button {
     width: 25%;
-    margin: 10px;
+    margin: 2%;
+}
+
+#computer-choice > button {
+    width: 37.5%;
+    margin: 3%;
 }
 
 .player-choices-images {
     width: 100%;
+}
+
+.game-area {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        align-content: space-evenly;
+        border: 0px 20px;
+    }
+
+.player-area {
+    display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        align-content: center;
+        width: 50%;
+                    text-align: center;
+}
+
+#player-1-area {
+    width: 60%;
+}
+
+#computer-area {
+    width: 40%;
+}
+
+
+h1, h2, h3 {
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.player-heading {
+    width: 100%
 }
