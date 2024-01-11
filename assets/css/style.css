@@ -3,14 +3,20 @@ body {
 }
 
 .player-choices {
-        display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: baseline;
-            align-content: space-around;
-            width: 100%;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: space-around;
+    width: 100%;
+}
+
+button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
 
 #player-1-choices > button {
     width: 25%;
@@ -24,6 +30,7 @@ body {
 
 .player-choices-images {
     width: 100%;
+    background: transparent;
 }
 
 .game-area {
@@ -67,4 +74,10 @@ h1, h2, h3 {
 
 .player-heading {
     width: 100%
+}
+
+/* adding a blue border to players choice once clicked to highlight */
+.clicked-player-choice {
+    border: 3px solid blue;
+    filter: blur(5px);
 }
