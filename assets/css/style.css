@@ -2,9 +2,19 @@ body {
     background-color: lightseagreen; /* just to check it is working */
 }
 
+.player-choices {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: baseline;
+        align-content: space-around;
+        width: 40%;
+    }
 
 .player-choices-buttons {
-    width: 10%;
+    width: 25%;
+    margin: 10px;
 }
 
 .player-choices-images {
