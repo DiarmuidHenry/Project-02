@@ -92,7 +92,6 @@ function setPlayerChoice(clicked) {
     let computerChoiceIndex = Math.floor(Math.random() * numberOfChoices);
     let computerChoice = choices[computerChoiceIndex];
 
-    // change this output below, to the computers choice's icon appearing in the computer-final-choice span
     console.log("computerChoice :\n" + computerChoice + "\n");
     console.log("playerChoice :\n" + playerChoice + "\n");
 
@@ -100,6 +99,11 @@ function setPlayerChoice(clicked) {
     let newImagePath = `assets/images/${computerChoice.toLowerCase()}.png`;
     computerChoiceImage.src = newImagePath;
 
+    // Removing border from all buttons. This way, there's no need to keep track of prevous clicked
+    let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
+    for (let i = 0; i < playerChoiceButtons.length; i++) {
+        playerChoiceButtons[i].classList.remove("win-border", "lose-border", "draw-border");
+    }
     
     let outcome;
     
@@ -107,12 +111,15 @@ function setPlayerChoice(clicked) {
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
     if (win.includes(indexResult)) {
+        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("win-border");
         gameResult = "win";
         outcome = "You win! " + playerChoice + " beats " + computerChoice;
     } else if (lose.includes(indexResult)) {
+        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("lose-border");
         gameResult = "lose"
         outcome = "You lose! " + computerChoice + " beats " + playerChoice;
     } else if (draw.includes(indexResult)) {
+        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("draw-border");
         gameResult = "draw";
         outcome = "DRAW";
     } else outcome = "Oops, something went wrong!";
