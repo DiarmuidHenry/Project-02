@@ -87,13 +87,13 @@ h1, h2, h3 {
 }
 
 .win-border {
-    border: 3px solid lime;
+    border: 5px solid lime;
 }
 
 .lose-border {
-    border: 3px solid red;
+    border: 5px solid red;
 }
 
 .draw-border {
-    border: 3px solid grey;
+    border: 5px solid lightgrey;
 }
