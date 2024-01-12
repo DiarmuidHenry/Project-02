@@ -16,3 +16,6 @@ Using this theory, we can quickly relabel our choices, and simplify the problem 
 
 
 Bugs/fixes:
+
+- Borders not disappearing after next one clcked. Add a style class remover to fix.
+- After game was reset, scores wenr up by more than 1 point. This is due to multiple eventListners eeing attached to each image/button. By removing all, then adding 1, fths fixed the problem.

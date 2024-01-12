@@ -1,35 +1,3 @@
-// Set size must be odd, i.e. 2n+1 for some int n. ORDER IS IMPORTANT. Element x defeats the following r elements in the set, where r is as defined further down. x loses to the preceeding r elements.
-// As long as the list is written correctly in this manner, then the game functions for any set of choices sized 2n+1
-
-// // Only begin the game if the game conditions are met
-// if (choices.length < 3) {
-//     console.log("Invalid game. Number of choices must be at least 3.");
-// } else if (choices.length % 2 == 0) {
-//     console.log("Invalid game. Number of choices must be odd.");
-// } else {
-
-// Create set of choices. ORDER IS IMPORTANT. 
-
-// Example with extended 9-choices game
-// let choices = [
-//     "Scissors",
-//     "Spiderman",
-//     "Wizard",
-//     "Lizard",
-//     "Paper",
-//     "Glock",
-//     "Batman",
-//     "Spock",
-//     "Rock"
-// ]
-
-// Old fashioned 3-choice game
-// let choices = [
-//     "Scissors",
-//     "Paper",
-//     "Rock"
-// ]
-
 // Standard 5-choice game
 let choices = [
     "Scissors",
@@ -57,26 +25,28 @@ let finalResult;
 let gameResult;
 let victory;
 let defeat;
+let opponent;
+let listenerCheck = false;
 
 function adjustScore(gameResult) {
     if (gameResult === "win") {
-        playerScore +=1;
+        playerScore += 1;
         let playerScoreSpan = document.getElementById('player-1-score');
         playerScoreSpan.innerHTML = playerScore;
-            if (playerScore === 10) {
-                gameOver("victory");
-            }
+        if (playerScore === 10) {
+            gameOver("victory");
+        }
     } else if (gameResult === "lose") {
-        computerScore +=1;
+        computerScore += 1;
         let computerScoreSpan = document.getElementById('computer-score');
         computerScoreSpan.innerHTML = computerScore;
-            if (computerScore === 10) {
-                gameOver("defeat");
-            } 
+        if (computerScore === 10) {
+            gameOver("defeat");
+        }
     }
     console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
 }
- 
+
 function gameOver(finalResult) {
     // Get the play game box, game container and game over elements
     const playGameBox = document.getElementById("play-game-box");
@@ -87,13 +57,22 @@ function gameOver(finalResult) {
 
     // Show game over container
     gameOverBox.style.display = "block";
+    // get the p text inside the game over box
+    let gameOverText = document.getElementById("game-over-text");
 
     if (finalResult === "victory") {
+        gameOverText.innerHTML = "You win! Play again?";
         console.log("YOU WIN THE GAME");
     } else {
+        gameOverText.innerHTML = "You lost. Play again?";
         console.log("YOU LOSE THE GAME");
     }
-}                                                               
+    // for (let i = 0; i < choices.length; i++) {
+    //     const buttonId = `player-1-choice-button-${i}`;
+    //     const button = document.getElementById(buttonId);
+    //     // REMOVE click event listener to each button, activated on click
+    //     button.removeEventListener("click", function () { setPlayerChoice(i); });
+}
 
 
 function setPlayerChoice(clicked) {
@@ -114,9 +93,9 @@ function setPlayerChoice(clicked) {
     for (let i = 0; i < playerChoiceButtons.length; i++) {
         playerChoiceButtons[i].classList.remove("win-border", "lose-border", "draw-border");
     }
-    
+
     let outcome;
-    
+
     let indexResult = (numberOfChoices + computerChoiceIndex - playerChoiceIndex) % numberOfChoices;
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
@@ -126,7 +105,7 @@ function setPlayerChoice(clicked) {
         outcome = "You win! " + playerChoice + " beats " + computerChoice;
     } else if (lose.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${clicked}`).classList.add("lose-border");
-        gameResult = "lose"
+        gameResult = "lose";
         outcome = "You lose! " + computerChoice + " beats " + playerChoice;
     } else if (draw.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${clicked}`).classList.add("draw-border");
@@ -142,44 +121,109 @@ function setPlayerChoice(clicked) {
 
 
 // Iterate through buttons and attach corresponding event listeners to each 1
-function startGame() {
-for (let i = 0; i < choices.length; i++) {
-    const buttonId = `player-1-choice-button-${i}`;
-    const button = document.getElementById(buttonId);
-    // Add click event listener to each button
-    button.addEventListener("click", function() {setPlayerChoice(i)});
-}
+function startComputerGame() {
+    // for (let i = 0; i < choices.length; i++) {
+    // const buttonId = `player-1-choice-button-${i}`;
+    // const button = document.getElementById(buttonId);
+    // Add click event listener to each button, activated on click
+    if (listenerCheck == false) {
+        for (let i = 0; i < choices.length; i++) {
+            const buttonId = `player-1-choice-button-${i}`;
+            const button = document.getElementById(buttonId);
+            button.addEventListener("click", function () { setPlayerChoice(i); });
+        }
+        listenerCheck = true;
+    }
 }
 
-// startGame();
+function resetScores() {
+    let playerScoreSpan = document.getElementById('player-1-score');
+    let computerScoreSpan = document.getElementById('computer-score');
+
+    // Reset scores to 0
+    playerScore = 0;
+    computerScore = 0;
+
+    // Update the score display
+    playerScoreSpan.innerHTML = playerScore;
+    computerScoreSpan.innerHTML = computerScore;
+}
+
+function resetBorders() {
+    let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
+    for (let i = 0; i < playerChoiceButtons.length; i++) {
+        playerChoiceButtons[i].classList.remove("win-border", "lose-border", "draw-border");
+    }
+
+}
+
+
+// startComputerGame();
 // let endTime = new Date();
 // let timeElapsed = endTime - startTime;
 // console.log("\nTotal time taken :\n" + timeElapsed + "ms");
 
 document.addEventListener("DOMContentLoaded", function () {
     // Get the play game box, game container and game over elements
-    const playGameBox = document.getElementById("play-game-box");
+    const playGameBoxes = document.getElementsByClassName("play-game-box");
     const gameContainer = document.getElementById("game-container");
-    const gameOverBox = document.getElementById("game-over-box");
-    // click event listener for play against computer
-    document.getElementById("play-against-computer").addEventListener(
-        "click", function () {startGame("computer");}
-    );
-    // click event listener for play against friend
-    document.getElementById("play-against-friend").addEventListener(
-        "click", function () { startGame("friend"); }
-    );
-    
+    const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
+    const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
 
-    // Add a click event listener to the play game box
-    playGameBox.addEventListener("click", function () {
-        // Hide the play game box
-        playGameBox.style.display = "none";
 
-        // Show the game container
-        gameContainer.style.display = "block";
 
-        // Run your main game code here (initialize game, set up event listeners, etc.)
-        startGame();
-    });
+    // Click event listner for play-against-computer buttons (play and replay)
+    for (let i = 0; i < playAgainstComputerButtons.length; i++) {
+        playAgainstComputerButtons[i].addEventListener("click", function () {
+            // Reset scores to 0
+            resetScores();
+
+            // Remove borders from all buttons
+            resetBorders();
+
+            // Run computer opponent game code
+            startComputerGame();
+        });
+    }
+
+    // Click event listener for play against friend
+    for (let i = 0; i < playAgainstFriendButtons.length; i++) {
+        playAgainstFriendButtons[i].addEventListener("click", function () {
+            // Reset scores to 0
+            resetScores();
+
+            // Remove borders from all buttons
+            resetBorders();
+
+            // Show game container
+            gameContainer.style.display = "block";
+
+            // Run friend game code (modify as needed)
+            startFriendGame();
+        });
+    }
+
+    // Iterate through elements with class "play-game-box"
+    for (let j = 0; j < playGameBoxes.length; j++) {
+        playGameBoxes[j].addEventListener("click", function () {
+            // Hide ALL elements with class "play-game-box"
+            for (let i = 0; i < playGameBoxes.length; i++) {
+                playGameBoxes[i].style.display = "none";
+            }
+
+            // Show game-container
+            gameContainer.style.display = "block";
+        });
+    }
 });
+
+// deciding which game to set up, depending on whether opponent
+// is chosen as computer or friend
+function gameTypeDecider(opponent) {
+    if (opponent == "computer") {
+        startComputerGame();
+    } else if (opponent == "friend") {
+        startFriendGame();
+    }
+
+}

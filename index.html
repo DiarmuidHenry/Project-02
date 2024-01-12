@@ -16,7 +16,7 @@
 <body>
     <h1 class="heading">Rock Paper Scissors Lizard Spock</h1>
     <!-- Anchor, click to new page where user can create their own game -->
-    <h2 id="create-own-game">Make your own game</h2>
+    <!-- <h2 id="create-own-game">Make your own game</h2> -->
     <div class="game-container" id="game-container">
         <!-- Area enclosing all interactive parts of the game -->
         <div class="game-area">
@@ -72,13 +72,14 @@
         </div>
     </div>
     </div>
-    <div id="play-game-box" class="play-game-box">
-        <p>Play Game</p>
+    <div id="start-game-box" class="play-game-box">
+        <button class="play-against-computer">Play against the computer</button>
+        <button class="play-against-friend">Play against a friend</button>
     </div>
-    <div id="game-over-box" class="game-over-box" style="display: none;">
-        <p>Game over win or lose text here</p>
-        <button id="play-against-computer">Play against the computer</button>
-        <button id="play-against-friend">Play again a friend</button>
+    <div id="game-over-box" class="play-game-box" style="display: none;">
+        <p id="game-over-text">Game over win or lose text here</p>
+        <button class="play-against-computer">Play against the computer</button>
+        <button class="play-against-friend">Play against a friend</button>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
