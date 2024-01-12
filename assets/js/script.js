@@ -78,11 +78,15 @@ function adjustScore(gameResult) {
 }
  
 function gameOver(finalResult) {
+    let alertText;
+
     if (finalResult === "victory") {
-        console.log("YOU WIN THE GAME");
+        alertText = "YOU WIN THE GAME";
     } else {
-        console.log("YOU LOSE THE GAME");
+        alertText = "YOU LOSE THE GAME";
     }
+    // Display outcome on alert
+    alert(alertText);
 }                                                               
 
 
