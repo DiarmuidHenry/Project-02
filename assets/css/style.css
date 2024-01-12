@@ -2,6 +2,10 @@ body {
     background-color: lightseagreen; /* just to check it is working */
 }
 
+.game-container {
+    display: none;
+}
+
 .player-choices {
     display: flex;
     flex-direction: row;

@@ -78,15 +78,21 @@ function adjustScore(gameResult) {
 }
  
 function gameOver(finalResult) {
-    let alertText;
+    // Get the play game box, game container and game over elements
+    const playGameBox = document.getElementById("play-game-box");
+    const gameContainer = document.getElementById("game-container");
+    const gameOverBox = document.getElementById("game-over-box");
+    // Hide game container
+    gameContainer.style.display = "none";
+
+    // Show game over container
+    gameOverBox.style.display = "block";
 
     if (finalResult === "victory") {
-        alertText = "YOU WIN THE GAME";
+        console.log("YOU WIN THE GAME");
     } else {
-        alertText = "YOU LOSE THE GAME";
+        console.log("YOU LOSE THE GAME");
     }
-    // Display outcome on alert
-    alert(alertText);
 }                                                               
 
 
@@ -145,7 +151,35 @@ for (let i = 0; i < choices.length; i++) {
 }
 }
 
-startGame();
+// startGame();
 // let endTime = new Date();
 // let timeElapsed = endTime - startTime;
 // console.log("\nTotal time taken :\n" + timeElapsed + "ms");
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the play game box, game container and game over elements
+    const playGameBox = document.getElementById("play-game-box");
+    const gameContainer = document.getElementById("game-container");
+    const gameOverBox = document.getElementById("game-over-box");
+    // click event listener for play against computer
+    document.getElementById("play-against-computer").addEventListener(
+        "click", function () {startGame("computer");}
+    );
+    // click event listener for play against friend
+    document.getElementById("play-against-friend").addEventListener(
+        "click", function () { startGame("friend"); }
+    );
+    
+
+    // Add a click event listener to the play game box
+    playGameBox.addEventListener("click", function () {
+        // Hide the play game box
+        playGameBox.style.display = "none";
+
+        // Show the game container
+        gameContainer.style.display = "block";
+
+        // Run your main game code here (initialize game, set up event listeners, etc.)
+        startGame();
+    });
+});
