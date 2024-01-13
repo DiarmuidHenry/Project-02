@@ -26,25 +26,22 @@
                 <div class="player-choices" id="player-1-choices">
                     <!-- The disordered elements here are in theis order to be consistent both with their
                     indices in the javascript as well as the game's title -->
-                    <button class="player-choices-buttons" id="player-1-choice-button-4">
-                        <img class="player-choices-images" id="player-1-choice-image-4" src="assets/images/rock.png"
-                            alt="Rock image">
-                    </button>
-                    <button class="player-choices-buttons" id="player-1-choice-button-2">
-                        <img class="player-choices-images" id="player-1-choice-image-2" src="assets/images/paper.png"
-                            alt="Paper image">
-                    </button>
-                    <button class="player-choices-buttons" id="player-1-choice-button-0">
+                    <button style="order: 2" class="player-choices-buttons" id="player-1-choice-button-0">
                         <img class="player-choices-images" id="player-1-choice-image-0" src="assets/images/scissors.png"
                             alt="Scissors image">
                     </button>
-                    <button class="player-choices-buttons" id="player-1-choice-button-1">
-                        <img class="player-choices-images" id="player-1-choice-image-1" src="assets/images/lizard.png"
-                            alt="Lizard image">
+                    <button style="order: 3" class="player-choices-buttons" id="player-1-choice-button-1">
+                        <img class="player-choices-images" id="player-1-choice-image-1" src="assets/images/lizard.png" alt="Lizard image">
                     </button>
-                    <button class="player-choices-buttons" id="player-1-choice-button-3">
-                        <img class="player-choices-images" id="player-1-choice-image-3" src="assets/images/spock.png"
-                            alt="Spock image">
+                    <button style="order: 1" class="player-choices-buttons" id="player-1-choice-button-2">
+                        <img class="player-choices-images" id="player-1-choice-image-2" src="assets/images/paper.png" alt="Paper image">
+                    </button>
+                    <button style="order: 4" class="player-choices-buttons" id="player-1-choice-button-3">
+                        <img class="player-choices-images" id="player-1-choice-image-3" src="assets/images/spock.png" alt="Spock image">
+                    </button>
+                    <button style="order: 0" class="player-choices-buttons" id="player-1-choice-button-4">
+                        <img class="player-choices-images" id="player-1-choice-image-4" src="assets/images/rock.png"
+                            alt="Rock image">
                     </button>
                 </div>
             </div>
@@ -63,8 +60,8 @@
                 <div class="score-area">
                     <h3>Score</h3>
                     <div id="scoreboard">
-                        <p class="scores">Player 1:<span id="player-1-score"></span> -
-                            <span id="computer-score"></span><span id="computer-name">Computer</span> </span>
+                        <p class="scores">Player 1:<span id="player-1-score">0</span> -
+                            <span id="computer-score">0</span><span id="computer-name">Computer</span> </span>
                         </p>
                     </div>
                 </div>
@@ -81,7 +78,7 @@
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/unsavedbranch.js"></script>
 </body>
 
 </html>
