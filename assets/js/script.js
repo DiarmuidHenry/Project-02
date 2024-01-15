@@ -7,9 +7,18 @@ let choices = [
     "Rock"
 ];
 
+// Declare global variables
 let playerChoiceIndex;
 let playerScore = 0;
 let computerScore = 0;
+let playerOneScore = 0;
+let playerTwoScore = 0;
+let finalResult;
+let gameResult;
+let victory;
+let defeat;
+let opponent;
+let listenerCheck = false;
 
 // Declare a constant s, which is the number of choices
 const numberOfChoices = choices.length;
@@ -21,27 +30,27 @@ const draw = [0];
 const win = Array.from({ length: numberOfWinningResults }, (_, i) => i + 1);
 const lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWinningResults + i + 1);
 
-let finalResult;
-let gameResult;
-let victory;
-let defeat;
-let opponent;
-let listenerCheck = false;
+
 
 function adjustScore(gameResult) {
     if (gameResult === "win") {
         playerScore += 1;
-        let playerScoreSpan = document.getElementById('player-1-score');
+        let playerScoreSpan = document.getElementById('player-score');
         playerScoreSpan.innerHTML = playerScore;
         if (playerScore === 10) {
             gameOver("victory");
+            resetScores();
+            resetBorders();
         }
+    
     } else if (gameResult === "lose") {
         computerScore += 1;
         let computerScoreSpan = document.getElementById('computer-score');
         computerScoreSpan.innerHTML = computerScore;
         if (computerScore === 10) {
             gameOver("defeat");
+            resetScores();
+            resetBorders();
         }
     }
     console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
@@ -50,7 +59,7 @@ function adjustScore(gameResult) {
 function gameOver(finalResult) {
     // Get the play game box, game container and game over elements
     const playGameBox = document.getElementById("play-game-box");
-    const gameContainer = document.getElementById("game-container");
+    const gameContainer = document.getElementById("game-container1");
     const gameOverBox = document.getElementById("game-over-box");
     // Hide game container
     gameContainer.style.display = "none";
@@ -68,7 +77,7 @@ function gameOver(finalResult) {
         console.log("YOU LOSE THE GAME");
     }
     // for (let i = 0; i < choices.length; i++) {
-    //     const buttonId = `player-1-choice-button-${i}`;
+    //     const buttonId = `player-choice-button-${i}`;
     //     const button = document.getElementById(buttonId);
     //     // REMOVE click event listener to each button, activated on click
     //     button.removeEventListener("click", function () { setPlayerChoice(i); });
@@ -100,15 +109,15 @@ function setPlayerChoice(clicked) {
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
     if (win.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("win-border");
+        document.getElementById(`player-choice-button-${clicked}`).classList.add("win-border");
         gameResult = "win";
         outcome = "You win! " + playerChoice + " beats " + computerChoice;
     } else if (lose.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("lose-border");
+        document.getElementById(`player-choice-button-${clicked}`).classList.add("lose-border");
         gameResult = "lose";
         outcome = "You lose! " + computerChoice + " beats " + playerChoice;
     } else if (draw.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${clicked}`).classList.add("draw-border");
+        document.getElementById(`player-choice-button-${clicked}`).classList.add("draw-border");
         gameResult = "draw";
         outcome = "DRAW";
     } else outcome = "Oops, something went wrong!";
@@ -122,13 +131,15 @@ function setPlayerChoice(clicked) {
 
 // Iterate through buttons and attach corresponding event listeners to each 1
 function startComputerGame() {
+    const gameContainer = document.getElementById("game-container1");
+    gameContainer.style.display = "block";
     // for (let i = 0; i < choices.length; i++) {
-    // const buttonId = `player-1-choice-button-${i}`;
+    // const buttonId = `player-choice-button-${i}`;
     // const button = document.getElementById(buttonId);
     // Add click event listener to each button, activated on click
     if (listenerCheck == false) {
         for (let i = 0; i < choices.length; i++) {
-            const buttonId = `player-1-choice-button-${i}`;
+            const buttonId = `player-choice-button-${i}`;
             const button = document.getElementById(buttonId);
             button.addEventListener("click", function () { setPlayerChoice(i); });
         }
@@ -137,7 +148,7 @@ function startComputerGame() {
 }
 
 function resetScores() {
-    let playerScoreSpan = document.getElementById('player-1-score');
+    let playerScoreSpan = document.getElementById('player-score');
     let computerScoreSpan = document.getElementById('computer-score');
 
     // Reset scores to 0
@@ -157,31 +168,70 @@ function resetBorders() {
 
 }
 
+function showPlayerOneChoices() {
+    console.log("showPlayerOneChoices started");
 
-// startComputerGame();
-// let endTime = new Date();
-// let timeElapsed = endTime - startTime;
-// console.log("\nTotal time taken :\n" + timeElapsed + "ms");
+    let playerOneChoicePopup = document.getElementById("player-1-make-choice");
+    playerOneChoicePopup.style.display = "none";
 
+    let playerOneArea = document.getElementById("player-1-area");
+    playerOneArea.style.display = "block";
+    // Need to show game area?
+
+    
+    console.log("player-1-area display style:", playerOneArea.style.display);
+    // When chosen, goes to player 2 choose popup
+    //
+
+
+}
+
+function startFriendGame() {
+
+    console.log("friends game underway")
+
+    // Get the play game box, game container and game over elements
+    const playGameBox = document.getElementById("play-game-box");
+    const gameContainer = document.getElementById("game-container1");
+    const gameOverBox = document.getElementById("game-over-box");
+    // Hide game container
+
+    console.log("hiding game container")
+    gameContainer.style.display = "none";
+    console.log("game container hidden")
+
+    // Show game over container
+    gameOverBox.style.display = "none";
+    // get the p text inside the game over box
+    let gameOverText = document.getElementById("game-over-text");
+
+    // Show the divs with id "results-area-2p" and "score-area-2p"
+    const resultsArea2p = document.getElementById("results-area-2p");
+    resultsArea2p.style.display = "none";
+
+    const scoreArea2p = document.getElementById("score-area-2p");
+    scoreArea2p.style.display = "none";
+
+    const playerOneChoicePopup = document.getElementById("player-1-make-choice");
+    playerOneChoicePopup.style.display = "block";
+
+    const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
+    playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
+}
+
+
+// Loading game setup after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Get the play game box, game container and game over elements
     const playGameBoxes = document.getElementsByClassName("play-game-box");
-    const gameContainer = document.getElementById("game-container");
+    const gameContainer = document.getElementById("game-container1");
     const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
     const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
-
-
+    
 
     // Click event listner for play-against-computer buttons (play and replay)
     for (let i = 0; i < playAgainstComputerButtons.length; i++) {
         playAgainstComputerButtons[i].addEventListener("click", function () {
-            // Reset scores to 0
-            resetScores();
-
-            // Remove borders from all buttons
-            resetBorders();
-
-            // Run computer opponent game code
             startComputerGame();
         });
     }
@@ -189,17 +239,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click event listener for play against friend
     for (let i = 0; i < playAgainstFriendButtons.length; i++) {
         playAgainstFriendButtons[i].addEventListener("click", function () {
-            // Reset scores to 0
-            resetScores();
-
-            // Remove borders from all buttons
-            resetBorders();
-
-            // Show game container
-            gameContainer.style.display = "block";
-
-            // Run friend game code (modify as needed)
             startFriendGame();
+            console.log("FRIENDS GAME STARTED")
         });
     }
 
@@ -210,20 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
             for (let i = 0; i < playGameBoxes.length; i++) {
                 playGameBoxes[i].style.display = "none";
             }
-
-            // Show game-container
-            gameContainer.style.display = "block";
         });
     }
+
 });
 
-// deciding which game to set up, depending on whether opponent
-// is chosen as computer or friend
-function gameTypeDecider(opponent) {
-    if (opponent == "computer") {
-        startComputerGame();
-    } else if (opponent == "friend") {
-        startFriendGame();
-    }
-
-}
