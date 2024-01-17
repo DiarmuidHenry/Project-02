@@ -57,11 +57,14 @@ function adjustScore(gameResult) {
         if (computerScore === 10) {
             gameOver("defeat");
         }
-    } else if (gameResult === "player 1") {
+    } else if (gameResult === "Player 1") {
         playerOneScore += 1;
-        let playerOneScoreSpan = document.getElementById("player-1-score");
+        let playerOneScoreSpan = document.getElementById("player-1-score-2p");
         playerOneScoreSpan.innerHTML = playerOneScore;
-
+    } else if (gameResult === "Player 2") {
+        playerTwoScore += 1;
+        let playerTwoScoreSpan = document.getElementById("player-2-score-2p");
+        playerTwoScoreSpan.innerHTML = playerTwoScore;
     }
     
 }
@@ -151,6 +154,7 @@ function setPlayerChoice(clicked) {
 
 // Iterate through buttons and attach corresponding event listeners to each 1
 function startComputerGame() {
+
     const gameContainer = document.getElementById("game-container");
     gameContainer.style.display = "block";
     if (listenerComputerCheck == false) {
@@ -201,7 +205,7 @@ function showPlayerOneChoices() {
     let computerArea = document.getElementById("computer-area");
     playerArea.style.display = "none";
     computerArea.style.display = "none";
-    gameArea.style.display = "block";
+    gameArea.style.display = "flex";
     gameContainer.style.display = "block";
 }
 
@@ -242,35 +246,102 @@ function showPlayerTwoChoices() {
     // playerArea.style.display = "none";
     // computerArea.style.display = "none";
     playerOneArea.style.display = "none";
-    gameArea.style.display = "block";
+    gameArea.style.display = "flex";
     gameContainer.style.display = "block";
 }
 
+function twoPlayerResultPopup() {
+    // Get the play game box, game container and game over elements
+    const gameContainer = document.getElementById("game-container");
+    // Hide game container
+
+    console.log("hiding game container");
+    gameContainer.style.display = "none";
+    console.log("game container hidden");
+
+    const twoPlayerGameOver = document.getElementById("game-over-box-two");
+    twoPlayerGameOver.style.display = "block";
+
+}
+
+function clickToShowResult() {
+    // Get the play game box, game container and game over elements
+    const gameContainer = document.getElementById("game-container");
+    // Hide game container
+
+    console.log("hiding game container");
+    gameContainer.style.display = "none";
+    console.log("game container hidden");
+
+    const clickToShow = document.getElementById("click-to-show");
+    clickToShow.style.display = "block";
+
+    const clickToShowButton = document.getElementById("click-to-show-button")
+    clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
+
+}
+
 function showResultTwoPlayer() {
+
     resetBorders();
+
+    console.log("showResultTwoPlayer started")
+
+    const clickToShow = document.getElementById("click-to-show");
+    clickToShow.style.display = "none";
+
+    // Want to show player 1s div and player 2s div side by side, with appropriate win/lose borders
+    const gameContainer = document.getElementById("game-container");
+    let playerOneArea = document.getElementById("player-1-area");
+    let playerTwoArea = document.getElementById("player-2-area");
+    let scoreAreaTwo = document.getElementById("score-area-2p")
+    gameContainer.style.display = "block";
+    playerOneArea.style.display = "flex";
+    playerTwoArea.style.display = "flex";
+    scoreAreaTwo.style.display = "block";
     
-    let indexResult = (numberOfChoices + playerOneChoiceIndex - playerTwoChoiceIndex) % numberOfChoices;
+    let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
     // If choice corresponds to value in win, then win is logged.
     // Similarly for lose and draw. +s to keep modulo values +ve
     if (win.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("win-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("lose-border");
-        gameResult = "player 1";
+        gameResult = "Player 1";
         outcome = "Player 1 wins! " + playerOneChoice + " beats " + playerTwoChoice;
     } else if (lose.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("lose-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("win-border");
-        gameResult = "player 2";
+        gameResult = "Player 2";
         outcome = "Player 2 wins! " + playerTwoChoice + " beats " + playerOneChoice;
     } else if (draw.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("draw-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("draw-border");
-        gameResult = "neither";
+        gameResult = "draw";
         outcome = "DRAW";
     } else outcome = "Oops, something went wrong!";
     console.log(outcome);
     let showResultSpan = document.getElementById("show-result");
     showResultSpan.innerHTML = outcome;
+
+    const playerOneButtons = document.getElementById('player-1-choices').children;
+    for (let i = 0; i < playerOneButtons.length; i++) {
+        if (i !== playerOneChoiceIndex) {
+            playerOneButtons[i].style.display = 'none';
+        } else {
+            playerOneButtons[i].disabled = true;
+        }
+    }
+
+    // Hide buttons in player-2-choices based on index
+    const playerTwoButtons = document.getElementById('player-2-choices').children;
+    for (let i = 0; i < playerTwoButtons.length; i++) {
+        if (i !== playerTwoChoiceIndex) {
+            playerTwoButtons[i].style.display = 'none';
+        } else {
+            playerTwoButtons[i].disabled = true;
+        }
+    }
+
     adjustScore(gameResult);
 
 }
@@ -318,7 +389,7 @@ function startFriendGame() {
         const buttonTwoId = `player-2-choice-button-${j}`;
         const buttonTwo = document.getElementById(buttonTwoId);
         buttonTwo.addEventListener("mousedown", function () { setPlayerTwoChoice(j); });
-        buttonTwo.addEventListener("mouseup", function () {showResultTwoPlayer()});
+        buttonTwo.addEventListener("mouseup", function () {clickToShowResult()});
         };
         listenerFriendCheck == true;
     }
@@ -333,11 +404,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
     const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
     
-
-    // Click event listner for play-against-computer buttons (play and replay)
+        // Click event listener for play-against-computer buttons (play and replay)
     for (let i = 0; i < playAgainstComputerButtons.length; i++) {
         playAgainstComputerButtons[i].addEventListener("click", function () {
             startComputerGame();
+            // Hide the parent play-game-box
+            this.closest('.play-game-box').style.display = "none";
         });
     }
 
@@ -345,17 +417,8 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < playAgainstFriendButtons.length; i++) {
         playAgainstFriendButtons[i].addEventListener("click", function () {
             startFriendGame();
-            console.log("FRIENDS GAME STARTED")
-        });
-    }
-
-    // Iterate through elements with class "play-game-box"
-    for (let j = 0; j < playGameBoxes.length; j++) {
-        playGameBoxes[j].addEventListener("click", function () {
-            // Hide ALL elements with class "play-game-box"
-            for (let i = 0; i < playGameBoxes.length; i++) {
-                playGameBoxes[i].style.display = "none";
-            }
+            // Hide the parent play-game-box
+            this.closest('.play-game-box').style.display = "none";
         });
     }
 

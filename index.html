@@ -90,6 +90,15 @@
                     </button>
                 </div>
             </div>
+            <div style="display: none;" id="score-area-2p" class="score-area">
+                <h3>Score</h3>
+                <div id="scoreboard-2p">
+                    <p class="scores">
+                        Player 1:<span id="player-1-score-2p">0</span> -
+                        <span id="player-2-score-2p">0</span>:   Player 2
+                    </p>
+                </div>
+            </div>
             <div style="display: none;" class="player-area" id="player-2-area">
                 <h2 class="player-heading" id="player-2-heading">Player 2:</h2>
                 <div class="player-choices" id="player-2-choices">
@@ -118,14 +127,7 @@
     <div style="display: none;" id="results-area-2p" class="results-area">
         <span id="result-2p"></span>
     </div>
-    <div style="display: none;" id="score-area-2p" class="score-area">
-        <h3>Score</h3>
-        <div id="scoreboard-2p">
-            <p class="scores">Player 1:<span id="player-1-score-2p">0</span> -
-                <span id="player-2-score-2p">0</span><span id="player-2-name">Player 2:</span> </span>
-            </p>
-        </div>
-    </div>
+    
     </div>
     <div id="start-game-box" class="play-game-box">
         <button class="play-against-computer">Play against the computer</button>
@@ -144,8 +146,17 @@
         <p>Player 2, make your choice.</p>
         <button id="player-2-make-choice-button" class="make-choice-button">Play</button>
     </div>
-    <div style="display: none;" id="show-result">
+    <div id="show-result" style="display: none;">
         <button is="show-result-button">Show result!</button>
+    </div>
+    <div id="game-over-box-two" class="play-game-box" style="display: none;">
+        <p id="game-over-text-two">Game over win or lose text here TWO PLAYER</p>
+        <button class="play-against-computer">Play against the computer</button>
+        <button class="play-against-friend">Play against a friend</button>
+    </div>
+    <div id="click-to-show" style="display: none;">
+        <p>Click to see result</p>
+        <button id="click-to-show-button" class="make-choice-button">RESULT</button>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
