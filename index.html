@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="player-area" id="computer-area">
-                <h2 class="player-heading" id="computer-heading">Computer chooses:</h2>
+                <h2 class="player-heading" id="computer-heading">Computer:</h2>
                 <div id="computer-choice">
                     <!-- Button is disabled since the player doesn't choose the computers choice. Button is used to be able to style all buttons/images more generally -->
                     <button disabled class="player-choices-buttons" id="computer-choice-button">
@@ -60,7 +60,7 @@
                 <div class="score-area">
                     <h3>Score</h3>
                     <div id="scoreboard">
-                        <p class="scores">Player 1:<span id="player-score">0</span> -
+                        <p class="scores">Player:<span id="player-score">0</span> -
                             <span id="computer-score">0</span><span id="computer-name">Computer</span> </span>
                         </p>
                     </div>
@@ -91,6 +91,9 @@
                 </div>
             </div>
             <div style="display: none;" id="score-area-2p" class="score-area">
+                <div id="results-area-2p" class="results-area">
+                    <span id="result-2p"></span>
+                </div>
                 <h3>Score</h3>
                 <div id="scoreboard-2p">
                     <p class="scores">
@@ -98,6 +101,7 @@
                         <span id="player-2-score-2p">0</span>:   Player 2
                     </p>
                 </div>
+                <button id="next-round-button">Next Round</button>
             </div>
             <div style="display: none;" class="player-area" id="player-2-area">
                 <h2 class="player-heading" id="player-2-heading">Player 2:</h2>
@@ -123,9 +127,6 @@
                     </button>
                 </div>
             </div>
-    </div>
-    <div style="display: none;" id="results-area-2p" class="results-area">
-        <span id="result-2p"></span>
     </div>
     
     </div>
