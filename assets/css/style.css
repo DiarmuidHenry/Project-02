@@ -2,6 +2,11 @@ body {
     background-color: lightseagreen; 
 }
 
+a {
+    text-decoration: none;
+    color: inherit
+}
+
 .game-container {
     display: none;
 }
@@ -36,6 +41,7 @@ button:not([disabled]) {
 #computer-choice > button {
     width: 45%;
     margin: 5%;
+    padding: 1%;
 }
 
 button:not([disabled]):hover {
@@ -68,12 +74,16 @@ button:not([disabled]):hover {
                     text-align: center;
 }
 
-#player-area {
+#player-area, #player-1-choices, #player-2-choices {
     width: 60%;
 }
 
 #computer-area {
     width: 40%;
+}
+
+.scores {
+    text-align: center;
 }
 
 
@@ -84,10 +94,81 @@ h1, h2, h3 {
     align-items: center;
 }
 
+h1 {
+    font-size: 3vw;
+}
+
+p {
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+}
 
 .player-heading {
     width: 100%
 }
+
+.play-game-box, .score-area:not(#score-area) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.3em;
+    height: 60vh;
+    button {
+        text-align: center;
+        font-weight: bold;
+        border: 5px solid seagreen;
+        padding: 10px;
+        margin: 40px;
+        font-size: 1.8em;
+  }
+}
+
+#instructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.3em;
+    button {
+        text-align: center;
+        font-weight: bold;
+        border: 8px solid seagreen;
+        padding: 10px;
+        margin: 10px;
+        font-size: 1.8em;
+    }
+    p {
+        margin: 3px;
+    }
+}
+
+#instructions-explained {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#instructions-explained > p {
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#instructions-explained > button {
+    text-align: center;
+        font-weight: bold;
+        border: 8px solid seagreen;
+        padding: 10px;
+        margin: 10px;
+        font-size: 1.6em;
+}
+
 
 .win-border {
     border: 5px solid lime;
@@ -104,3 +185,4 @@ h1, h2, h3 {
 .chosen-border {
     border: 5px solid white;
 }
+

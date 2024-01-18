@@ -14,9 +14,37 @@
 </head>
 
 <body>
-    <h1 class="heading">Rock Paper Scissors Lizard Spock</h1>
-    <!-- Anchor, click to new page where user can create their own game -->
-    <!-- <h2 id="create-own-game">Make your own game</h2> -->
+    <a href="index.html">
+        <h1 class="heading">Rock Paper Scissors Lizard Spock</h1>
+    </a>
+    <!-- Anchor, click to open box with instructions -->
+    <div id="instructions"><button id="instructions-button">
+            <p>Instructions</p>
+        </button></div>
+    <div id="instructions-explained" style="display: none;">
+        <p>
+            The game bla bla bla
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed. Sed risus pretium quam
+            vulputate dignissim suspendisse in. Amet aliquam id diam maecenas ultricies. Lorem sed risus ultricies
+            tristique nulla aliquet enim tortor at. Ut aliquam purus sit amet luctus. Enim nulla aliquet porttitor lacus
+            luctus accumsan tortor posuere ac. In vitae turpis massa sed elementum tempus egestas. Felis imperdiet proin
+            fermentum leo vel orci porta. Sem viverra aliquet eget sit amet. Vitae suscipit tellus mauris a diam
+            maecenas sed enim ut. Urna nec tincidunt praesent semper feugiat nibh. Volutpat maecenas volutpat blandit
+            aliquam etiam erat velit scelerisque.
+
+            Sed velit dignissim sodales ut eu sem integer vitae justo. Odio facilisis mauris sit amet massa vitae
+            tortor. Elit duis tristique sollicitudin nibh sit amet. Lectus vestibulum mattis ullamcorper velit sed
+            ullamcorper morbi tincidunt ornare. Platea dictumst vestibulum rhoncus est pellentesque. Sed vulputate odio
+            ut enim blandit volutpat. Volutpat est velit egestas dui. Egestas diam in arcu cursus euismod quis viverra
+            nibh cras. Pharetra diam sit amet nisl suscipit. Fringilla urna porttitor rhoncus dolor purus non. In dictum
+            non consectetur a erat nam at.
+        </p>
+        <button id="return-to-game">
+            <p>Return to game</p>
+        </button>
+    </div>
     <div class="game-container" id="game-container">
         <!-- Area enclosing all interactive parts of the game -->
         <div class="game-area" id="game-area">
@@ -31,13 +59,16 @@
                             alt="Scissors image">
                     </button>
                     <button style="order: 3" class="player-choices-buttons" id="player-choice-button-1">
-                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png" alt="Lizard image">
+                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png"
+                            alt="Lizard image">
                     </button>
                     <button style="order: 1" class="player-choices-buttons" id="player-choice-button-2">
-                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png" alt="Paper image">
+                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png"
+                            alt="Paper image">
                     </button>
                     <button style="order: 4" class="player-choices-buttons" id="player-choice-button-3">
-                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png" alt="Spock image">
+                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png"
+                            alt="Spock image">
                     </button>
                     <button style="order: 0" class="player-choices-buttons" id="player-choice-button-4">
                         <img class="player-choices-images" id="player-choice-image-4" src="assets/images/rock.png"
@@ -57,11 +88,11 @@
                 <div class="results-area">
                     <span id="result"></span>
                 </div>
-                <div class="score-area">
-                    <h3>Score</h3>
+                <div class="score-area" id="score-area">
+                    <h2>Score</h2>
                     <div id="scoreboard">
-                        <p class="scores">Player:<span id="player-score">0</span> -
-                            <span id="computer-score">0</span><span id="computer-name">Computer</span> </span>
+                        <p class="scores">Player : <span id="player-score">0</span> - <span
+                                id="computer-score">0</span><span id="computer-name"> : Computer</span> </span>
                         </p>
                     </div>
                 </div>
@@ -76,13 +107,16 @@
                             alt="Scissors image">
                     </button>
                     <button style="order: 3" class="player-choices-buttons" id="player-1-choice-button-1">
-                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png" alt="Lizard image">
+                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png"
+                            alt="Lizard image">
                     </button>
                     <button style="order: 1" class="player-choices-buttons" id="player-1-choice-button-2">
-                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png" alt="Paper image">
+                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png"
+                            alt="Paper image">
                     </button>
                     <button style="order: 4" class="player-choices-buttons" id="player-1-choice-button-3">
-                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png" alt="Spock image">
+                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png"
+                            alt="Spock image">
                     </button>
                     <button style="order: 0" class="player-choices-buttons" id="player-1-choice-button-4">
                         <img class="player-choices-images" id="player-choice-image-4" src="assets/images/rock.png"
@@ -94,11 +128,11 @@
                 <div id="results-area-2p" class="results-area">
                     <span id="result-2p"></span>
                 </div>
-                <h3>Score</h3>
+                <h2>Score</h2>
                 <div id="scoreboard-2p">
                     <p class="scores">
-                        Player 1:<span id="player-1-score-2p">0</span> -
-                        <span id="player-2-score-2p">0</span>:   Player 2
+                        Player 1 : <span id="player-1-score-2p">0</span> - <span id="player-2-score-2p">0</span> :
+                        Player 2
                     </p>
                 </div>
                 <button id="next-round-button">Next Round</button>
@@ -113,13 +147,16 @@
                             alt="Scissors image">
                     </button>
                     <button style="order: 3" class="player-choices-buttons" id="player-2-choice-button-1">
-                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png" alt="Lizard image">
+                        <img class="player-choices-images" id="player-choice-image-1" src="assets/images/lizard.png"
+                            alt="Lizard image">
                     </button>
                     <button style="order: 1" class="player-choices-buttons" id="player-2-choice-button-2">
-                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png" alt="Paper image">
+                        <img class="player-choices-images" id="player-choice-image-2" src="assets/images/paper.png"
+                            alt="Paper image">
                     </button>
                     <button style="order: 4" class="player-choices-buttons" id="player-2-choice-button-3">
-                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png" alt="Spock image">
+                        <img class="player-choices-images" id="player-choice-image-3" src="assets/images/spock.png"
+                            alt="Spock image">
                     </button>
                     <button style="order: 0" class="player-choices-buttons" id="player-2-choice-button-4">
                         <img class="player-choices-images" id="player-choice-image-4" src="assets/images/rock.png"
@@ -127,8 +164,8 @@
                     </button>
                 </div>
             </div>
-    </div>
-    
+        </div>
+
     </div>
     <div id="start-game-box" class="play-game-box">
         <button class="play-against-computer">Play against the computer</button>
@@ -139,15 +176,15 @@
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
-    <div id="player-1-make-choice" style="display: none;">
-        <p>Player 1, make your choice.</p>
+    <div id="player-1-make-choice" style="display: none;" class="play-game-box">
+        <p>Player 1<br><br>Your turn</p>
         <button id="player-1-make-choice-button" class="make-choice-button">Play</button>
     </div>
-    <div id="player-2-make-choice" style="display: none;">
-        <p>Player 2, make your choice.</p>
+    <div id="player-2-make-choice" style="display: none;" class="play-game-box">
+        <p>Player 2<br><br>Your turn</p>
         <button id="player-2-make-choice-button" class="make-choice-button">Play</button>
     </div>
-    <div id="show-result" style="display: none;">
+    <div id="show-result" style="display: none;" class="play-game-box">
         <button is="show-result-button">Show result!</button>
     </div>
     <div id="game-over-box-two" class="play-game-box" style="display: none;">
@@ -155,7 +192,7 @@
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
-    <div id="click-to-show" style="display: none;">
+    <div id="click-to-show" style="display: none;" class="play-game-box">
         <p>Click to see result</p>
         <button id="click-to-show-button" class="make-choice-button">RESULT</button>
     </div>

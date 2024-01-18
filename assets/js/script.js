@@ -102,44 +102,46 @@ function gameOver(finalResult) {
     const playGameBox = document.getElementById("play-game-box");
     const gameContainer = document.getElementById("game-container");
     const gameOverBox = document.getElementById("game-over-box");
+    let instructionsBox = document.getElementById("instructions");
+    instructionsBox.style.display = "flex"
     // Hide game container
     gameContainer.style.display = "none";
 
     // Show game over container
-    gameOverBox.style.display = "block";
+    gameOverBox.style.display = "flex";
     // get the p text inside the game over box
     let gameOverText = document.getElementById("game-over-text");
 
     if (finalResult === "win") {
         gameOverText.innerHTML = `
-        You win!
-        Final score:
-        Player : ${playerScore} 
-        Computer : ${computerScore} 
+        <br>You win!<br><br>
+        FINAL SCORE:<br><br>
+        Player : ${playerScore}<br>
+        Computer : ${computerScore}<br><br> 
         Play again?`;
         console.log("YOU WIN THE GAME");
     } else if (finalResult === "lose") {
         gameOverText.innerHTML = `
-        You lose!
-        Final score:
-        Player : ${playerScore} 
-        Computer : ${computerScore} 
+        <br>You lose!<br><br>
+        FINAL SCORE:<br><br>
+        Player : ${playerScore}<br> 
+        Computer : ${computerScore}<br><br>
         Play again?`;
         console.log("YOU LOSE THE GAME");
     } else if (finalResult === "Player 1") {
         gameOverText.innerHTML = `
-        Player 1 wins!
-        Final score:
-        Player 1 : ${playerOneScore} 
-        Player 2 : ${playerTwoScore} 
+        Player 1 wins!<br><br>
+        FINAL SCORE:<br><br>
+        Player 1 : ${playerOneScore}<br>
+        Player 2 : ${playerTwoScore}<br><br>
         Play again?`;
         console.log("PLAYER 1 WINS THE GAME");
     } else if (finalResult === "Player 2") {
         gameOverText.innerHTML = `
-        Player 2 wins!
-        Final score:
-        Player 1 : ${playerOneScore} 
-        Player 2 : ${playerTwoScore} 
+        Player 2 wins!<br><br>
+        FINAL SCORE:<br><br>
+        Player 1 : ${playerOneScore}<br>
+        Player 2 : ${playerTwoScore}<br><br>
         Play again?`;
         console.log("PLAYER 2 WINS THE GAME");
     }
@@ -218,18 +220,17 @@ function setPlayerChoice(clicked) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("win-border");
         document.getElementById("computer-choice-button").classList.add("lose-border");
         gameResult = "win";
-        outcome = "You win! " + playerChoice + " beats " + computerChoice;
+        outcome = "<p>You win!<br><br>" + playerChoice + " beats " + computerChoice + "<br></p>";
     } else if (lose.includes(indexResult)) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("lose-border");
         document.getElementById("computer-choice-button").classList.add("win-border");
         gameResult = "lose";
-        outcome = "You lose! " + computerChoice + " beats " + playerChoice;
+        outcome = "<p>You lose!<br><br>" + computerChoice + " beats " + playerChoice + "<br></p>";
     } else if (draw.includes(indexResult)) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("draw-border");
         document.getElementById("computer-choice-button").classList.add("draw-border");
-        
         gameResult = "draw";
-        outcome = "DRAW";
+        outcome = "<p>DRAW<br><br>NO SCORE</p>";
     } else outcome = "Oops, something went wrong!";
     console.log(outcome);
     let resultSpan = document.getElementById('result');
@@ -251,12 +252,24 @@ function startComputerGame() {
     const playerArea = document.getElementById("player-area");
     const computerArea = document.getElementById("computer-area");
     let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
+    let instructionsBox = document.getElementById("instructions");
+    instructionsBox.style.display = "none"
     playerOneArea.style.display = "none";
     playerTwoArea.style.display = "none";
     playerArea.style.display = "flex";
     computerArea.style.display = "flex";
     for (let i = 0; i < playerChoiceButtons.length; i++) {
         playerChoiceButtons[i].disabled = false;}
+    
+    let playerOneButtons = document.getElementById('player-1-choices').children;
+    for (let i = 0; i < playerOneButtons.length; i++) {
+        playerOneButtons[i].disabled = false;
+        playerOneButtons[i].style.width = "25%"}
+
+    let playerTwoButtons = document.getElementById('player-2-choices').children;
+    for (let i = 0; i < playerTwoButtons.length; i++) {
+        playerTwoButtons[i].disabled = false;
+        playerTwoButtons[i].style.width = "25%"}
     // if (listenerComputerCheck == false) {
     //     for (let i = 0; i < choices.length; i++) {
     //         const buttonId = `player-choice-button-${i}`;
@@ -329,7 +342,7 @@ function showPlayerTwoPopup() {
 
 
     const playerTwoChoicePopup = document.getElementById("player-2-make-choice");
-    playerTwoChoicePopup.style.display = "block";
+    playerTwoChoicePopup.style.display = "flex";
 
     // const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
     // playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
@@ -368,7 +381,7 @@ function twoPlayerResultPopup() {
     console.log("game container hidden");
 
     const twoPlayerGameOver = document.getElementById("game-over-box-two");
-    twoPlayerGameOver.style.display = "block";
+    twoPlayerGameOver.style.display = "flex";
 
 }
 
@@ -382,7 +395,7 @@ function clickToShowResult() {
     console.log("game container hidden");
 
     const clickToShow = document.getElementById("click-to-show");
-    clickToShow.style.display = "block";
+    clickToShow.style.display = "flex";
 
     // const clickToShowButton = document.getElementById("click-to-show-button")
     // clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
@@ -407,7 +420,7 @@ function showResultTwoPlayer() {
     gameContainer.style.display = "block";
     playerOneArea.style.display = "flex";
     playerTwoArea.style.display = "flex";
-    scoreAreaTwo.style.display = "block";
+    scoreAreaTwo.style.display = "flex";
     nextRoundButton.style.display = "block";
 
     
@@ -418,17 +431,17 @@ function showResultTwoPlayer() {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("win-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("lose-border");
         gameResult = "Player 1";
-        outcome = "Player 1 wins! " + playerOneChoice + " beats " + playerTwoChoice;
+        outcome = "<p>Player 1 wins!<br><br>" + playerOneChoice + " beats " + playerTwoChoice + "<br></p>";
     } else if (lose.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("lose-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("win-border");
         gameResult = "Player 2";
-        outcome = "Player 2 wins! " + playerTwoChoice + " beats " + playerOneChoice;
+        outcome = "<p>Player 2 wins!<br><br>" + playerTwoChoice + " beats " + playerOneChoice + "<br></p>";
     } else if (draw.includes(indexResult)) {
         document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("draw-border");
         document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("draw-border");
         gameResult = "draw";
-        outcome = "DRAW";
+        outcome = "<p>DRAW<br><br>NO SCORE</p>";
     } else outcome = "Oops, something went wrong!";
     console.log(outcome);
     let resultTwoSpan = document.getElementById("result-2p");
@@ -440,6 +453,7 @@ function showResultTwoPlayer() {
             playerOneButtons[i].style.display = 'none';
         } else {
             playerOneButtons[i].disabled = true;
+            playerOneButtons[i].style.width = "150%";
         }
     }
 
@@ -450,6 +464,7 @@ function showResultTwoPlayer() {
             playerTwoButtons[i].style.display = 'none';
         } else {
             playerTwoButtons[i].disabled = true;
+            playerTwoButtons[i].style.width = "150%";
         }
     }
 
@@ -458,6 +473,9 @@ function showResultTwoPlayer() {
 }
 
 function startFriendGame() {
+
+    let instructionsBox = document.getElementById("instructions");
+    instructionsBox.style.display = "none"
 
     console.log("friends game underway")
 
@@ -484,15 +502,17 @@ function startFriendGame() {
     scoreArea2p.style.display = "none";
 
     const playerOneChoicePopup = document.getElementById("player-1-make-choice");
-    playerOneChoicePopup.style.display = "block";
+    playerOneChoicePopup.style.display = "flex";
 
     let playerOneButtons = document.getElementById('player-1-choices').children;
     for (let i = 0; i < playerOneButtons.length; i++) {
-        playerOneButtons[i].disabled = false;}
+        playerOneButtons[i].disabled = false;
+        playerOneButtons[i].style.width = "25%"}
 
     let playerTwoButtons = document.getElementById('player-2-choices').children;
     for (let i = 0; i < playerTwoButtons.length; i++) {
-        playerTwoButtons[i].disabled = false;}
+        playerTwoButtons[i].disabled = false;
+        playerTwoButtons[i].style.width = "25%"}
 
     // const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
     // playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
@@ -523,6 +543,7 @@ function resetTwoPlayer() {
             playerOneButtons[i].style.display = 'block';
         } else {
             playerOneButtons[i].disabled = false;
+            playerOneButtons[i].style.width = "25%";
         }
     }
 
@@ -533,6 +554,7 @@ function resetTwoPlayer() {
             playerTwoButtons[i].style.display = 'block';
         } else {
             playerTwoButtons[i].disabled = false;
+            playerTwoButtons[i].style.width = "25%";
         }
     }
 
@@ -543,6 +565,23 @@ function resetTwoPlayer() {
     startFriendGame()
 }
 
+function showInstructions() {
+    let instructionsExplained = document.getElementById("instructions-explained");
+    let startGameBox = document.getElementById("start-game-box");
+    let gameOverBox = document.getElementById("game-over-box");
+
+    startGameBox.style.display = "none";
+    gameOverBox.style.display = "none";
+    instructionsExplained.style.display = "flex";
+}
+
+function hideInstructions() {
+    let instructionsExplained = document.getElementById("instructions-explained");
+    let startGameBox = document.getElementById("start-game-box");
+
+    startGameBox.style.display = "flex";
+    instructionsExplained.style.display = "none";
+}
 
 // Loading game setup after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -552,6 +591,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
     const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
     const nextRoundButton = document.getElementById("next-round-button")
+    let instructionsButton = document.getElementById("instructions-button")
+    let returnToGame = document.getElementById("return-to-game")
+
+    instructionsButton.addEventListener("click", function () {showInstructions();})
+    returnToGame.addEventListener("click", function () {hideInstructions()})
 
     const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
     playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
