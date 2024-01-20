@@ -143,7 +143,6 @@ p {
     align-items: center;
     flex-direction: column;
     font-size: 1.3em;
-    height: 80vh;
     button {
         text-align: center;
         font-weight: bold;
@@ -152,6 +151,10 @@ p {
         margin: 60px;
         font-size: 1.8em;
   }
+}
+
+.play-game-box {
+    height: 80vh;
 }
 
 #error-body {
