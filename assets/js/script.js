@@ -41,7 +41,7 @@ const lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWi
 
 
 function adjustScore(gameResult) {
-    if (gameResult === "win") {
+    if (gameResult === "Player") {
         playerScore += 1;
         let playerScoreSpan = document.getElementById('player-score');
         playerScoreSpan.innerHTML = playerScore;
@@ -53,7 +53,7 @@ function adjustScore(gameResult) {
             console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
             setTimeout(function () {gameOver(gameResult);}, 1500)
         }
-    } else if (gameResult === "lose") {
+    } else if (gameResult === "Computer") {
         computerScore += 1;
         let computerScoreSpan = document.getElementById('computer-score');
         computerScoreSpan.innerHTML = computerScore;
@@ -69,6 +69,13 @@ function adjustScore(gameResult) {
         playerOneScore += 1;
         let playerOneScoreSpan = document.getElementById("player-1-score-2p");
         playerOneScoreSpan.innerHTML = playerOneScore;
+
+
+        let playerOneName = document.getElementById("player-1-name");
+        let playerTwoName = document.getElementById("player-2-name");
+        
+        playerOneName.style.color = "lime";
+        playerTwoName.style.color = "red";
         if (playerOneScore === 3) {
             const nextRoundButton = document.getElementById("next-round-button")
             nextRoundButton.style.display = "none"
@@ -79,6 +86,12 @@ function adjustScore(gameResult) {
         playerTwoScore += 1;
         let playerTwoScoreSpan = document.getElementById("player-2-score-2p");
         playerTwoScoreSpan.innerHTML = playerTwoScore;
+
+        let playerOneName = document.getElementById("player-1-name");
+        let playerTwoName = document.getElementById("player-2-name");
+        
+        playerOneName.style.color = "red";
+        playerTwoName.style.color = "lime";
         if (playerTwoScore === 3) {
             const nextRoundButton = document.getElementById("next-round-button")
             nextRoundButton.style.display = "none"
@@ -98,7 +111,20 @@ function resetComputerChoice() {
     resultSpan.innerHTML = "";
 }
 
-function gameOver(finalResult) {
+function colourWinnerText(firstScore, secondScore) {
+    firstScorePlace = document.getElementById("first-score")
+    secondScorePlace = document.getElementById("second-score")
+    if (firstScore < secondScore) {
+        firstScorePlace.style.color = "red";
+        secondScorePlace.style.color = "lime";
+    } else {
+        firstScorePlace.style.color = "lime";
+        secondScorePlace.style.color = "red"; 
+    }
+    
+}
+
+function gameOver(finalResult, firstScore, secondScore) {
     // Get the play game box, game container and game over elements
     const playGameBox = document.getElementById("play-game-box");
     const gameContainer = document.getElementById("game-container");
@@ -113,50 +139,31 @@ function gameOver(finalResult) {
     // get the p text inside the game over box
     let gameOverText = document.getElementById("game-over-text");
 
-    if (finalResult === "win") {
+
+
+    if (finalResult === "Player" || finalResult === "Computer") {
         gameOverText.innerHTML = `
-        <br>You win!<br><br>
-        FINAL SCORE:<br><br>
-        Player : ${playerScore}<br>
-        Computer : ${computerScore}<br><br> 
+        ${finalResult} wins!<br><br>
+        FINAL SCORE:<br>
+        <p id="first-score">Player : ${firstScore}<\p>
+        <p id="second-score">Computer : ${secondScore}<\p>
         Play again?`;
-        console.log("YOU WIN THE GAME");
-    } else if (finalResult === "lose") {
+        colourWinnerText(firstScore, secondScore)
+    } else if (finalResult === "Player 1" || finalResult === "Player 2") {
         gameOverText.innerHTML = `
-        <br>You lose!<br><br>
-        FINAL SCORE:<br><br>
-        Player : ${playerScore}<br> 
-        Computer : ${computerScore}<br><br>
+        ${finalResult} wins!<br><br>
+        FINAL SCORE:<br>
+        <p id="first-score">Player 1: ${playerOneScore}<\p>
+        <p id="second-score">Player 2: ${playerTwoScore}<\p>
         Play again?`;
-        console.log("YOU LOSE THE GAME");
-    } else if (finalResult === "Player 1") {
-        gameOverText.innerHTML = `
-        Player 1 wins!<br><br>
-        FINAL SCORE:<br><br>
-        Player 1 : ${playerOneScore}<br>
-        Player 2 : ${playerTwoScore}<br><br>
-        Play again?`;
-        console.log("PLAYER 1 WINS THE GAME");
-    } else if (finalResult === "Player 2") {
-        gameOverText.innerHTML = `
-        Player 2 wins!<br><br>
-        FINAL SCORE:<br><br>
-        Player 1 : ${playerOneScore}<br>
-        Player 2 : ${playerTwoScore}<br><br>
-        Play again?`;
-        console.log("PLAYER 2 WINS THE GAME");
+        colourWinnerText(playerOneScore, playerTwoScore)
     }
-    console.log("0")
+
     resetScores();
 
-    console.log("1")
     resetBorders();
 
-    console.log("2")
     resetComputerChoice();
-
-
-    console.log("3")
 
     let playerOneButtons = document.getElementById('player-1-choices').children;
     for (let i = 0; i < playerOneButtons.length; i++) {
@@ -220,12 +227,12 @@ function setPlayerChoice(clicked) {
     if (win.includes(indexResult)) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("win-border");
         document.getElementById("computer-choice-button").classList.add("lose-border");
-        gameResult = "win";
+        gameResult = "Player";
         outcome = "<p>You win!<br><br>" + playerChoice + " beats " + computerChoice + "<br></p>";
     } else if (lose.includes(indexResult)) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("lose-border");
         document.getElementById("computer-choice-button").classList.add("win-border");
-        gameResult = "lose";
+        gameResult = "Computer";
         outcome = "<p>You lose!<br><br>" + computerChoice + " beats " + playerChoice + "<br></p>";
     } else if (draw.includes(indexResult)) {
         document.getElementById(`player-choice-button-${clicked}`).classList.add("draw-border");
@@ -447,6 +454,7 @@ function showResultTwoPlayer() {
     console.log(outcome);
     let resultTwoSpan = document.getElementById("result-2p");
     resultTwoSpan.innerHTML = outcome;
+    
 
     let playerOneButtons = document.getElementById('player-1-choices').children;
     for (let i = 0; i < playerOneButtons.length; i++) {
