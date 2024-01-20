@@ -18,6 +18,8 @@ let playerScore = 0;
 let computerScore = 0;
 let playerOneScore = 0;
 let playerTwoScore = 0;
+let firstScore = 0;
+let secondScore = 0;
 let finalResult;
 let gameResult;
 let victory;
@@ -38,32 +40,30 @@ const draw = [0];
 const win = Array.from({ length: numberOfWinningResults }, (_, i) => i + 1);
 const lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWinningResults + i + 1);
 
-
+function disableButtons() {
+    let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
+    for (let i = 0; i < playerChoiceButtons.length; i++) {
+        playerChoiceButtons[i].disabled = true;}
+}
 
 function adjustScore(gameResult) {
     if (gameResult === "Player") {
-        playerScore += 1;
+        firstScore += 1;
+        console.log("FIRST SCORE PLUS ONE")
         let playerScoreSpan = document.getElementById('player-score');
-        playerScoreSpan.innerHTML = playerScore;
-        console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
-        if (playerScore === 10) {
-            let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
-            for (let i = 0; i < playerChoiceButtons.length; i++) {
-                playerChoiceButtons[i].disabled = true;}
-            console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
-            setTimeout(function () {gameOver(gameResult);}, 1500)
+        playerScoreSpan.innerHTML = firstScore;
+        if (firstScore === 10) {
+            disableButtons()
+            setTimeout(function () {gameOver(gameResult, firstScore, secondScore);}, 1500)
         }
     } else if (gameResult === "Computer") {
-        computerScore += 1;
+        secondScore += 1;
+        console.log("SECOND SCORE PLUS ONE")
         let computerScoreSpan = document.getElementById('computer-score');
-        computerScoreSpan.innerHTML = computerScore;
-        console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
-        if (computerScore === 10) {
-            let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
-            for (let i = 0; i < playerChoiceButtons.length; i++) {
-                playerChoiceButtons[i].disabled = true;}
-            console.log(`Player : ${playerScore} \nComputer : ${computerScore}`);
-            setTimeout(function () {gameOver(gameResult);}, 1500)
+        computerScoreSpan.innerHTML = secondScore;
+        if (secondScore === 10) {
+            disableButtons()
+            setTimeout(function () {gameOver(gameResult, firstScore, secondScore);}, 1500)
         }
     } else if (gameResult === "Player 1") {
         playerOneScore += 1;
@@ -79,7 +79,6 @@ function adjustScore(gameResult) {
         if (playerOneScore === 3) {
             const nextRoundButton = document.getElementById("next-round-button")
             nextRoundButton.style.display = "none"
-            console.log(`Player 1 : ${playerOneScore} \nPlayer 2 : ${playerTwoScore}`);
             setTimeout(function () {gameOver(gameResult);}, 1500)
         }
     } else if (gameResult === "Player 2") {
@@ -95,7 +94,6 @@ function adjustScore(gameResult) {
         if (playerTwoScore === 3) {
             const nextRoundButton = document.getElementById("next-round-button")
             nextRoundButton.style.display = "none"
-            console.log(`Player 1 : ${playerOneScore} \nPlayer 2 : ${playerTwoScore}`);
             setTimeout(function () {gameOver(gameResult);}, 1500)
         }
     }
@@ -209,10 +207,6 @@ function setPlayerChoice(clicked) {
     playerChoice = choices[clicked];
     let computerChoiceIndex = Math.floor(Math.random() * numberOfChoices);
     let computerChoice = choices[computerChoiceIndex];
-
-    console.log("computerChoice :\n" + computerChoice + "\n");
-    console.log("playerChoice :\n" + playerChoice + "\n");
-
     let computerChoiceImage = document.getElementById("computer-choice-image");
     let newImagePath = `assets/images/${computerChoice.toLowerCase()}.png`;
     computerChoiceImage.src = newImagePath;
@@ -240,53 +234,55 @@ function setPlayerChoice(clicked) {
         gameResult = "draw";
         outcome = "<p>DRAW<br><br>NO SCORE</p>";
     } else outcome = "Oops, something went wrong!";
-    console.log(outcome);
     let resultSpan = document.getElementById('result');
     resultSpan.innerHTML = outcome;
 
     adjustScore(gameResult);
 }
 
+function enable() {
+    console.log("start enable")
+    enableAndResize(1)
+    enableAndResize(2)
+    enableAndResize(0)
+}
+
+function enableAndResize(number) {
+    if (number === 1 || number === 2) {
+        console.log("enable number")
+        let buttons = document.getElementById(`player-${number}-choices`).children;
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = false;
+            buttons[i].style.width = "25%"}
+        } else {
+            console.log("enable player")
+            let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
+            for (let i = 0; i < playerChoiceButtons.length; i++) {
+                playerChoiceButtons[i].disabled = false;
+            }
+        }
+}
 
 // Iterate through buttons and attach corresponding event listeners to each 1
 function startComputerGame() {
 
     const gameContainer = document.getElementById("game-container");
-    gameContainer.style.display = "block";
     const scoreAreaTwo = document.getElementById("score-area-2p");
-    scoreAreaTwo.style.display = "none";
     const playerOneArea = document.getElementById("player-1-area");
     const playerTwoArea = document.getElementById("player-2-area");
     const playerArea = document.getElementById("player-area");
     const computerArea = document.getElementById("computer-area");
-    let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
-    let instructionsBox = document.getElementById("instructions");
-    instructionsBox.style.display = "none"
+    const instructionsBox = document.getElementById("instructions");
+
+    gameContainer.style.display = "block";
+    scoreAreaTwo.style.display = "none";
     playerOneArea.style.display = "none";
     playerTwoArea.style.display = "none";
     playerArea.style.display = "flex";
     computerArea.style.display = "flex";
-    for (let i = 0; i < playerChoiceButtons.length; i++) {
-        playerChoiceButtons[i].disabled = false;}
-    
-    let playerOneButtons = document.getElementById('player-1-choices').children;
-    for (let i = 0; i < playerOneButtons.length; i++) {
-        playerOneButtons[i].disabled = false;
-        playerOneButtons[i].style.width = "25%"}
+    instructionsBox.style.display = "none"
 
-    let playerTwoButtons = document.getElementById('player-2-choices').children;
-    for (let i = 0; i < playerTwoButtons.length; i++) {
-        playerTwoButtons[i].disabled = false;
-        playerTwoButtons[i].style.width = "25%"}
-    // if (listenerComputerCheck == false) {
-    //     for (let i = 0; i < choices.length; i++) {
-    //         const buttonId = `player-choice-button-${i}`;
-    //         const button = document.getElementById(buttonId);
-    //         button.addEventListener("click", function () { setPlayerChoice(i); });
-    //     }
-        
-    //     listenerComputerCheck = true;
-    // }
+    enable();
 }
 
 function resetScores() {
@@ -298,6 +294,8 @@ function resetScores() {
     // Reset scores to 0
     playerScore = 0;
     computerScore = 0;
+    firstScore = 0;
+    secondScore = 0;
     playerOneScore = 0;
     playerTwoScore = 0;
 
@@ -310,16 +308,13 @@ function resetScores() {
 }
 
 function resetBorders() {
-    console.log("BORDERS RESET")
     let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
     for (let i = 0; i < playerChoiceButtons.length; i++) {
         playerChoiceButtons[i].classList.remove("win-border", "lose-border", "draw-border", "chosen-border");
     }
-
 }
 
 function showPlayerOneChoices() {
-    console.log("showPlayerOneChoices started");
 
     let playerOneChoicePopup = document.getElementById("player-1-make-choice");
     playerOneChoicePopup.style.display = "none";
@@ -352,14 +347,10 @@ function showPlayerTwoPopup() {
     const playerTwoChoicePopup = document.getElementById("player-2-make-choice");
     playerTwoChoicePopup.style.display = "flex";
 
-    // const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
-    // playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
-
-
 }
 
 function showPlayerTwoChoices() {
-    console.log("showPlayerTwoChoices started");
+
 
     let playerTwoChoicePopup = document.getElementById("player-2-make-choice");
     playerTwoChoicePopup.style.display = "none";
@@ -369,11 +360,7 @@ function showPlayerTwoChoices() {
 
     let gameArea = document.getElementById("game-area");
     let gameContainer = document.getElementById("game-container");
-    let playerArea = document.getElementById("player-area");
-    let computerArea = document.getElementById("computer-area");
     let playerOneArea = document.getElementById("player-1-area");
-    // playerArea.style.display = "none";
-    // computerArea.style.display = "none";
     playerOneArea.style.display = "none";
     gameArea.style.display = "flex";
     gameContainer.style.display = "block";
@@ -523,24 +510,6 @@ function startFriendGame() {
         playerTwoButtons[i].disabled = false;
         playerTwoButtons[i].style.width = "25%"}
 
-    // const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
-    // playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
-
-    // if (listenerFriendCheck == false) {    
-    //     for (let i = 0; i < choices.length; i++) {
-    //         const buttonOneId = `player-1-choice-button-${i}`;
-    //         const buttonOne = document.getElementById(buttonOneId);
-    //         buttonOne.addEventListener("mousedown", function () { setPlayerOneChoice(i); });
-    //         buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); })
-    //     };
-    //     for (let j = 0; j < choices.length; j++) {
-    //     const buttonTwoId = `player-2-choice-button-${j}`;
-    //     const buttonTwo = document.getElementById(buttonTwoId);
-    //     buttonTwo.addEventListener("mousedown", function () { setPlayerTwoChoice(j); });
-    //     buttonTwo.addEventListener("mouseup", function () {clickToShowResult()});
-    //     };
-    //     listenerFriendCheck == true;
-    // }
 }
 
 function resetTwoPlayer() {
