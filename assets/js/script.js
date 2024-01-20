@@ -659,12 +659,10 @@ function toggleInstructions() {
     if (instructionsShowing) {
         startGameBox.style.display = "flex";
         instructionsExplained.style.display = "none";
-        // instructionsButton.innerHTML = "Instructions";
     } else {
         startGameBox.style.display = "none";
         gameOverBox.style.display = "none";
         instructionsExplained.style.display = "flex";
-        // instructionsButton.innerHTML = "Return to Game";
         instructionsButton.addEventListener("click", function () {
             window.location.href = "index.html"
         });
@@ -691,9 +689,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let instructionsButton = document.getElementById("instructions-button")
     let returnToGame = document.getElementById("return-to-game")
 
+
     // instructionsButton.addEventListener("click", function () {showInstructions();})
     instructionsButton.addEventListener("click", function () {toggleInstructions();})
     
+
 
     const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
     playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
@@ -751,6 +751,9 @@ document.addEventListener("DOMContentLoaded", function () {
             this.closest('.play-game-box').style.display = "none";
         });
     }
+
+
+    
 
 });
 
