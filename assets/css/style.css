@@ -189,6 +189,19 @@ p {
     flex-direction: column;
 }
 
+#error-container {
+    display: flex;
+}
+
+#error-page-return {
+    text-align: center;
+        font-weight: bold;
+        border: 5px solid seagreen;
+        padding: 10px;
+        margin: 100px;
+        font-size: 1.8em;
+}
+
 /* #instructions-explained > button {
     text-align: center;
         font-weight: bold;
