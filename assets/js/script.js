@@ -25,6 +25,7 @@ let defeat;
 let opponent;
 let listenerComputerCheck = false;
 let listenerFriendCheck = false;
+let instructionsShowing = false;
 
 
 // Declare a constant s, which is the number of choices
@@ -565,23 +566,119 @@ function resetTwoPlayer() {
     startFriendGame()
 }
 
-function showInstructions() {
+
+
+
+
+
+
+
+
+
+// function instructionsBoxText(instructionsShowing) {
+//     let instructionsButton = document.getElementById("instructions-button")
+//     if (instructionsShowing = false) {
+//         instructionsButton.innerHTML = "<p>Instructions</p>"
+//     } else {
+//         instructionsButton.innerHTML = "<p>Return to Game</p>"
+
+//     }
+// }
+
+// function showInstructions() {
+//     let instructionsExplained = document.getElementById("instructions-explained");
+//     let startGameBox = document.getElementById("start-game-box");
+//     let gameOverBox = document.getElementById("game-over-box");
+
+//     startGameBox.style.display = "none";
+//     gameOverBox.style.display = "none";
+//     instructionsExplained.style.display = "flex";
+//     instructionsShowing = true;
+
+//     instructionsBoxText(instructionsShowing)
+// }
+
+// function hideInstructions() {
+//     let instructionsExplained = document.getElementById("instructions-explained");
+//     let startGameBox = document.getElementById("start-game-box");
+//     startGameBox.style.display = "flex";
+//     instructionsExplained.style.display = "none";
+//     instructionsBoxText(instructionsShowing)
+// }
+
+function instructionsBoxText(instructionsShowing) {
+    let instructionsButton = document.getElementById("instructions-button");
+
+    if (instructionsShowing === false) {
+        instructionsButton.innerHTML = "Instructions";
+    } else {
+        instructionsButton.innerHTML = "Return to Game";
+    }
+}
+
+// function showInstructions() {
+//     let instructionsExplained = document.getElementById("instructions-explained");
+//     let instructionsButton = document.getElementById("instructions-button");
+//     let startGameBox = document.getElementById("start-game-box");
+//     let gameOverBox = document.getElementById("game-over-box");
+
+//     startGameBox.style.display = "none";
+//     gameOverBox.style.display = "none";
+//     instructionsExplained.style.display = "flex";
+//     instructionsShowing = true;
+
+//     instructionsBoxText(instructionsShowing);
+
+//     instructionsButton.innerHTML = "<p>Return to Game</p>";
+//     instructionsButton.addEventListener("click", function () {
+//         window.location.href = "index.html"
+//     });
+// }
+
+// function hideInstructions() {
+//     let instructionsExplained = document.getElementById("instructions-explained");
+//     let instructionsButton = document.getElementById("instructions-button");
+//     let startGameBox = document.getElementById("start-game-box");
+
+//     startGameBox.style.display = "flex";
+//     instructionsExplained.style.display = "none";
+//     instructionsShowing = false;
+
+//     instructionsBoxText(instructionsShowing);
+
+//     instructionsButton.innerHTML = "<p>Instructions</p>";
+// }
+
+
+function toggleInstructions() {
     let instructionsExplained = document.getElementById("instructions-explained");
+    let instructionsButton = document.getElementById("instructions-button");
     let startGameBox = document.getElementById("start-game-box");
     let gameOverBox = document.getElementById("game-over-box");
 
-    startGameBox.style.display = "none";
-    gameOverBox.style.display = "none";
-    instructionsExplained.style.display = "flex";
+    if (instructionsShowing) {
+        startGameBox.style.display = "flex";
+        instructionsExplained.style.display = "none";
+        // instructionsButton.innerHTML = "Instructions";
+    } else {
+        startGameBox.style.display = "none";
+        gameOverBox.style.display = "none";
+        instructionsExplained.style.display = "flex";
+        // instructionsButton.innerHTML = "Return to Game";
+        instructionsButton.addEventListener("click", function () {
+            window.location.href = "index.html"
+        });
+    }
+    instructionsShowing = !instructionsShowing
+    instructionsBoxText(instructionsShowing);
 }
 
-function hideInstructions() {
-    let instructionsExplained = document.getElementById("instructions-explained");
-    let startGameBox = document.getElementById("start-game-box");
 
-    startGameBox.style.display = "flex";
-    instructionsExplained.style.display = "none";
-}
+
+
+
+
+
 
 // Loading game setup after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -594,8 +691,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let instructionsButton = document.getElementById("instructions-button")
     let returnToGame = document.getElementById("return-to-game")
 
-    instructionsButton.addEventListener("click", function () {showInstructions();})
-    returnToGame.addEventListener("click", function () {hideInstructions()})
+    // instructionsButton.addEventListener("click", function () {showInstructions();})
+    instructionsButton.addEventListener("click", function () {toggleInstructions();})
+    
 
     const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
     playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
@@ -628,6 +726,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
     playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
+
+    
 
     nextRoundButton.addEventListener("click", function () {resetTwoPlayer()})
 

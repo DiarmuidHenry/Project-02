@@ -6,6 +6,12 @@ body {
     background-color: lightseagreen;
     background-image: linear-gradient(to right, rgb(27, 145, 139), rgb(41, 232, 232));
     background-size: 100% 100%;
+    /* height: 80% */
+}
+
+header {
+
+    height: 15vh
 }
 
 /* body::before {
@@ -118,7 +124,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 3vw;
+    font-size: max(3vw, 30px);
 }
 
 p {
@@ -137,13 +143,13 @@ p {
     align-items: center;
     flex-direction: column;
     font-size: 1.3em;
-    height: 60vh;
+    height: 80vh;
     button {
         text-align: center;
         font-weight: bold;
         border: 5px solid seagreen;
         padding: 10px;
-        margin: 40px;
+        margin: 60px;
         font-size: 1.8em;
   }
 }
@@ -157,9 +163,9 @@ p {
     button {
         text-align: center;
         font-weight: bold;
-        border: 8px solid seagreen;
+        border: 5px solid seagreen;
         padding: 10px;
-        margin: 10px;
+        margin: 0px;
         font-size: 1.8em;
     }
     p {
@@ -183,14 +189,14 @@ p {
     flex-direction: column;
 }
 
-#instructions-explained > button {
+/* #instructions-explained > button {
     text-align: center;
         font-weight: bold;
         border: 8px solid seagreen;
         padding: 10px;
         margin: 10px;
         font-size: 1.6em;
-}
+} */
 
 
 .win-border {
