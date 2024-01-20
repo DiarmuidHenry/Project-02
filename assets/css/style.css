@@ -154,10 +154,22 @@ p {
   }
 }
 
+#error-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+}
+
 #instructions {
     display: flex;
     justify-content: center;
+    justify-self: center;
     align-items: center;
+    align-content: center;
     flex-direction: column;
     font-size: 1.3em;
     button {
@@ -191,14 +203,20 @@ p {
 
 #error-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #error-page-return {
     text-align: center;
+    align-self: center;
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 10px; 
         font-weight: bold;
         border: 5px solid seagreen;
-        padding: 10px;
-        margin: 100px;
+        margin: 50px;
         font-size: 1.8em;
 }
 
