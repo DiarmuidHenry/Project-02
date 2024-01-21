@@ -82,7 +82,7 @@ function adjustScore(gameResult) {
         gameOverAfterDelay()
     }
     if ((firstScore === 3 || secondScore === 3) && (gameResult === "Player 1" || gameResult === "Player 2")) {
-        nextRoundButton.style.display = "none"
+        changeDisplayById("next-round-button", "none")
         gameOverAfterDelay()
     }
 
@@ -227,20 +227,31 @@ function enable() {
 
 function enableAndResize(number) {
     if (number === 1 || number === 2) {
-        console.log("enable number")
         let buttons = document.getElementById(`player-${number}-choices`).children;
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].disabled = false;
             buttons[i].style.width = "25%"
         }
     } else {
-        console.log("enable player")
         let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
         for (let i = 0; i < playerChoiceButtons.length; i++) {
             playerChoiceButtons[i].disabled = false;
         }
     }
 }
+
+function disableAndResize(number, choiceIndex) {
+    let buttons = document.getElementById(`player-${number}-choices`).children;
+    for (let i = 0; i < buttons.length; i++) {
+        if (i !== choiceIndex) {
+            buttons[i].style.display = 'none';
+        } else {
+            buttons[i].disabled = true;
+            buttons[i].style.width = "150%";
+        }
+    }
+}
+
 
 // Iterate through buttons and attach corresponding event listeners to each 1
 function startComputerGame() {
@@ -329,56 +340,58 @@ function showResultTwoPlayer() {
     changeDisplayById("score-area-2p", "flex");
     changeDisplayById("next-round-button", "block");
 
-
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
+
+    // if (win.includes(indexResult)) {
+    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("win-border");
+    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("lose-border");
+    //     gameResult = "Player 1";
+    //     outcome = "<p>Player 1 wins!<br><br>" + playerOneChoice + " beats " + playerTwoChoice + "<br></p>";
+    // } else if (lose.includes(indexResult)) {
+    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("lose-border");
+    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("win-border");
+    //     gameResult = "Player 2";
+    //     outcome = "<p>Player 2 wins!<br><br>" + playerTwoChoice + " beats " + playerOneChoice + "<br></p>";
+    // } else if (draw.includes(indexResult)) {
+    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("draw-border");
+    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("draw-border");
+    //     gameResult = "draw";
+    //     outcome = "<p>DRAW<br><br>NO SCORE</p>";
+    // } else outcome = "Oops, something went wrong! Please press the page title to rest the game";
+
     if (win.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("win-border");
-        document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("lose-border");
-        gameResult = "Player 1";
-        outcome = "<p>Player 1 wins!<br><br>" + playerOneChoice + " beats " + playerTwoChoice + "<br></p>";
+        setOutcome(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1")
     } else if (lose.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("lose-border");
-        document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("win-border");
-        gameResult = "Player 2";
-        outcome = "<p>Player 2 wins!<br><br>" + playerTwoChoice + " beats " + playerOneChoice + "<br></p>";
+        setOutcome(playerTwoChoiceIndex, playerOneChoiceIndex, "lose", "win", "Player 2")
     } else if (draw.includes(indexResult)) {
-        document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("draw-border");
-        document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("draw-border");
-        gameResult = "draw";
-        outcome = "<p>DRAW<br><br>NO SCORE</p>";
-    } else outcome = "Oops, something went wrong! Please press the page title to rest the game";
-    console.log(outcome);
+        setOutcome(playerOneChoiceIndex, playerTwoChoiceIndex, "draw", "draw", "draw")
+    }   
+
     let resultTwoSpan = document.getElementById("result-2p");
     resultTwoSpan.innerHTML = outcome;
 
-
-    let playerOneButtons = document.getElementById('player-1-choices').children;
-    for (let i = 0; i < playerOneButtons.length; i++) {
-        if (i !== playerOneChoiceIndex) {
-            playerOneButtons[i].style.display = 'none';
-        } else {
-            playerOneButtons[i].disabled = true;
-            playerOneButtons[i].style.width = "150%";
-        }
-    }
-
-    // Hide buttons in player-2-choices based on index
-    let playerTwoButtons = document.getElementById('player-2-choices').children;
-    for (let i = 0; i < playerTwoButtons.length; i++) {
-        if (i !== playerTwoChoiceIndex) {
-            playerTwoButtons[i].style.display = 'none';
-        } else {
-            playerTwoButtons[i].disabled = true;
-            playerTwoButtons[i].style.width = "150%";
-        }
-    }
+    disableAndResize(1, playerOneChoiceIndex)
+    disableAndResize(2, playerTwoChoiceIndex)
     adjustScore(gameResult);
 }
 
-function startFriendGame() {
+function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
+    let playerOneChoiceButton = document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`)
+    let playerTwoChoiceButton = document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`)
+    playerOneChoiceButton.classList.add(`${result}-border`)
+    playerTwoChoiceButton.classList.add(`${antiResult}-border`)
+    gameResult = winner;
+    if (result === "draw") {
+        outcome = "<p>DRAW<br><br>NO SCORE</p>";
+    } else {
+        outcome = `<p>${gameResult} wins!<br><br> ${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
+    }
+}
 
-    let instructionsBox = document.getElementById("instructions");
-    instructionsBox.style.display = "none"
+
+
+function startFriendGame() {
+    changeDisplayById("instructions", "none")
 
     // Get the play game box, game container and game over elements
     const playGameBox = document.getElementById("play-game-box");
@@ -419,22 +432,24 @@ function startFriendGame() {
 function resetTwoPlayer() {
     resetBorders()
 
-    resetPlayerButtons(playerOneChoiceIndex, "player-1-choices");
-    resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices")
+    resetPlayerButtons(playerOneChoiceIndex, "player-1-choices", true);
+    resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true)
 
     changeDisplayById("player-2-area", "none")
 
     startFriendGame()
 }
 
-function resetPlayerButtons(choiceIndex, containerId) {
+function resetPlayerButtons(choiceIndex, containerId, width) {
     let playerButtons = document.getElementById(containerId).children;
     for (let i = 0; i < playerButtons.length; i++) {
         if (i !== choiceIndex) {
             playerButtons[i].style.display = 'block';
         } else {
             playerButtons[i].disabled = false;
-            playerButtons[i].style.width = "25%";
+            if (width === true) {
+                playerButtons[i].style.width = "25%";
+            }
         }
     }
 }
@@ -450,7 +465,7 @@ function instructionsBoxText(instructionsShowing) {
 
 
 function toggleInstructions() {
-    
+
     if (instructionsShowing) {
         changeDisplayById("start-game-box", "flex");
         changeDisplayById("instructions-explained", "none");
@@ -503,14 +518,14 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < choices.length; i++) {
         const buttonOneId = `player-1-choice-button-${i}`;
         const buttonOne = document.getElementById(buttonOneId);
-        buttonOne.addEventListener("mousedown", function () { setPlayerNChoice(1,i); });
+        buttonOne.addEventListener("mousedown", function () { setPlayerNChoice(1, i); });
         buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); })
     };
 
     for (let j = 0; j < choices.length; j++) {
         const buttonTwoId = `player-2-choice-button-${j}`;
         const buttonTwo = document.getElementById(buttonTwoId);
-        buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2,j); });
+        buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2, j); });
         buttonTwo.addEventListener("mouseup", function () { clickToShowResult() });
     };
 
