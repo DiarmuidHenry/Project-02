@@ -24,11 +24,6 @@ let firstScore = 0;
 let secondScore = 0;
 let finalResult;
 let gameResult;
-let victory;
-let defeat;
-let opponent;
-let listenerComputerCheck = false;
-let listenerFriendCheck = false;
 let instructionsShowing = false;
 
 
@@ -194,29 +189,37 @@ function setPlayerChoice(clicked) {
     let outcome;
 
     let indexResult = (numberOfChoices + computerChoiceIndex - playerChoiceIndex) % numberOfChoices;
-    // If choice corresponds to value in win, then win is logged.
-    // Similarly for lose and draw. +s to keep modulo values +ve
+
     if (win.includes(indexResult)) {
-        document.getElementById(`player-choice-button-${clicked}`).classList.add("win-border");
-        document.getElementById("computer-choice-button").classList.add("lose-border");
-        gameResult = "Player";
-        outcome = "<p>You win!<br><br>" + playerChoice + " beats " + computerChoice + "<br></p>";
+        setOutcome(playerChoiceIndex, computerChoiceIndex, "win", "lose", "Player")
     } else if (lose.includes(indexResult)) {
-        document.getElementById(`player-choice-button-${clicked}`).classList.add("lose-border");
-        document.getElementById("computer-choice-button").classList.add("win-border");
-        gameResult = "Computer";
-        outcome = "<p>You lose!<br><br>" + computerChoice + " beats " + playerChoice + "<br></p>";
+        setOutcome(computerChoiceIndex, playerChoiceIndex, "lose", "win", "Computer")
     } else if (draw.includes(indexResult)) {
-        document.getElementById(`player-choice-button-${clicked}`).classList.add("draw-border");
-        document.getElementById("computer-choice-button").classList.add("draw-border");
-        gameResult = "draw";
+        setOutcome(playerChoiceIndex, computerChoiceIndex, "draw", "draw")
+    }
+
+}
+
+function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
+    let playerChoiceButton = document.getElementById(`player-choice-button-${playerChoiceIndex}`)
+    let computerChoiceButton = document.getElementById(`computer-choice-button`)
+    playerChoiceButton.classList.add(`${result}-border`)
+    computerChoiceButton.classList.add(`${antiResult}-border`)
+    gameResult = winner;
+    console.log("1")
+    if (result === "draw") {
         outcome = "<p>DRAW<br><br>NO SCORE</p>";
-    } else outcome = "Oops, something went wrong!";
+    console.log("DRaw")
+    } else {
+        console.log(result + "reached this point")
+        outcome = `<p>You ${result}!<br><br> ${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
+    }
+    console.log("2")
     let resultSpan = document.getElementById('result');
     resultSpan.innerHTML = outcome;
-
-    adjustScore(gameResult);
+    adjustScore(gameResult);  
 }
+
 
 function enable() {
     console.log("start enable")
@@ -342,40 +345,20 @@ function showResultTwoPlayer() {
 
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
 
-    // if (win.includes(indexResult)) {
-    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("win-border");
-    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("lose-border");
-    //     gameResult = "Player 1";
-    //     outcome = "<p>Player 1 wins!<br><br>" + playerOneChoice + " beats " + playerTwoChoice + "<br></p>";
-    // } else if (lose.includes(indexResult)) {
-    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("lose-border");
-    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("win-border");
-    //     gameResult = "Player 2";
-    //     outcome = "<p>Player 2 wins!<br><br>" + playerTwoChoice + " beats " + playerOneChoice + "<br></p>";
-    // } else if (draw.includes(indexResult)) {
-    //     document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`).classList.add("draw-border");
-    //     document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`).classList.add("draw-border");
-    //     gameResult = "draw";
-    //     outcome = "<p>DRAW<br><br>NO SCORE</p>";
-    // } else outcome = "Oops, something went wrong! Please press the page title to rest the game";
-
     if (win.includes(indexResult)) {
-        setOutcome(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1")
+        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1")
     } else if (lose.includes(indexResult)) {
-        setOutcome(playerTwoChoiceIndex, playerOneChoiceIndex, "lose", "win", "Player 2")
+        setOutcomeTwoPlayer(playerTwoChoiceIndex, playerOneChoiceIndex, "lose", "win", "Player 2")
     } else if (draw.includes(indexResult)) {
-        setOutcome(playerOneChoiceIndex, playerTwoChoiceIndex, "draw", "draw", "draw")
+        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "draw", "draw", "draw")
     }   
-
-    let resultTwoSpan = document.getElementById("result-2p");
-    resultTwoSpan.innerHTML = outcome;
 
     disableAndResize(1, playerOneChoiceIndex)
     disableAndResize(2, playerTwoChoiceIndex)
     adjustScore(gameResult);
 }
 
-function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
+function setOutcomeTwoPlayer(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
     let playerOneChoiceButton = document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`)
     let playerTwoChoiceButton = document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`)
     playerOneChoiceButton.classList.add(`${result}-border`)
@@ -386,72 +369,51 @@ function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, win
     } else {
         outcome = `<p>${gameResult} wins!<br><br> ${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
     }
+    let resultTwoSpan = document.getElementById("result-2p");
+    resultTwoSpan.innerHTML = outcome;
 }
-
-
 
 function startFriendGame() {
     changeDisplayById("instructions", "none")
+    changeDisplayById("game-container", "none")
+    changeDisplayById("game-over-box", "none")
+    changeDisplayById("score-area-2p", "none")
+    changeDisplayById("player-1-make-choice", "flex")
 
-    // Get the play game box, game container and game over elements
-    const playGameBox = document.getElementById("play-game-box");
-    const gameContainer = document.getElementById("game-container");
-    const gameOverBox = document.getElementById("game-over-box");
-    // Hide game container
+    resetPlayerButtons(playerOneChoiceIndex , "player-1-choices", true, false);
+    resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true, false);
+}
 
-    console.log("hiding game container")
-    gameContainer.style.display = "none";
-    console.log("game container hidden")
-
-    // Show game over container
-    gameOverBox.style.display = "none";
-    // get the p text inside the game over box
-    let gameOverText = document.getElementById("game-over-text");
-
-
-    const scoreArea2p = document.getElementById("score-area-2p");
-    scoreArea2p.style.display = "none";
-
-    const playerOneChoicePopup = document.getElementById("player-1-make-choice");
-    playerOneChoicePopup.style.display = "flex";
-
-    let playerOneButtons = document.getElementById('player-1-choices').children;
-    for (let i = 0; i < playerOneButtons.length; i++) {
-        playerOneButtons[i].disabled = false;
-        playerOneButtons[i].style.width = "25%"
+function resetPlayerButtons(choiceIndex, containerId, width, block) {
+    let buttons = document.getElementById(containerId).children;
+    if (block === true) {
+        for (let i = 0; i < buttons.length; i++) {
+            if (i !== choiceIndex) {
+                buttons[i].style.display = 'block';
+            } else {
+                buttons[i].disabled = false;
+                if (width === true) {
+                    buttons[i].style.width = "25%";
+                }
+            }
+        }
+    } else {
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = false;
+            buttons[i].style.width = "25%"
     }
-
-    let playerTwoButtons = document.getElementById('player-2-choices').children;
-    for (let i = 0; i < playerTwoButtons.length; i++) {
-        playerTwoButtons[i].disabled = false;
-        playerTwoButtons[i].style.width = "25%"
-    }
-
+}
 }
 
 function resetTwoPlayer() {
     resetBorders()
 
-    resetPlayerButtons(playerOneChoiceIndex, "player-1-choices", true);
-    resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true)
+    resetPlayerButtons(playerOneChoiceIndex, "player-1-choices", true, true);
+    resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true, true);
 
     changeDisplayById("player-2-area", "none")
 
     startFriendGame()
-}
-
-function resetPlayerButtons(choiceIndex, containerId, width) {
-    let playerButtons = document.getElementById(containerId).children;
-    for (let i = 0; i < playerButtons.length; i++) {
-        if (i !== choiceIndex) {
-            playerButtons[i].style.display = 'block';
-        } else {
-            playerButtons[i].disabled = false;
-            if (width === true) {
-                playerButtons[i].style.width = "25%";
-            }
-        }
-    }
 }
 
 function instructionsBoxText(instructionsShowing) {
@@ -483,62 +445,42 @@ function toggleInstructions() {
 }
 
 
-
 // Loading game setup after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Get the play game box, game container and game over elements
-    const playGameBoxes = document.getElementsByClassName("play-game-box");
-    const gameContainer = document.getElementById("game-container");
     const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
     const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
     const nextRoundButton = document.getElementById("next-round-button")
     let instructionsButton = document.getElementById("instructions-button")
-    let returnToGame = document.getElementById("return-to-game")
-
-
-    // instructionsButton.addEventListener("click", function () {showInstructions();})
-    instructionsButton.addEventListener("click", function () { toggleInstructions(); })
-
-
-
     const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
+    const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
+    const clickToShowButton = document.getElementById("click-to-show-button")
+
+    clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
+    instructionsButton.addEventListener("click", function () { toggleInstructions(); })
     playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
+    playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
+    nextRoundButton.addEventListener("click", function () { resetTwoPlayer() })
 
-    if (listenerComputerCheck == false) {
-        for (let i = 0; i < choices.length; i++) {
-            const buttonId = `player-choice-button-${i}`;
-            const button = document.getElementById(buttonId);
-            button.addEventListener("click", function () { setPlayerChoice(i); });
-        }
-
-        listenerComputerCheck = true;
+    for (let i = 0; i < choices.length; i++) {
+        const buttonId = `player-choice-button-${i}`;
+        const button = document.getElementById(buttonId);
+        button.addEventListener("click", function () { setPlayerChoice(i); });
     }
-
 
     for (let i = 0; i < choices.length; i++) {
         const buttonOneId = `player-1-choice-button-${i}`;
         const buttonOne = document.getElementById(buttonOneId);
         buttonOne.addEventListener("mousedown", function () { setPlayerNChoice(1, i); });
         buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); })
-    };
+    }
 
-    for (let j = 0; j < choices.length; j++) {
-        const buttonTwoId = `player-2-choice-button-${j}`;
+    for (let i = 0; i < choices.length; i++) {
+        const buttonTwoId = `player-2-choice-button-${i}`;
         const buttonTwo = document.getElementById(buttonTwoId);
-        buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2, j); });
+        buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2, i); });
         buttonTwo.addEventListener("mouseup", function () { clickToShowResult() });
     };
-
-    const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
-    playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
-
-
-
-    nextRoundButton.addEventListener("click", function () { resetTwoPlayer() })
-
-    const clickToShowButton = document.getElementById("click-to-show-button")
-    clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
-
     // Click event listener for play-against-computer buttons (play and replay)
     for (let i = 0; i < playAgainstComputerButtons.length; i++) {
         playAgainstComputerButtons[i].addEventListener("click", function () {
@@ -546,7 +488,6 @@ document.addEventListener("DOMContentLoaded", function () {
             this.closest('.play-game-box').style.display = "none";
         });
     }
-
     // Click event listener for play against friend
     for (let i = 0; i < playAgainstFriendButtons.length; i++) {
         playAgainstFriendButtons[i].addEventListener("click", function () {
