@@ -133,7 +133,7 @@ p {
         font-weight: bold;
         border: 5px solid seagreen;
         padding: 10px;
-        margin: 1%;
+        margin: 2%;
         font-size: 1.8em;
   }
 }
@@ -224,3 +224,29 @@ p {
     border: 5px solid white;
 }
 
+
+/* media queries for mobiles, 767px and under*/
+@media screen and (max-width: 767px) {
+    #game-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .player-area {
+        width: 100% !important
+    }
+
+    #computer-heading { grid-area: heading; }
+    #computer-choice { grid-area: choice; }
+    .results-area { grid-area: result; }
+    #score-area { grid-area: score; }
+
+
+    #game-area > #computer-area {
+    display: grid;
+    grid-template-areas: 
+        'heading result'
+        'choice score';
+    
+}
+}
