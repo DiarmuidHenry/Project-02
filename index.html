@@ -18,6 +18,7 @@
 <body>
         <header>
             <a href="index.html">
+                <!-- Clickable heading. Reloads index.html -->
                 <h1 class="heading">Rock Paper Scissors Lizard Spock</h1>
         </a>
     
@@ -26,6 +27,7 @@
             Instructions
             </button></div>
         <div id="instructions-explained" style="display: none;">
+            <!-- Text giving instructions and brief background/history of game -->
             <p>
                 The game bla bla bla
     
@@ -79,10 +81,12 @@
                     </button>
                 </div>
             </div>
+            <!-- Area encasing all interactive parts of the computer -->
             <div class="player-area" id="computer-area">
                 <h2 class="player-heading" id="computer-heading">Computer:</h2>
                 <div id="computer-choice">
-                    <!-- Button is disabled since the player doesn't choose the computers choice. Button is used to be able to style all buttons/images more generally -->
+                    <!-- Button is disabled since the player doesn't choose the computers choice. -->
+                    <!-- Button is used to be able to style all buttons/images more generally -->
                     <button disabled class="player-choices-buttons" id="computer-choice-button">
                         <img class="player-choices-images" id="computer-choice-image"
                             src="assets/images/question-mark.png" alt="Computer choice. Not yet decided.">
@@ -100,6 +104,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Area encasing all interactive parts of player 1-->
             <div style="display: none;" class="player-area" id="player-1-area">
                 <h2 class="player-heading" id="player-1-heading">Player 1:</h2>
                 <div class="player-choices" id="player-1-choices">
@@ -140,6 +145,7 @@
                 </div>
                 <button id="next-round-button">Next Round</button>
             </div>
+            <!-- Area encasing all interactive parts of player 1-->
             <div style="display: none;" class="player-area" id="player-2-area">
                 <h2 class="player-heading" id="player-2-heading">Player 2:</h2>
                 <div class="player-choices" id="player-2-choices">
@@ -170,35 +176,39 @@
         </div>
 
     </div>
+    <!-- Appears when page is loaded to initiate PvC of PvP game -->
     <div id="start-game-box" class="play-game-box">
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
+    <!-- Game over text in PvC, along with buttons to initiate new game -->
     <div id="game-over-box" class="play-game-box" style="display: none;">
         <p id="game-over-text">Game over win or lose text here</p>
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
+    <!-- Pop up box, instructing player 1 to take turn -->
     <div id="player-1-make-choice" style="display: none;" class="play-game-box">
         <p>Player 1<br><br>Your turn</p>
         <button id="player-1-make-choice-button" class="make-choice-button">Play</button>
     </div>
+        <!-- Pop up box, instructing player 2 to take turn -->
     <div id="player-2-make-choice" style="display: none;" class="play-game-box">
         <p>Player 2<br><br>Your turn</p>
         <button id="player-2-make-choice-button" class="make-choice-button">Play</button>
     </div>
-    <div id="show-result" style="display: none;" class="play-game-box">
-        <button is="show-result-button">Show result!</button>
-    </div>
+    <!-- Game over text in PvP, along with buttons to initiate new game -->
     <div id="game-over-box-two" class="play-game-box" style="display: none;">
         <p id="game-over-text-two">Game over win or lose text here TWO PLAYER</p>
         <button class="play-against-computer">Play against the computer</button>
         <button class="play-against-friend">Play against a friend</button>
     </div>
+    <!-- Pop up box, instructing players to click and see result -->
     <div id="click-to-show" style="display: none;" class="play-game-box">
         <p>Click to see result</p>
         <button id="click-to-show-button" class="make-choice-button">RESULT</button>
     </div>
+    <!-- script with all .js for the index.html page -->
     <script src="assets/js/script.js"></script>
 </body>
 

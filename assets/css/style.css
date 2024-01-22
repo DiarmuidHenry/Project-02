@@ -1,34 +1,22 @@
-/* body {
-    background-color: lightseagreen; 
-} */
-
 body {
     background-color: lightseagreen;
     background-image: linear-gradient(to right, rgb(27, 145, 139), rgb(41, 232, 232));
     background-size: 100% 100%;
-    /* height: 80% */
 }
 
 header {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
     height: 15vh
 }
 
-/* body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: url('path/to/your-pattern.png') repeat; Replace 'path/to/your-pattern.png' with the path to your pattern image 
-    opacity: 0.1; Adjust the opacity to control the pattern visibility 
-} */
-
 a {
     text-decoration: none;
-    color: inherit
+    color: inherit;
+    height: fit-content;
 }
 
 a > h1:hover {
@@ -55,10 +43,6 @@ button {
     padding: 0;
     border: none;
 }
-
-/* button:not([disabled]) {
-    transition: background-color 0.4s ease;
-} */
 
 .player-choices > button {
     width: 25%;
@@ -125,6 +109,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: max(3vw, 40px);
+    margin: 5px;
 }
 
 p {
@@ -148,7 +133,7 @@ p {
         font-weight: bold;
         border: 5px solid seagreen;
         padding: 10px;
-        margin: 60px;
+        margin: 1%;
         font-size: 1.8em;
   }
 }
@@ -222,16 +207,6 @@ p {
         margin: 50px;
         font-size: 1.8em;
 }
-
-/* #instructions-explained > button {
-    text-align: center;
-        font-weight: bold;
-        border: 8px solid seagreen;
-        padding: 10px;
-        margin: 10px;
-        font-size: 1.6em;
-} */
-
 
 .win-border {
     border: 5px solid lime;
