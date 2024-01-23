@@ -108,7 +108,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: max(3vw, 40px);
+    font-size: max(3vw, 30px);
     margin: 5px;
 }
 
@@ -224,6 +224,18 @@ p {
     border: 5px solid white;
 }
 
+.display-flex {
+    display: flex;
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
 
 /* media queries for mobiles, 767px and under*/
 @media screen and (max-width: 767px) {
@@ -232,8 +244,30 @@ p {
         flex-direction: column;
     }
 
+    #instructions > #instructions-button {
+        font-size: 1.2em;
+    }
+
+    body > #start-game-box, body > #game-over-box {
+        button {
+            font-size: 1.2em !important;
+        }
+    }
+
     .player-area {
         width: 100% !important
+    }
+
+    #player-1-choices {
+        width: 98%;
+    }
+
+    #player-2-choices {
+        width: 98%;
+    }
+
+    #game-over-text {
+        font-size: 90%
     }
 
     #computer-heading { grid-area: heading; }
@@ -242,11 +276,14 @@ p {
     #score-area { grid-area: score; }
 
 
-    #game-area > #computer-area {
-    display: grid;
+    #computer-area {
+    display: grid !important;
     grid-template-areas: 
         'heading result'
         'choice score';
-    
-}
+    }
+
+    #computer-choice > button {
+        width: 60%;
+    }
 }

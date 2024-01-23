@@ -16,3 +16,4 @@ Bugs/fixes:
 
 - Borders not disappearing after next one clcked. Add a style class remover to fix.
 - After game was reset, scores wenr up by more than 1 point. This iws due to multiple eventListners eeing attached to each image/button. I added a variable (listenerCheck) that checked if they had been added. That sorted the problem.
+- When adding media queries, I was having problem with specificity. I found out that this was because my approach to it was to add styles directly into the HTML from javascript. This meant it could not be overwritten, as "style =" has the highest specificity. I tried first to fix this by altering the way I changed the display property: I simply created style classes called "display flex", "display block" and "display none" in the CSS, and added this style class to the object. However, this didn't work, as I had more speficit changes to the display based on id in other places in the code. I then tried 

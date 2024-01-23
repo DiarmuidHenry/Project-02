@@ -330,6 +330,29 @@ function clickToShowResult() {
     changeDisplayById("click-to-show", "flex");
 }
 
+window.addEventListener('load', function() {
+    applyStylesBasedOnWidth();
+});
+
+// Check the screen width on window resize
+window.addEventListener('resize', function() {
+    applyStylesBasedOnWidth();
+});
+
+function applyStylesBasedOnWidth() {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    // Get the target element
+    let computerArea = document.querySelector('#computer-area');
+
+    // Apply styles based on screen width
+    if (screenWidth < 768) {
+        computerArea.style.display = 'grid';
+    } else {
+        computerArea.style.display = 'flex';
+    }
+}
+
 function showResultTwoPlayer() {
     resetBorders();
 
