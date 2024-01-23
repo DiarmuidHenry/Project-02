@@ -25,6 +25,7 @@ let secondScore = 0;
 let finalResult;
 let gameResult;
 let instructionsShowing = false;
+let smallScreen = window.matchMedia("(max-width: 767px)")
 
 
 // Declare a constant s, which is the number of choices
@@ -211,7 +212,7 @@ function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, win
         console.log("DRaw")
     } else {
         console.log(result + "reached this point")
-        outcome = `<p>You ${result}!<br><br> ${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
+        outcome = `<p>You ${result}!<br><br>${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
     }
     console.log("2")
     let resultSpan = document.getElementById('result');
@@ -260,7 +261,7 @@ function startComputerGame() {
     changeDisplayById("player-1-area", "none");
     changeDisplayById("player-2-area", "none");
     changeDisplayById("player-area", "flex");
-    changeDisplayById("computer-area", "flex");
+    changeDisplayById("computer-area", "flex", "grid");
     changeDisplayById("instructions", "none");
 
     enable();
@@ -293,9 +294,35 @@ function resetBorders() {
     }
 }
 
-function changeDisplayById(Id, changed) {
+function gridOrFlex() {
+    let playerArea = document.getElementById("player-area");
+    let computerArea = document.getElementById("computer-area");
+    let playerOneArea = document.getElementById("player-2-area");
+    let playerTwoArea = document.getElementById("player-1-area");
+    let scoreAreaTwo = document.getElementById("score-area-2p");
+    // Check if all conditios are met
+    if (
+        getComputedStyle(playerArea).display === "none" &&
+        getComputedStyle(computerArea).display === "none" &&
+        getComputedStyle(playerOneArea).display === "flex" &&
+        getComputedStyle(playerTwoArea).display === "flex" &&
+        getComputedStyle(scoreAreaTwo).display === "flex"
+     ) {
+        console.log("GRID")
+        return "grid"
+    } else {
+        console.log("FLEX")
+        return "flex"
+    }
+}
+
+function changeDisplayById(Id, changed, changedIfMobile) {
     let object = document.getElementById(Id);
-    object.style.display = changed;
+    if (changedIfMobile && smallScreen.matches) {
+        object.style.display = changedIfMobile || changed;
+    } else {
+        object.style.display = changed;
+    }
 }
 
 function showPlayerOneChoices() {
@@ -330,29 +357,6 @@ function clickToShowResult() {
     changeDisplayById("click-to-show", "flex");
 }
 
-window.addEventListener('load', function() {
-    applyStylesBasedOnWidth();
-});
-
-// Check the screen width on window resize
-window.addEventListener('resize', function() {
-    applyStylesBasedOnWidth();
-});
-
-function applyStylesBasedOnWidth() {
-    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-    // Get the target element
-    let computerArea = document.querySelector('#computer-area');
-
-    // Apply styles based on screen width
-    if (screenWidth < 768) {
-        computerArea.style.display = 'grid';
-    } else {
-        computerArea.style.display = 'flex';
-    }
-}
-
 function showResultTwoPlayer() {
     resetBorders();
 
@@ -362,6 +366,7 @@ function showResultTwoPlayer() {
     changeDisplayById("player-2-area", "flex");
     changeDisplayById("score-area-2p", "flex");
     changeDisplayById("next-round-button", "block");
+    changeDisplayById("game-area", "flex", gridOrFlex());
 
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
 
@@ -387,7 +392,7 @@ function setOutcomeTwoPlayer(winnerChoiceIndex, loserChoiceIndex, result, antiRe
     if (result === "draw") {
         outcome = "<p>DRAW<br><br>NO SCORE</p>";
     } else {
-        outcome = `<p>${gameResult} wins!<br><br> ${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
+        outcome = `<p>${gameResult} wins!<br><br>${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
     }
     let resultTwoSpan = document.getElementById("result-2p");
     resultTwoSpan.innerHTML = outcome;
