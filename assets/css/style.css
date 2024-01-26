@@ -97,6 +97,7 @@ button:not([disabled]):hover {
 
 .scores {
     text-align: center;
+    margin: 0.3em;
 }
 
 
@@ -116,6 +117,11 @@ p {
     text-align: center;
     font-size: 125%;
     font-weight: bold;
+}
+
+.score-h2 {
+    margin: 0px;
+    text-decoration: underline;
 }
 
 .player-heading {
@@ -208,6 +214,10 @@ p {
         font-size: 1.8em;
 }
 
+#game-over-text {
+        margin: 0px;
+    }
+
 .win-border {
     border: 5px solid lime;
 }
@@ -273,7 +283,11 @@ p {
     }
 
     #game-over-text {
-        font-size: 90%
+        font-size: 90%;
+    }
+
+    #instructions-explained {
+    width: 90%;
     }
 
     #computer-heading { grid-area: heading; }
@@ -283,10 +297,11 @@ p {
 
 
     #computer-area {
-    /* display: grid; */
     grid-template-areas: 
         'heading result'
         'choice score';
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
     }
 
     #player-1-area { grid-area: one; }
