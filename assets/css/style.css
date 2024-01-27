@@ -117,6 +117,8 @@ p {
     text-align: center;
     font-size: 125%;
     font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .score-h2 {

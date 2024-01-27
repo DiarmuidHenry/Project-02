@@ -263,6 +263,7 @@ function startComputerGame() {
     changeDisplayById("player-area", "flex");
     changeDisplayById("computer-area", "flex", "grid");
     changeDisplayById("instructions", "none");
+    changeDisplayById("game-area", "flex")
 
     enable();
 }
