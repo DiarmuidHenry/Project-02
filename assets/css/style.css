@@ -110,7 +110,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: max(3.5vw, 30px);
-    margin: 5px;
+    margin: 10px 5px 5px 5px;
 }
 
 p {
@@ -128,6 +128,16 @@ p {
 
 .player-heading {
     width: 100%
+}
+
+#game-diagram {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+    width: 90%;
+    border-radius: 6px;
+    opacity: 0.8;
+
 }
 
 .play-game-box, .score-area:not(#score-area) {
