@@ -14,30 +14,27 @@ let playerOneChoiceIndex;
 let playerOneChoice;
 let playerTwoChoiceIndex;
 let playerTwoChoice;
-let playerOne;
-let playerTwo;
 let playerScore = 0;
 let computerScore = 0;
 let playerOneScore = 0;
 let playerTwoScore = 0;
 let firstScore = 0;
 let secondScore = 0;
-let finalResult;
 let gameResult;
 let instructionsShowing = false;
-let smallScreen = window.matchMedia("(max-width: 767px)")
+let smallScreen = window.matchMedia("(max-width: 767px)");
 
-
-// Declare a constant s, which is the number of choices
-const numberOfChoices = choices.length;
+// Declare a letant, which is the number of choices
+let numberOfChoices = choices.length;
 // Number of winning results (or losing results)
-const numberOfWinningResults = (Math.floor(numberOfChoices / 2));
+let numberOfWinningResults = (Math.floor(numberOfChoices / 2));
 
 // Create arrays representing the possible results
-const draw = [0];
-const win = Array.from({ length: numberOfWinningResults }, (_, i) => i + 1);
-const lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWinningResults + i + 1);
+let draw = [0];
+let win = Array.from({ length: numberOfWinningResults }, (_, i) => i + 1);
+let lose = Array.from({ length: numberOfWinningResults }, (_, i) => numberOfWinningResults + i + 1);
 
+// Disable buttons not currently in use, but that can be displayed
 function disableButtons() {
     let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
     for (let i = 0; i < playerChoiceButtons.length; i++) {
@@ -45,7 +42,7 @@ function disableButtons() {
     }
 }
 
-
+// Adjust score based on choices in both PvP and PvC
 function adjustScore(gameResult) {
     let playerOneName = document.getElementById("player-1-name");
     let playerTwoName = document.getElementById("player-2-name");
@@ -53,7 +50,6 @@ function adjustScore(gameResult) {
     let computerScoreSpan = document.getElementById('computer-score');
     let playerOneScoreSpan = document.getElementById("player-1-score-2p");
     let playerTwoScoreSpan = document.getElementById("player-2-score-2p");
-    let nextRoundButton = document.getElementById("next-round-button")
 
     if (gameResult === "Player") {
         firstScore += 1;
@@ -74,32 +70,35 @@ function adjustScore(gameResult) {
     }
 
     if ((firstScore === 10 || secondScore === 10) && (gameResult === "Player" || gameResult === "Computer")) {
-        disableButtons()
-        gameOverAfterDelay()
+        disableButtons();
+        gameOverAfterDelay();
     }
     if ((firstScore === 3 || secondScore === 3) && (gameResult === "Player 1" || gameResult === "Player 2")) {
-        changeDisplayById("next-round-button", "none")
-        gameOverAfterDelay()
+        changeDisplayById("next-round-button", "none");
+        gameOverAfterDelay();
     }
 
 }
 
+// Slight pause to show result, then go to game over page
 function gameOverAfterDelay() {
-    setTimeout(function () { gameOver(gameResult, firstScore, secondScore); }, 1500)
+    setTimeout(function () { gameOver(gameResult, firstScore, secondScore); }, 1500);
 }
 
+// Reset computers randomly chosen icon
 function resetComputerChoice() {
-    let computerChoiceImage = document.getElementById("computer-choice-image")
-    computerChoiceImage.src = "assets/images/question-mark.png"
-    computerChoiceImage.alt = "Computer choice. Not yet decided."
+    let computerChoiceImage = document.getElementById("computer-choice-image");
+    computerChoiceImage.src = "assets/images/question-mark.png";
+    computerChoiceImage.alt = "Computer choice. Not yet decided.";
 
     let resultSpan = document.getElementById('result');
     resultSpan.innerHTML = "";
 }
 
+// Style winner's text to lime green; loser's to red
 function colourWinnerText(firstScore, secondScore) {
-    firstScorePlace = document.getElementById("first-score")
-    secondScorePlace = document.getElementById("second-score")
+    let firstScorePlace = document.getElementById("first-score");
+    let secondScorePlace = document.getElementById("second-score");
     if (firstScore < secondScore) {
         firstScorePlace.style.color = "red";
         secondScorePlace.style.color = "lime";
@@ -110,22 +109,23 @@ function colourWinnerText(firstScore, secondScore) {
 
 }
 
+// Game over screen showing styled results, scores and new game buttons
 function gameOver(finalResult, firstScore, secondScore) {
     let gameOverText = document.getElementById("game-over-text");
     let firstPlayer;
     let secondPlayer;
 
-    changeDisplayById("instructions", "flex")
+    changeDisplayById("instructions", "flex");
     changeDisplayById("game-container", "none");
     changeDisplayById("game-over-box", "flex");
     changeDisplayById("player-2-area", "none");
 
     if (finalResult === "Player" || finalResult === "Computer") {
-        firstPlayer = "Player"
-        secondPlayer = "Computer"
+        firstPlayer = "Player";
+        secondPlayer = "Computer";
     } else {
-        firstPlayer = "Player 1"
-        secondPlayer = "Player 2"
+        firstPlayer = "Player 1";
+        secondPlayer = "Player 2";
     }
 
     gameOverText.innerHTML = `
@@ -135,7 +135,7 @@ function gameOver(finalResult, firstScore, secondScore) {
     <p id="second-score">${secondPlayer} : ${secondScore}<\p>
     Play again?`;
 
-    colourWinnerText(firstScore, secondScore)
+    colourWinnerText(firstScore, secondScore);
 
     resetScores();
 
@@ -163,17 +163,19 @@ function gameOver(finalResult, firstScore, secondScore) {
     }
 }
 
+// Adding border to chosen icon for PvP game 
 function setPlayerNChoice(playerIndex, clicked) {
     if (playerIndex === 1) {
         playerOneChoiceIndex = clicked;
-        playerOneChoice = choices[clicked]
+        playerOneChoice = choices[clicked];
     } else {
         playerTwoChoiceIndex = clicked;
-        playerTwoChoice = choices[clicked]
+        playerTwoChoice = choices[clicked];
     }
     document.getElementById(`player-${playerIndex}-choice-button-${clicked}`).classList.add("chosen-border");
 }
 
+// Randomly select and display computer's choice in PvC; calculating lose/win/draw
 function setPlayerChoice(clicked) {
     playerChoiceIndex = clicked;
     playerChoice = choices[clicked];
@@ -182,57 +184,54 @@ function setPlayerChoice(clicked) {
     let computerChoiceImage = document.getElementById("computer-choice-image");
     let newImagePath = `assets/images/${computerChoice.toLowerCase()}.png`;
     computerChoiceImage.src = newImagePath;
-    computerChoiceImage.alt = `Computer chooses ${computerChoice}`
+    computerChoiceImage.alt = `Computer chooses ${computerChoice}`;
 
     resetBorders();
-
-    let outcome;
 
     let indexResult = (numberOfChoices + computerChoiceIndex - playerChoiceIndex) % numberOfChoices;
 
     if (win.includes(indexResult)) {
-        setOutcome(playerChoiceIndex, computerChoiceIndex, "win", "lose", "Player")
+        setOutcome(playerChoiceIndex, computerChoiceIndex, "win", "lose", "Player");
     } else if (lose.includes(indexResult)) {
-        setOutcome(computerChoiceIndex, playerChoiceIndex, "lose", "win", "Computer")
+        setOutcome(computerChoiceIndex, playerChoiceIndex, "lose", "win", "Computer");
     } else if (draw.includes(indexResult)) {
-        setOutcome(playerChoiceIndex, computerChoiceIndex, "draw", "draw")
+        setOutcome(playerChoiceIndex, computerChoiceIndex, "draw", "draw");
     }
 
 }
 
+// Showing result text of round in PvC
 function setOutcome(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
-    let playerChoiceButton = document.getElementById(`player-choice-button-${playerChoiceIndex}`)
-    let computerChoiceButton = document.getElementById(`computer-choice-button`)
-    playerChoiceButton.classList.add(`${result}-border`)
-    computerChoiceButton.classList.add(`${antiResult}-border`)
+    let playerChoiceButton = document.getElementById(`player-choice-button-${playerChoiceIndex}`);
+    let computerChoiceButton = document.getElementById(`computer-choice-button`);
+    let outcome;
+    playerChoiceButton.classList.add(`${result}-border`);
+    computerChoiceButton.classList.add(`${antiResult}-border`);
     gameResult = winner;
-    console.log("1")
     if (result === "draw") {
         outcome = "<p>DRAW<br><br>NO SCORE</p>";
-        console.log("DRaw")
     } else {
-        console.log(result + "reached this point")
         outcome = `<p>You ${result}!<br><br>${choices[winnerChoiceIndex]} beats ${choices[loserChoiceIndex]}<br></p>`;
     }
-    console.log("2")
     let resultSpan = document.getElementById('result');
     resultSpan.innerHTML = outcome;
     adjustScore(gameResult);
 }
 
+// Running enableAndResize() multiple times
 function enable() {
-    console.log("start enable")
-    enableAndResize(1)
-    enableAndResize(2)
-    enableAndResize(0)
+    enableAndResize(1);
+    enableAndResize(2);
+    enableAndResize(0);
 }
 
+// Re-enabling and resizing any disabled buttons
 function enableAndResize(number) {
     if (number === 1 || number === 2) {
         let buttons = document.getElementById(`player-${number}-choices`).children;
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].disabled = false;
-            buttons[i].style.width = "25%"
+            buttons[i].style.width = "25%";
         }
     } else {
         let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
@@ -242,6 +241,7 @@ function enableAndResize(number) {
     }
 }
 
+// Disabling and resizing relevant buttons
 function disableAndResize(number, choiceIndex) {
     let buttons = document.getElementById(`player-${number}-choices`).children;
     for (let i = 0; i < buttons.length; i++) {
@@ -254,7 +254,7 @@ function disableAndResize(number, choiceIndex) {
     }
 }
 
-// Iterate through buttons and attach corresponding event listeners to each 1
+// Setup PvC game by hiding/displaying correct divs/containers
 function startComputerGame() {
     changeDisplayById("game-container", "block");
     changeDisplayById("score-area-2p", "none");
@@ -263,11 +263,11 @@ function startComputerGame() {
     changeDisplayById("player-area", "flex");
     changeDisplayById("computer-area", "flex", "grid");
     changeDisplayById("instructions", "none");
-    changeDisplayById("game-area", "flex")
-
+    changeDisplayById("game-area", "flex");
     enable();
 }
 
+// Reset scores before a new game starts
 function resetScores() {
     let playerScoreSpan = document.getElementById('player-score');
     let computerScoreSpan = document.getElementById('computer-score');
@@ -288,6 +288,7 @@ function resetScores() {
 
 }
 
+// Reset borders of those that were previously chosen/won/lost
 function resetBorders() {
     let playerChoiceButtons = document.getElementsByClassName("player-choices-buttons");
     for (let i = 0; i < playerChoiceButtons.length; i++) {
@@ -295,6 +296,7 @@ function resetBorders() {
     }
 }
 
+// Decides if display = grid or flex, depending stage in game
 function gridOrFlex() {
     let playerArea = document.getElementById("player-area");
     let computerArea = document.getElementById("computer-area");
@@ -308,15 +310,14 @@ function gridOrFlex() {
         getComputedStyle(playerOneArea).display === "flex" &&
         getComputedStyle(playerTwoArea).display === "flex" &&
         getComputedStyle(scoreAreaTwo).display === "flex"
-     ) {
-        console.log("GRID")
-        return "grid"
+    ) {
+        return "grid";
     } else {
-        console.log("FLEX")
-        return "flex"
+        return "flex";
     }
 }
 
+// Hides/shows relevant divs/containers/buttons
 function changeDisplayById(Id, changed, changedIfMobile) {
     let object = document.getElementById(Id);
     if (changedIfMobile && smallScreen.matches) {
@@ -326,6 +327,7 @@ function changeDisplayById(Id, changed, changedIfMobile) {
     }
 }
 
+// Shows Player 1 choices in PvP game
 function showPlayerOneChoices() {
     changeDisplayById("player-1-make-choice", "none");
     changeDisplayById("player-area", "none");
@@ -335,11 +337,13 @@ function showPlayerOneChoices() {
     changeDisplayById("game-container", "block");
 }
 
+// Popup message during PvP game
 function showPlayerTwoPopup() {
-    changeDisplayById("game-container", "none")
-    changeDisplayById("player-2-make-choice", "flex")
+    changeDisplayById("game-container", "none");
+    changeDisplayById("player-2-make-choice", "flex");
 }
 
+// Shows Player 2 choices in PvP game
 function showPlayerTwoChoices() {
     changeDisplayById("player-2-make-choice", "none");
     changeDisplayById("player-2-area", "flex");
@@ -348,16 +352,19 @@ function showPlayerTwoChoices() {
     changeDisplayById("game-container", "block");
 }
 
-function twoPlayerResultPopup() {
-    changeDisplayById("game-container", "none");
-    changeDisplayById("game-over-box-two", "flex");
-}
+// // Popup message during PvP game
+// function twoPlayerResultPopup() {
+//     changeDisplayById("game-container", "none");
+//     changeDisplayById("game-over-box-two", "flex");
+// }
 
+// Last click button before showing result in PvP
 function clickToShowResult() {
     changeDisplayById("game-container", "none");
     changeDisplayById("click-to-show", "flex");
 }
 
+// Shows result in PvP
 function showResultTwoPlayer() {
     resetBorders();
 
@@ -372,23 +379,25 @@ function showResultTwoPlayer() {
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
 
     if (win.includes(indexResult)) {
-        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1")
+        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1");
     } else if (lose.includes(indexResult)) {
-        setOutcomeTwoPlayer(playerTwoChoiceIndex, playerOneChoiceIndex, "lose", "win", "Player 2")
+        setOutcomeTwoPlayer(playerTwoChoiceIndex, playerOneChoiceIndex, "lose", "win", "Player 2");
     } else if (draw.includes(indexResult)) {
-        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "draw", "draw", "draw")
+        setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "draw", "draw", "draw");
     }
 
-    disableAndResize(1, playerOneChoiceIndex)
-    disableAndResize(2, playerTwoChoiceIndex)
+    disableAndResize(1, playerOneChoiceIndex);
+    disableAndResize(2, playerTwoChoiceIndex);
     adjustScore(gameResult);
 }
 
+// Shows win/draw/lose message in PvP game
 function setOutcomeTwoPlayer(winnerChoiceIndex, loserChoiceIndex, result, antiResult, winner) {
-    let playerOneChoiceButton = document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`)
-    let playerTwoChoiceButton = document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`)
-    playerOneChoiceButton.classList.add(`${result}-border`)
-    playerTwoChoiceButton.classList.add(`${antiResult}-border`)
+    let playerOneChoiceButton = document.getElementById(`player-1-choice-button-${playerOneChoiceIndex}`);
+    let playerTwoChoiceButton = document.getElementById(`player-2-choice-button-${playerTwoChoiceIndex}`);
+    let outcome;
+    playerOneChoiceButton.classList.add(`${result}-border`);
+    playerTwoChoiceButton.classList.add(`${antiResult}-border`);
     gameResult = winner;
     if (result === "draw") {
         outcome = "<p>DRAW<br><br>NO SCORE</p>";
@@ -399,17 +408,19 @@ function setOutcomeTwoPlayer(winnerChoiceIndex, loserChoiceIndex, result, antiRe
     resultTwoSpan.innerHTML = outcome;
 }
 
+// Starts PvP game
 function startFriendGame() {
-    changeDisplayById("instructions", "none")
-    changeDisplayById("game-container", "none")
-    changeDisplayById("game-over-box", "none")
-    changeDisplayById("score-area-2p", "none")
-    changeDisplayById("player-1-make-choice", "flex")
+    changeDisplayById("instructions", "none");
+    changeDisplayById("game-container", "none");
+    changeDisplayById("game-over-box", "none");
+    changeDisplayById("score-area-2p", "none");
+    changeDisplayById("player-1-make-choice", "flex");
 
     resetPlayerButtons(playerOneChoiceIndex, "player-1-choices", true, false);
     resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true, false);
 }
 
+// Re-enables and resizes buttons in PvC game
 function resetPlayerButtons(choiceIndex, containerId, width, block) {
     let buttons = document.getElementById(containerId).children;
     if (block === true) {
@@ -426,22 +437,24 @@ function resetPlayerButtons(choiceIndex, containerId, width, block) {
     } else {
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].disabled = false;
-            buttons[i].style.width = "25%"
+            buttons[i].style.width = "25%";
         }
     }
 }
 
+// Resets and starts PvP game
 function resetTwoPlayer() {
-    resetBorders()
+    resetBorders();
 
     resetPlayerButtons(playerOneChoiceIndex, "player-1-choices", true, true);
     resetPlayerButtons(playerTwoChoiceIndex, "player-2-choices", true, true);
 
-    changeDisplayById("player-2-area", "none")
+    changeDisplayById("player-2-area", "none");
 
-    startFriendGame()
+    startFriendGame();
 }
 
+// Toggles Instructions button text
 function instructionsBoxText(instructionsShowing) {
     let instructionsButton = document.getElementById("instructions-button");
     if (instructionsShowing) {
@@ -451,6 +464,7 @@ function instructionsBoxText(instructionsShowing) {
     }
 }
 
+// Shows/hides Instructions text
 function toggleInstructions() {
 
     if (instructionsShowing) {
@@ -459,53 +473,54 @@ function toggleInstructions() {
     } else {
         changeDisplayById("start-game-box", "none");
         changeDisplayById("instructions-explained", "flex");
-        changeDisplayById("game-over-box", "none")
+        changeDisplayById("game-over-box", "none");
         let instructionsButton = document.getElementById("instructions-button");
         instructionsButton.addEventListener("click", function () {
-            window.location.href = "index.html"
+            window.location.href = "index.html";
         });
     }
-    instructionsShowing = !instructionsShowing
+    instructionsShowing = !instructionsShowing;
     instructionsBoxText(instructionsShowing);
 }
 
+// Adds event listeners and initial setup upon DOM loading
 function runGame() {
     // Loading game setup after DOM content is loaded
     document.addEventListener("DOMContentLoaded", function () {
         // Get the play game box, game container and game over elements
-        const playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
-        const playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
-        const nextRoundButton = document.getElementById("next-round-button")
-        let instructionsButton = document.getElementById("instructions-button")
-        const playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
-        const playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
-        const clickToShowButton = document.getElementById("click-to-show-button")
+        let playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
+        let playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
+        let nextRoundButton = document.getElementById("next-round-button");
+        let instructionsButton = document.getElementById("instructions-button");
+        let playerOneMakeChoiceButton = document.getElementById("player-1-make-choice-button");
+        let playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
+        let clickToShowButton = document.getElementById("click-to-show-button");
 
         clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
-        instructionsButton.addEventListener("click", function () { toggleInstructions(); })
+        instructionsButton.addEventListener("click", function () { toggleInstructions(); });
         playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
         playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
-        nextRoundButton.addEventListener("click", function () { resetTwoPlayer() })
+        nextRoundButton.addEventListener("click", function () { resetTwoPlayer(); });
 
         for (let i = 0; i < choices.length; i++) {
-            const buttonId = `player-choice-button-${i}`;
-            const button = document.getElementById(buttonId);
+            let buttonId = `player-choice-button-${i}`;
+            let button = document.getElementById(buttonId);
             button.addEventListener("click", function () { setPlayerChoice(i); });
         }
 
         for (let i = 0; i < choices.length; i++) {
-            const buttonOneId = `player-1-choice-button-${i}`;
-            const buttonOne = document.getElementById(buttonOneId);
+            let buttonOneId = `player-1-choice-button-${i}`;
+            let buttonOne = document.getElementById(buttonOneId);
             buttonOne.addEventListener("mousedown", function () { setPlayerNChoice(1, i); });
-            buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); })
+            buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); });
         }
 
         for (let i = 0; i < choices.length; i++) {
-            const buttonTwoId = `player-2-choice-button-${i}`;
-            const buttonTwo = document.getElementById(buttonTwoId);
+            let buttonTwoId = `player-2-choice-button-${i}`;
+            let buttonTwo = document.getElementById(buttonTwoId);
             buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2, i); });
-            buttonTwo.addEventListener("mouseup", function () { clickToShowResult() });
-        };
+            buttonTwo.addEventListener("mouseup", function () { clickToShowResult(); });
+        }
         // Click event listener for play-against-computer buttons (play and replay)
         for (let i = 0; i < playAgainstComputerButtons.length; i++) {
             playAgainstComputerButtons[i].addEventListener("click", function () {
@@ -523,4 +538,5 @@ function runGame() {
     });
 }
 
+// Starts the game
 runGame();

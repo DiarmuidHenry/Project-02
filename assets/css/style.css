@@ -1,3 +1,4 @@
+/* Global styles */
 body {
     background-color: lightseagreen;
     background-image: linear-gradient(to right, rgb(27, 145, 139), rgb(41, 232, 232));
@@ -24,6 +25,38 @@ a > h1:hover {
     transition: background-color 0.4s ease;
 }
 
+h1, h2, h3 {
+    text-align: center;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: max(4.2vw, 28px);
+    margin: 10px 5px 5px 5px;
+}
+
+p {
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+button:not([disabled]):hover {
+    background-color: seagreen;
+    transition: background-color 0.4s ease;
+}
+
+/* In-game styling */
 .game-container {
     display: none;
 }
@@ -38,12 +71,6 @@ a > h1:hover {
     width: 100%;
 }
 
-button {
-    background-color: transparent;
-    padding: 0;
-    border: none;
-}
-
 .player-choices > button {
     width: 25%;
     margin: 1%;
@@ -55,11 +82,6 @@ button {
     width: 45%;
     margin: 5%;
     padding: 1%;
-}
-
-button:not([disabled]):hover {
-    background-color: seagreen;
-    transition: background-color 0.4s ease;
 }
 
 .player-choices-images {
@@ -98,27 +120,6 @@ button:not([disabled]):hover {
 .scores {
     text-align: center;
     margin: 0.3em;
-}
-
-
-h1, h2, h3 {
-    text-align: center;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-}
-
-h1 {
-    font-size: max(4.2vw, 28px);
-    margin: 10px 5px 5px 5px;
-}
-
-p {
-    text-align: center;
-    font-size: 125%;
-    font-weight: bold;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
 }
 
 .score-h2 {
@@ -228,8 +229,9 @@ p {
 
 #game-over-text {
         margin: 0px;
-    }
+}
 
+/* Styling classes for chosen icons */
 .win-border {
     border: 5px solid lime;
 }
@@ -244,18 +246,6 @@ p {
 
 .chosen-border {
     border: 5px solid white;
-}
-
-.display-flex {
-    display: flex;
-}
-
-.display-none {
-    display: none;
-}
-
-.display-block {
-    display: block;
 }
 
 
@@ -302,6 +292,11 @@ p {
     width: 90%;
     }
 
+    #computer-choice > button {
+        width: 60%;
+    }
+
+    /* Styling the computers choices in PvC game as grid */
     #computer-heading { grid-area: heading; }
     #computer-choice { grid-area: choice; }
     .results-area { grid-area: result; }
@@ -316,18 +311,14 @@ p {
     grid-auto-flow: column;
     }
 
+    /* Styling the results page in PvP game as grid */
     #player-1-area { grid-area: one; }
     #player-2-area { grid-area: two; }
     #score-area-2p { grid-area: scoretwo; }
 
     #game-area {
-    /* display: grid; */
     grid-template-areas: 
         'one scoretwo'
         'two scoretwo';
-    }
-
-    #computer-choice > button {
-        width: 60%;
     }
 }

@@ -16,7 +16,7 @@ while emotive messages, coloured results and changing images invoke emotive resp
 ## Table of Contents<!-- omit from toc -->
 - [Introduction](#introduction)
   - [History](#history)
-  - [Theory](#theory)
+  - [Game Theory](#game-theory)
 - [Aim](#aim)
   - [Website Objective](#website-objective)
   - [Key Features](#key-features)
@@ -85,17 +85,17 @@ By using this approach, this code can easily be adapted to a game with 7, 9, 11,
 
 ### Website Objective
 
-To createa a website where a user/users can easily play Rock Paper Scissors Lizard Spock online. The page should be clear, uncluttered, uncomplicated, and there should be no doubt as to what the purpose of the page is. Instructions should be available for those who need them, and the flow of the game should be prompted clearly and obviously to the user/s.
+- To createa a website where a user/users can easily play Rock Paper Scissors Lizard Spock online. The page should be clear, uncluttered, uncomplicated, and there should be no doubt as to what the purpose of the page is. Instructions should be available for those who need them, and the flow of the game should be prompted clearly and obviously to the user/s.
 
 Simple, clear icons and a straightforward colour scheme will help the user to focus on the game and will avoid distractions during gameplay.
 
 ### Key Features
 
-The *Home* page will include an *Instructions* dropdown text box, instructing those who are unfamiliar with the game on how the game works, as well as the website.
+- The *Home* page will include an *Instructions* dropdown text box, instructing those who are unfamiliar with the game on how the game works, as well as the website.
 
-There will be a *Play against the computer* option where a user can play against a computer whose choices are randomly generated.
+- There will be a *Play against the computer* option where a user can play against a computer whose choices are randomly generated.
 
-There will also be a *Play against a friend* option, where 2 users - using the same device - can play against each other, without being able to see what the other person has chosen.
+- -There will also be a *Play against a friend* option, where 2 users - using the same device - can play against each other, without being able to see what the other person has chosen.
 
 ## Potential Users
 
@@ -103,22 +103,22 @@ The website would of interest to anyone who has seen/heard of the game through t
 
 ### User Goals
 
-**Entertainment**: The primary goal of users engaging with the Rock Paper Scissors Lizard Spock game is to have a fun and entertaining experience.
+- **Entertainment**: The primary goal of users engaging with the Rock Paper Scissors Lizard Spock game is to have a fun and entertaining experience.
 
-**Skill Development**: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
+- **Skill Development**: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
 
-**Friendly Competition**: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
+- **Friendly Competition**: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
 
-**Learn the Game Rules**: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
+- **Learn the Game Rules**: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
 
-**Accessible Gameplay**: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
+- **Accessible Gameplay**: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
 
 ### User Testimonials
 
-__Emily, Casual Gamer__
+__Emily, Casual Gamer__ \
 "I stumbled upon this Rock Paper Scissors Lizard Spock game whilst looking for a quick and fun way to unwind. The gameplay is intuitive, and I love the clear use of icon images. Highly recommended!"
 
-Alex, Strategy Enthusiast
+__Alex, Strategy Enthusiast__ \
 "As a strategy game enthusiast, I appreciate the depth this extended version of Rock Paper Scissors brings. The inclusion of Lizard and Spock adds a layer of complexity that keeps me engaged. The user interface is clean, and the multiplayer option lets me test my skills against others. A great choice for those who enjoy a mix of strategy and classic gaming."
 
 ## Design \& Development
@@ -156,9 +156,10 @@ A simple, two toned colour scheme is used throughout, to avoid distracting the u
 ### Features
 
 ## Technology \& Resources
-**IDE :** [CodeAnywhere](https://app.codeanywhere.com/) and [Visual Studio Code](https://code.visualstudio.com/).
-**Languages :** HTML for basic page structure. CSS for styling. JavaScript for interactivity and execution of gameplay. Markdown for this readme.
-**Template :** The [CodeInstitute template](https://github.com/Code-Institute-Org/ci-full-template) was used in order to install all the relevant tools for the code to function.
+
+- **IDE :** [CodeAnywhere](https://app.codeanywhere.com/) and [Visual Studio Code](https://code.visualstudio.com/).
+- **Languages :** HTML for basic page structure. CSS for styling. JavaScript for interactivity and execution of gameplay. Markdown for this readme.
+- **Template :** The [CodeInstitute template](https://github.com/Code-Institute-Org/ci-full-template) was used in order to install all the relevant tools for the code to function.
 - [Github](https://github.com/) was used to host the project. I used `git commit` regularly to create versions of the project at regular intervals. This meant that I could be more precise if I needed to `git reset`.
 - [Balsamiq](https://balsamiq.com/) was used to create wireframes for mobile, table and desktop.
 - [FlatIcon](https://www.flaticon.com/) was used to find royalty-free icons that I could safely use without worry of copyright infringement.
@@ -226,6 +227,12 @@ Once the basic design of the website was finished, I deployed it to GitHub Pages
 ### CSS Code Validation
 
 ## Future Improvements/Development
+
+- Extend the game so that players can upload their own icon images, or even just give names to their own custom choices. This could lead to a game where, for example, all 11 members of a football team could be choices, meaninf the players in the team could play as themself, against the others in the team. Due to the setup of the JavaScript code \(See [Game Theory](#game-theory) above\), this would be quite straightforward.
+
+- Improve on the styling and look of the page to make it look more professional.
+
+- Include animation on the chosen icons, not just changing frame styles.
 
 ## Acknowledgements
 
