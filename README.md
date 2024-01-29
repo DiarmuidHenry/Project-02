@@ -53,7 +53,7 @@ while emotive messages, coloured results and changing images invoke emotive resp
 
 ### History
 
-The game was originally created by a software enginerr named Sam Kass in 1998, who [outlined the rules
+The game was originally created by a software engineer named Sam Kass in 1998, who [outlined the rules
 on his website](http://www.samkass.com/theories/RPSSL.html). It gained popularity on an episode of
 The Big Bang Theory entitled - quite appropriately - "The Lizard-Spock Expansion". Sheldon Cooper (played by Jim PArsons)
 rightfully explains that is in an expansion on the classic Rock Paper Scissors, often used to settle minor disoputes:
@@ -63,38 +63,81 @@ rightfully explains that is in an expansion on the classic Rock Paper Scissors, 
 The game quickly gained popularity online, with a plethora of blogs, articles and merchandise being created based on
 this expansion of the well-known game.
 
-### Theory
+### Game Theory
 
-Instead of their being only 3 possible results non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock), the addition of the 2 extra choices - Lizard, Spock - increas this number to 20. In mathematicalt terms, it increases from 3C2 to 5C2. We can start by analysing the original 3-choice game.
+Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increas this number to 20. In mathematicalt terms, it increases from $\binom{3}{2} = \frac{3*2}{2*1} = 3$ to $\binom{5}{2} = \frac{5*4}{2*1} = 10$.
+
+We can start by analysing the original 3-choice game.
 
 Rock Paper Scissors give each player 3 options. The opponent also has 3 options. Each option loses against 1, wins against 1 and draws against 1 (itself).
 
 Rock Paper Scissors Lizard Spock works from a similar principal, but there are 5 choices. This leads to each choice losing against 2, winning against 2, and of course drawing against 1 (itself).
 
-This can easily be generalised to a game with 2n+1 choices, where each choice loses against n, wins against n, and draws with 1 (itself). Here for the game to be non-trivial, we must have that n > 0.
+This can easily be generalised to a game with $2n+1$ choices, where each choice loses against $n$, wins against $n$, and draws with 1 (itself). Here for the game to be non-trivial, we must have that $n > 0$.
 
-By ordering these 2n+1 items in a certain way, we can assure that each choice beats the following n choices and loses to the proceding n choices. Here, we work modulo n. For example, if we have 9 choices (named 0-8 for simplicity when recalling items by index), then choice 7 would lose to 3, 4, 5 and 6, whilst it would win against 8, 0, 1 and 2.
+By ordering these $2n+1$ items in a certain way, we can assure that each choice beats the following $n$ choices and loses to the proceding $n$ choices. Here, we work modulo $n$. For example, if we have 9 choices (named 0-8 for simplicity when recalling items by index), then choice 7 would lose to 3, 4, 5 and 6, whilst it would win against 8, 0, 1 and 2.
 
-Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of 2n+1 choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
+Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of $2n+1$ choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
 
-By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. The only changes would need to be the creation of the `choices` array, and the images in the assets/images folder.
-
+By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. The only changes would need to be the creation of the `choices` array, and more images (with the correct labelling) in the assets/images folder.
 
 ## Aim
 
 ### Website Objective
 
+To createa a website where a user/users can easily play Rock Paper Scissors Lizard Spock online. The page should be clear, uncluttered, uncomplicated, and there should be no doubt as to what the purpose of the page is. Instructions should be available for those who need them, and the flow of the game should be prompted clearly and obviously to the user/s.
+
+Simple, clear icons and a straightforward colour scheme will help the user to focus on the game and will avoid distractions during gameplay.
+
 ### Key Features
+
+The homepage will include an *Instructions* dropdown text box, instructing those who are unfamiliar with the game on how the game works, as well as the website.
+
+There will be a *Play against the computer* option where a user can play against a computer whose choices are randomly generated.
+
+There will also be a *Play against a friend* option, where 2 users - using the same device - can play against each other, without being able to see what the other person has chosen.
 
 ## Potential User
 
+The website would of interest to anyone who has seen/heard of the game through the Big Bang Theory episode. It will also be of interest for anyone who is with a friend, looking for a simple 2 palyer game that can be fairly played on a single device.
+
 ### User Goals
 
-### User Testimonial
+1. Entertainment: The primary goal of users engaging with the Rock Paper Scissors Lizard Spock game is to have a fun and entertaining experience.
+
+2. Skill Development: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
+
+3. Friendly Competition: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
+
+4. Learn the Game Rules: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
+
+5. Accessible Gameplay: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
+
+### User Testimonials
+
+__Emily, Casual Gamer__
+"I stumbled upon this Rock Paper Scissors Lizard Spock game whilst looking for a quick and fun way to unwind. The gameplay is intuitive, and I love the clear use of icon images. Highly recommended!"
+
+Alex, Strategy Enthusiast
+"As a strategy game enthusiast, I appreciate the depth this extended version of Rock Paper Scissors brings. The inclusion of Lizard and Spock adds a layer of complexity that keeps me engaged. The user interface is clean, and the multiplayer option lets me test my skills against others. A great choice for those who enjoy a mix of strategy and classic gaming."
 
 ## Design \& Development
 
+### 5 Planes of UX
 
+#### Strategy
+
+Create a simple, engaging Rock Paper Scissors Lizard Spock game site, includinging single and multiplayer experiences with user-friendly accessibility.
+
+#### Scope
+
+Include a Player v Player, as well as a Player v Computer part to the game. Use clear images to help show the user results, as well as to guide them through the process of the game.
+
+#### Structure
+
+#### Skeleton
+
+#### Surface
 
 ### Wireframes
 
