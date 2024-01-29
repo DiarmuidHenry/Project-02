@@ -65,7 +65,7 @@ this expansion of the well-known game.
 
 ### Game Theory
 
-Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increas this number to 20. In mathematicalt terms, it increases from $\binom{3}{2} = \frac{3*2}{2*1} = 3$ to $\binom{5}{2} = \frac{5*4}{2*1} = 10$.
+Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematicalt terms, it increases from $\binom{3}{2} = \frac{3*2}{2*1} = 3$ to $\binom{5}{2} = \frac{5*4}{2*1} = 10$.
 
 We can start by analysing the original 3-choice game.
 
@@ -91,27 +91,27 @@ Simple, clear icons and a straightforward colour scheme will help the user to fo
 
 ### Key Features
 
-The homepage will include an *Instructions* dropdown text box, instructing those who are unfamiliar with the game on how the game works, as well as the website.
+The *Home* page will include an *Instructions* dropdown text box, instructing those who are unfamiliar with the game on how the game works, as well as the website.
 
 There will be a *Play against the computer* option where a user can play against a computer whose choices are randomly generated.
 
 There will also be a *Play against a friend* option, where 2 users - using the same device - can play against each other, without being able to see what the other person has chosen.
 
-## Potential User
+## Potential Users
 
 The website would of interest to anyone who has seen/heard of the game through the Big Bang Theory episode. It will also be of interest for anyone who is with a friend, looking for a simple 2 palyer game that can be fairly played on a single device.
 
 ### User Goals
 
-1. Entertainment: The primary goal of users engaging with the Rock Paper Scissors Lizard Spock game is to have a fun and entertaining experience.
+**Entertainment**: The primary goal of users engaging with the Rock Paper Scissors Lizard Spock game is to have a fun and entertaining experience.
 
-2. Skill Development: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
+**Skill Development**: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
 
-3. Friendly Competition: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
+**Friendly Competition**: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
 
-4. Learn the Game Rules: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
+**Learn the Game Rules**: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
 
-5. Accessible Gameplay: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
+**Accessible Gameplay**: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
 
 ### User Testimonials
 
@@ -135,9 +135,17 @@ Include a Player v Player, as well as a Player v Computer part to the game. Use 
 
 #### Structure
 
+A *Home* page where user/s can either choose to read instructions, or they can choose to start a game. Once they choose which game to start, they are guided through each round by messages and icons appearing on screen determined by their choice and either their friend's choice or the computer's choice, depending on the game. Once the game has been won/lost, the user returns to the *Home* screen, where the results is clearly shown and they can start another game.
+
 #### Skeleton
 
+A simple title and 3 buttons(*Instructions*, *Play against the computer* and *Play against a friend*) appear when the pages loads. As gameplay commences, icons clealy representing the 5 choices appear for the user/s to choose from. All choices chosen are clearly shown, and results are clearly displayed for each round, as well as an overall score.
+
+See [Wireframes](#wireframes) below.
+
 #### Surface
+
+A simple, two toned colour scheme is used throughout, to avoid distracting the user's focus from the game area. All clickable buttons and icons will highlight when hovered over, in order to show where the user can and cannot click. Icons will show frames to represent results: green symbolising a win, red symbolising a loss and grey symbolising a draw.
 
 ### Wireframes
 
@@ -145,16 +153,41 @@ Include a Player v Player, as well as a Player v Computer part to the game. Use 
 
 #### Mobile
 
-### Colour Schemes
-
-### Icons/Navigation
-
 ### Features
 
-
 ## Technology \& Resources
+**IDE :** [CodeAnywhere](https://app.codeanywhere.com/) and [Visual Studio Code](https://code.visualstudio.com/).
+**Languages :** HTML for basic page structure. CSS for styling. JavaScript for interactivity and execution of gameplay. Markdown for this readme.
+**Template :** The [CodeInstitute template](https://github.com/Code-Institute-Org/ci-full-template) was used in order to install all the relevant tools for the code to function.
+- [Github](https://github.com/) was used to host the project. I used `git commit` regularly to create versions of the project at regular intervals. This meant that I could be more precise if I needed to `git reset`.
+- [Balsamiq](https://balsamiq.com/) was used to create wireframes for mobile, table and desktop.
+- [FlatIcon](https://www.flaticon.com/) was used to find royalty-free icons that I could safely use without worry of copyright infringement.
+- [Markdown Guide](https://www.markdownguide.org/cheat-sheet/) was used to help create the readme.
+- [Favicon.io](https://favicon.io/favicon-generator/) was used to find the page's favicon.
+- [WAVE](https://wave.webaim.org/) and [PageSpeed Insights](https://pagespeed.web.dev/) testing tools were used to locate minor issues and check both accessibility and performance. 
 
 ## Deployment
+
+Once the basic design of the website was finished, I deployed it to GitHub Pages. [The history of all deployed version of the site can be found here](https://github.com/DiarmuidHenry/Project-02/deployments).
+
+### How to Deploy to GitHub Pages
+
+1. Log in to github.com.
+2. Select *Project-02* in my list of repositories.
+3. Click Settings > Pages.
+4. Under *Source*, select *Deploy from a branch*.
+5. Under *Branch*, select *main* and */root*, then click *Save*.
+6. Wait a couple of minutes for the site to deploy, then navigate back to the repository.
+7. Click *Deployments*, which now should have appeared on the main repository page.
+8. Under *Active Deployments*, click the link https://diarmuidhenry.github.io/Project-02/. (The deployed page will open in the current tab).
+
+### How to Clone Repository
+
+1. Go to the [GitHub repository](https://github.com/DiarmuidHenry/Project-02/).
+2. Click the green *Code* drop-down button.
+3. Click *HTTPS* and copy the URL.
+4. Open your IDE, and open a terminal.
+5. Type `git clone url`, replacing `url` with the URL copied in step 3.
 
 ## Issues/Bugs
 
@@ -166,17 +199,17 @@ Include a Player v Player, as well as a Player v Computer part to the game. Use 
 
 ### Unresolved
 
+- The overall styling of the page. Although this is not technically a bug, it is something that I feel can be improved on. However, for the purpose of this project, I feel that the time investment necessary to make the page look and feel as clean and comfortable as I would like would not give a significant difference to the overall feel (and grade) of the website.
 
 ## Testing \& Validation
 
 ### Functional Testing of Website
 
-#### Welcome/Start Page
+#### Home/Start Page
 
 #### Player v Computer (PvC)
 
 #### Player v Player (PvP)
-
 
 ### PageSpeed Insight Tests
 
@@ -193,5 +226,11 @@ Include a Player v Player, as well as a Player v Computer part to the game. Use 
 ### CSS Code Validation
 
 ## Future Improvements/Development
+
+## Acknowledgements
+
+- Luke Buchanan: my mentor, for giving clear, constructive feedback during the entire process.
+- The Slack community, for the plethora of questions that have been previously asked and answered.
+- Tutor Assistance, for helping solve the problems that I just couldn't get my head around.
 
 
