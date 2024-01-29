@@ -352,12 +352,6 @@ function showPlayerTwoChoices() {
     changeDisplayById("game-container", "block");
 }
 
-// // Popup message during PvP game
-// function twoPlayerResultPopup() {
-//     changeDisplayById("game-container", "none");
-//     changeDisplayById("game-over-box-two", "flex");
-// }
-
 // Last click button before showing result in PvP
 function clickToShowResult() {
     changeDisplayById("game-container", "none");
