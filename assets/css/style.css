@@ -20,12 +20,14 @@ a {
     height: fit-content;
 }
 
-a > h1:hover {
+a>h1:hover {
     background-color: seagreen;
     transition: background-color 0.4s ease;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     text-align: center;
     justify-items: center;
     justify-content: center;
@@ -71,14 +73,14 @@ button:not([disabled]):hover {
     width: 100%;
 }
 
-.player-choices > button {
+.player-choices>button {
     width: 25%;
     margin: 1%;
     padding: 1%;
 
 }
 
-#computer-choice > button {
+#computer-choice>button {
     width: 45%;
     margin: 5%;
     padding: 1%;
@@ -90,26 +92,28 @@ button:not([disabled]):hover {
 }
 
 .game-area {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
-        align-items: center;
-        align-content: space-evenly;
-        margin: 0;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-evenly;
+    margin: 0;
+}
 
 .player-area {
     display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: center;
-        align-content: center;
-                    text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    text-align: center;
 }
 
-#player-area, #player-1-choices, #player-2-choices {
+#player-area,
+#player-1-choices,
+#player-2-choices {
     width: 60%;
 }
 
@@ -133,28 +137,31 @@ button:not([disabled]):hover {
 
 #game-diagram {
     display: block;
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 90%;
     border-radius: 6px;
     opacity: 0.8;
 
 }
 
-.play-game-box, .score-area:not(#score-area) {
+.play-game-box,
+.score-area:not(#score-area) {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-size: 1.3em;
-    button {
-        text-align: center;
-        font-weight: bold;
-        border: 5px solid seagreen;
-        padding: 10px;
-        margin: 2%;
-        font-size: 1.8em;
-  }
+}
+
+.play-game-box button,
+.score-area:not(#score-area) button {
+    text-align: center;
+    font-weight: bold;
+    border: 5px solid seagreen;
+    padding: 10px;
+    margin: 2%;
+    font-size: 1.8em;
 }
 
 .play-game-box {
@@ -179,17 +186,19 @@ button:not([disabled]):hover {
     align-content: center;
     flex-direction: column;
     font-size: 1.3em;
-    button {
-        text-align: center;
-        font-weight: bold;
-        border: 5px solid seagreen;
-        padding: 10px;
-        margin: 0px;
-        font-size: 1.8em;
-    }
-    p {
-        margin: 3px;
-    }
+}
+
+#instructions button {
+    text-align: center;
+    font-weight: bold;
+    border: 5px solid seagreen;
+    padding: 10px;
+    margin: 0px;
+    font-size: 1.8em;
+}
+
+#instructions p {
+    margin: 3px;
 }
 
 #instructions-explained {
@@ -201,7 +210,7 @@ button:not([disabled]):hover {
     flex-direction: column;
 }
 
-#instructions-explained > p {
+#instructions-explained>p {
     text-align: left;
     justify-content: center;
     align-items: center;
@@ -220,15 +229,15 @@ button:not([disabled]):hover {
     align-self: center;
     display: inline-block;
     width: fit-content;
-    padding: 5px 10px; 
-        font-weight: bold;
-        border: 5px solid seagreen;
-        margin: 50px;
-        font-size: 1.8em;
+    padding: 5px 10px;
+    font-weight: bold;
+    border: 5px solid seagreen;
+    margin: 50px;
+    font-size: 1.8em;
 }
 
 #game-over-text {
-        margin: 0px;
+    margin: 0px;
 }
 
 /* Styling classes for chosen icons */
@@ -256,24 +265,22 @@ button:not([disabled]):hover {
         flex-direction: column;
     }
 
-    #instructions > #instructions-button {
+    #instructions>#instructions-button {
         font-size: 1.2em;
     }
 
-    body > #start-game-box, body > #game-over-box {
-        button {
-            font-size: 1.2em;
-        }
+    body>#start-game-box button,
+    body>#game-over-box button {
+        font-size: 1.2em;
     }
 
-    .play-game-box, .score-area:not(#score-area) {
-        button {
-            font-size: 1.2em;
-      }
+    .play-game-box button,
+    .score-area:not(#score-area) button {
+        font-size: 1.2em;
     }
 
     .player-area {
-        width: 100% !important
+        width: 100% !important;
     }
 
     #player-1-choices {
@@ -289,36 +296,55 @@ button:not([disabled]):hover {
     }
 
     #instructions-explained {
-    width: 90%;
+        width: 90%;
     }
 
-    #computer-choice > button {
+    #computer-choice>button {
         width: 60%;
     }
 
     /* Styling the computers choices in PvC game as grid */
-    #computer-heading { grid-area: heading; }
-    #computer-choice { grid-area: choice; }
-    .results-area { grid-area: result; }
-    #score-area { grid-area: score; }
+    #computer-heading {
+        grid-area: heading;
+    }
+
+    #computer-choice {
+        grid-area: choice;
+    }
+
+    .results-area {
+        grid-area: result;
+    }
+
+    #score-area {
+        grid-area: score;
+    }
 
 
     #computer-area {
-    grid-template-areas: 
-        'heading result'
-        'choice score';
-    grid-auto-columns: minmax(0, 1fr);
-    grid-auto-flow: column;
+        grid-template-areas:
+            'heading result'
+            'choice score';
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
     }
 
     /* Styling the results page in PvP game as grid */
-    #player-1-area { grid-area: one; }
-    #player-2-area { grid-area: two; }
-    #score-area-2p { grid-area: scoretwo; }
+    #player-1-area {
+        grid-area: one;
+    }
+
+    #player-2-area {
+        grid-area: two;
+    }
+
+    #score-area-2p {
+        grid-area: scoretwo;
+    }
 
     #game-area {
-    grid-template-areas: 
-        'one scoretwo'
-        'two scoretwo';
+        grid-template-areas:
+            'one scoretwo'
+            'two scoretwo';
     }
 }
