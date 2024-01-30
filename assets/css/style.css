@@ -144,7 +144,7 @@ button:not([disabled]):hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 50%;
     border-radius: 6px;
     opacity: 0.8;
 
@@ -272,6 +272,11 @@ button:not([disabled]):hover {
 
     #instructions>#instructions-button {
         font-size: 1.2em;
+    }
+
+
+    #game-diagram {
+        width: 90%
     }
 
     body>#start-game-box button,
