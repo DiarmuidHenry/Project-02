@@ -372,7 +372,7 @@ function showResultTwoPlayer() {
     changeDisplayById("game-area", "flex", gridOrFlex());
 
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
-    
+
     // Using indexResult to decide winner
     if (win.includes(indexResult)) {
         setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1");
