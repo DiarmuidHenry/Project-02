@@ -59,7 +59,7 @@ this expansion of the well-known game.
 
 ### Game Theory
 
-Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematical terms, it increases from $\binom{3}{2} = \frac{3*2}{2*1} = 3$ to $\binom{5}{2} = \frac{5*4}{2*1} = 10$.
+Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematical terms, it increases from $\binom{3}{2} = \frac{3 \times 2}{2 \times 1} = 3$ to $\binom{5}{2} = \frac{5 \times 4}{2 \times 1} = 10$.
 
 We can start by analysing the original 3-choice game.
 
@@ -73,7 +73,7 @@ By ordering these $2n+1$ items in a certain way, we can assure that each choice 
 
 Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of $2n+1$ choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
 
-By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. The only changes would need to be the creation of the `choices` array, and more images (with the correct labeling) in the assets/images folder.
+By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. For example, for a game with 101 choices, there would be $\binom{101}{2} = \frac{101 \times 100}{2 \times 1} = 5050$ possible pairs of choices. Instead of having to write out all 5050 results, you would only need to upload the releveant 101 images, and define the `choices` array once.
 
 ## Aim
 
