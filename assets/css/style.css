@@ -20,11 +20,6 @@ a {
     height: fit-content;
 }
 
-a>h1:hover {
-    background-color: seagreen;
-    transition: background-color 0.4s ease;
-}
-
 h1,
 h2,
 h3 {
@@ -47,6 +42,7 @@ p {
     margin-bottom: 0.5em;
 }
 
+/* General styling for buttons/anchors */
 button {
     background-color: transparent;
     padding: 0;
@@ -58,42 +54,14 @@ button:not([disabled]):hover {
     transition: background-color 0.4s ease;
 }
 
+a>h1:hover {
+    background-color: seagreen;
+    transition: background-color 0.4s ease;
+}
+
 /* In-game styling */
 .game-container {
     display: none;
-}
-
-.player-choices {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: baseline;
-    align-content: space-around;
-    width: 100%;
-}
-
-.player-choices>button {
-    width: 25%;
-    margin: 1%;
-    padding: 1%;
-}
-
-.button-subheading {
-    font-style: italic;
-    font-size: 70%;
-    font-weight: 200;
-}
-
-#computer-choice>button {
-    width: 45%;
-    margin: 5%;
-    padding: 1%;
-}
-
-.player-choices-images {
-    width: 100%;
-    background: transparent;
 }
 
 .game-area {
@@ -106,6 +74,16 @@ button:not([disabled]):hover {
     margin: 0;
 }
 
+.player-choices {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: space-around;
+    width: 100%;
+}
+
 .player-area {
     display: flex;
     flex-direction: column;
@@ -116,40 +94,6 @@ button:not([disabled]):hover {
     text-align: center;
 }
 
-#player-area,
-#player-1-choices,
-#player-2-choices {
-    width: 60%;
-}
-
-#computer-area {
-    width: 40%;
-}
-
-.scores {
-    text-align: center;
-    margin: 0.3em;
-}
-
-.score-h2 {
-    margin: 0px;
-    text-decoration: underline;
-}
-
-.player-heading {
-    width: 100%
-}
-
-#game-diagram {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    border-radius: 6px;
-    opacity: 0.8;
-
-}
-
 .play-game-box,
 .score-area:not(#score-area) {
     display: flex;
@@ -157,6 +101,10 @@ button:not([disabled]):hover {
     align-items: center;
     flex-direction: column;
     font-size: 1.3em;
+}
+
+.play-game-box {
+    height: 80vh;
 }
 
 .play-game-box button,
@@ -169,20 +117,56 @@ button:not([disabled]):hover {
     font-size: 1.8em;
 }
 
-.play-game-box {
-    height: 80vh;
+.player-heading {
+    width: 100%
 }
 
-#error-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-self: center;
-    align-items: center;
-    align-content: center;
-    height: 100vh;
+#game-over-text {
+    margin: 0px;
 }
 
+/* Setting button sizes to fit div */
+.player-choices>button {
+    width: 25%;
+    margin: 1%;
+    padding: 1%;
+}
+
+#computer-choice>button {
+    width: 45%;
+    margin: 5%;
+    padding: 1%;
+}
+
+/* Choice images fully fill button */
+.player-choices-images {
+    width: 100%;
+    background: transparent;
+}
+
+/* Setting div widths to best fit space */
+#player-area,
+#player-1-choices,
+#player-2-choices {
+    width: 60%;
+}
+
+#computer-area {
+    width: 40%;
+}
+
+/* Scoreboards styling */
+.scores {
+    text-align: center;
+    margin: 0.3em;
+}
+
+.score-h2 {
+    margin: 0px;
+    text-decoration: underline;
+}
+
+/* Styling the instructions dropdown */
 #instructions {
     display: flex;
     justify-content: center;
@@ -193,7 +177,7 @@ button:not([disabled]):hover {
     font-size: 1.3em;
 }
 
-#instructions button, footer button {
+#instructions button {
     text-align: center;
     font-weight: bold;
     border: 5px solid seagreen;
@@ -222,6 +206,25 @@ button:not([disabled]):hover {
     flex-direction: column;
 }
 
+#game-diagram {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 6px;
+    opacity: 0.8;
+}
+
+/* 404 page styling */
+#error-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+}
 #error-container {
     display: flex;
     flex-direction: column;
@@ -241,10 +244,6 @@ button:not([disabled]):hover {
     font-size: 1.8em;
 }
 
-#game-over-text {
-    margin: 0px;
-}
-
 /* Styling classes for chosen icons */
 .win-border {
     border: 5px solid lime;
@@ -262,33 +261,14 @@ button:not([disabled]):hover {
     border: 5px solid white;
 }
 
-
-/* media queries for mobiles, 767px and under*/
+/* Media queries for mobiles, 767px and under*/
 @media screen and (max-width: 767px) {
+    /* Changes to gameplay area layout */
     #game-area {
         display: flex;
         flex-direction: column;
     }
-
-    #instructions>#instructions-button {
-        font-size: 1.2em;
-    }
-
-
-    #game-diagram {
-        width: 90%
-    }
-
-    body>#start-game-box button,
-    body>#game-over-box button {
-        font-size: 1.2em;
-    }
-
-    .play-game-box button,
-    .score-area:not(#score-area) button {
-        font-size: 1.2em;
-    }
-
+    /* Enlarging player areas to better fit screen/new layout */
     .player-area {
         width: 100% !important;
     }
@@ -301,16 +281,38 @@ button:not([disabled]):hover {
         width: 98%;
     }
 
+    /* Decreasing font size in buttons */
+    #instructions>#instructions-button {
+        font-size: 1.2em;
+    }
+
+    body>#start-game-box button,
+    body>#game-over-box button {
+        font-size: 1.2em;
+    }
+
+    .play-game-box button,
+    .score-area:not(#score-area) button {
+        font-size: 1.2em;
+    }
+
+    /* Enlarging buttons to better fit new layout */
+    #computer-choice>button {
+        width: 60%;
+    }
+
+    /* Enlarging image in Instructions dropdown */
+    #game-diagram {
+        width: 90%
+    }
+    
+    /* Shrinking text to better fit smaller space */
     #game-over-text {
         font-size: 90%;
     }
 
     #instructions-explained {
         width: 90%;
-    }
-
-    #computer-choice>button {
-        width: 60%;
     }
 
     /* Styling the computers choices in PvC game as grid */
@@ -330,7 +332,7 @@ button:not([disabled]):hover {
         grid-area: score;
     }
 
-
+    /* Setting grid layour order/position */
     #computer-area {
         grid-template-areas:
             'heading result'
@@ -352,6 +354,7 @@ button:not([disabled]):hover {
         grid-area: scoretwo;
     }
 
+    /* Setting grid layour order/position */
     #game-area {
         grid-template-areas:
             'one scoretwo'
