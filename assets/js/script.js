@@ -327,29 +327,27 @@ function changeDisplayById(Id, changed, changedIfMobile) {
     }
 }
 
-// Shows Player 1 choices in PvP game
-function showPlayerOneChoices() {
-    changeDisplayById("player-1-make-choice", "none");
-    changeDisplayById("player-area", "none");
-    changeDisplayById("computer-area", "none");
-    changeDisplayById("player-1-area", "flex");
+
+// Shows either Player 1 or Player 2 choices in PvP game
+function showPvPPlayerChoice(player) {
     changeDisplayById("game-area", "flex");
     changeDisplayById("game-container", "block");
+    if (player == 1) {
+        changeDisplayById("player-1-make-choice", "none");
+        changeDisplayById("player-area", "none");
+        changeDisplayById("computer-area", "none");
+        changeDisplayById("player-1-area", "flex");
+    } else {
+        changeDisplayById("player-2-make-choice", "none");
+        changeDisplayById("player-2-area", "flex");
+        changeDisplayById("player-1-area", "none");
+    }
 }
 
 // Popup message during PvP game
 function showPlayerTwoPopup() {
     changeDisplayById("game-container", "none");
     changeDisplayById("player-2-make-choice", "flex");
-}
-
-// Shows Player 2 choices in PvP game
-function showPlayerTwoChoices() {
-    changeDisplayById("player-2-make-choice", "none");
-    changeDisplayById("player-2-area", "flex");
-    changeDisplayById("player-1-area", "none");
-    changeDisplayById("game-area", "flex");
-    changeDisplayById("game-container", "block");
 }
 
 // Last click button before showing result in PvP
@@ -492,8 +490,8 @@ function runGame() {
 
         clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
         instructionsButton.addEventListener("click", function () { toggleInstructions(); });
-        playerOneMakeChoiceButton.addEventListener("click", function () { showPlayerOneChoices(); });
-        playerTwoMakeChoiceButton.addEventListener("click", function () { showPlayerTwoChoices(); });
+        playerOneMakeChoiceButton.addEventListener("click", function () { showPvPPlayerChoice(1); });
+        playerTwoMakeChoiceButton.addEventListener("click", function () { showPvPPlayerChoice(2); });
         nextRoundButton.addEventListener("click", function () { resetTwoPlayer(); });
 
         for (let i = 0; i < choices.length; i++) {

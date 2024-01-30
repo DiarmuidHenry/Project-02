@@ -77,7 +77,12 @@ button:not([disabled]):hover {
     width: 25%;
     margin: 1%;
     padding: 1%;
+}
 
+.button-subheading {
+    font-style: italic;
+    font-size: 70%;
+    font-weight: 200;
 }
 
 #computer-choice>button {
