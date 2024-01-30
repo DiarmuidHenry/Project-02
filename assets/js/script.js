@@ -120,6 +120,7 @@ function gameOver(finalResult, firstScore, secondScore) {
     changeDisplayById("game-over-box", "flex");
     changeDisplayById("player-2-area", "none");
 
+    // Assigning winning and losing players to correct variables
     if (finalResult === "Player" || finalResult === "Computer") {
         firstPlayer = "Player";
         secondPlayer = "Computer";
@@ -128,6 +129,7 @@ function gameOver(finalResult, firstScore, secondScore) {
         secondPlayer = "Player 2";
     }
 
+    // Updating the final scoreboardd
     gameOverText.innerHTML = `
     ${finalResult} wins!<br><br>
     FINAL SCORE:<br>
@@ -143,6 +145,7 @@ function gameOver(finalResult, firstScore, secondScore) {
 
     resetComputerChoice();
 
+    // Hide buttons in player-1-choices based on index
     let playerOneButtons = document.getElementById('player-1-choices').children;
     for (let i = 0; i < playerOneButtons.length; i++) {
         if (i !== playerOneChoiceIndex) {
@@ -183,6 +186,7 @@ function setPlayerChoice(clicked) {
     let computerChoice = choices[computerChoiceIndex];
     let computerChoiceImage = document.getElementById("computer-choice-image");
     let newImagePath = `assets/images/${computerChoice.toLowerCase()}.png`;
+    // Assigning correct image to computers choice
     computerChoiceImage.src = newImagePath;
     computerChoiceImage.alt = `Computer chooses ${computerChoice}`;
 
@@ -190,6 +194,7 @@ function setPlayerChoice(clicked) {
 
     let indexResult = (numberOfChoices + computerChoiceIndex - playerChoiceIndex) % numberOfChoices;
 
+    // Using indexResult to decide winner
     if (win.includes(indexResult)) {
         setOutcome(playerChoiceIndex, computerChoiceIndex, "win", "lose", "Player");
     } else if (lose.includes(indexResult)) {
@@ -197,7 +202,6 @@ function setPlayerChoice(clicked) {
     } else if (draw.includes(indexResult)) {
         setOutcome(playerChoiceIndex, computerChoiceIndex, "draw", "draw");
     }
-
 }
 
 // Showing result text of round in PvC
@@ -327,7 +331,6 @@ function changeDisplayById(Id, changed, changedIfMobile) {
     }
 }
 
-
 // Shows either Player 1 or Player 2 choices in PvP game
 function showPvPPlayerChoice(player) {
     changeDisplayById("game-area", "flex");
@@ -369,7 +372,8 @@ function showResultTwoPlayer() {
     changeDisplayById("game-area", "flex", gridOrFlex());
 
     let indexResult = (numberOfChoices + playerTwoChoiceIndex - playerOneChoiceIndex) % numberOfChoices;
-
+    
+    // Using indexResult to decide winner
     if (win.includes(indexResult)) {
         setOutcomeTwoPlayer(playerOneChoiceIndex, playerTwoChoiceIndex, "win", "lose", "Player 1");
     } else if (lose.includes(indexResult)) {
@@ -479,7 +483,7 @@ function toggleInstructions() {
 function runGame() {
     // Loading game setup after DOM content is loaded
     document.addEventListener("DOMContentLoaded", function () {
-        // Get the play game box, game container and game over elements
+        // Get all needed document elements
         let playAgainstComputerButtons = document.getElementsByClassName("play-against-computer");
         let playAgainstFriendButtons = document.getElementsByClassName("play-against-friend");
         let nextRoundButton = document.getElementById("next-round-button");
@@ -488,18 +492,21 @@ function runGame() {
         let playerTwoMakeChoiceButton = document.getElementById("player-2-make-choice-button");
         let clickToShowButton = document.getElementById("click-to-show-button");
 
+        // Attach relevant eventListeners to elements
         clickToShowButton.addEventListener("click", function () { showResultTwoPlayer(); });
         instructionsButton.addEventListener("click", function () { toggleInstructions(); });
         playerOneMakeChoiceButton.addEventListener("click", function () { showPvPPlayerChoice(1); });
         playerTwoMakeChoiceButton.addEventListener("click", function () { showPvPPlayerChoice(2); });
         nextRoundButton.addEventListener("click", function () { resetTwoPlayer(); });
 
+        // Event listeners to set choices of Player
         for (let i = 0; i < choices.length; i++) {
             let buttonId = `player-choice-button-${i}`;
             let button = document.getElementById(buttonId);
             button.addEventListener("click", function () { setPlayerChoice(i); });
         }
 
+        // Event listeners to set choices of Player 1
         for (let i = 0; i < choices.length; i++) {
             let buttonOneId = `player-1-choice-button-${i}`;
             let buttonOne = document.getElementById(buttonOneId);
@@ -507,12 +514,14 @@ function runGame() {
             buttonOne.addEventListener("mouseup", function () { showPlayerTwoPopup(); });
         }
 
+        // Event listeners to set choices of Player 2
         for (let i = 0; i < choices.length; i++) {
             let buttonTwoId = `player-2-choice-button-${i}`;
             let buttonTwo = document.getElementById(buttonTwoId);
             buttonTwo.addEventListener("mousedown", function () { setPlayerNChoice(2, i); });
             buttonTwo.addEventListener("mouseup", function () { clickToShowResult(); });
         }
+
         // Click event listener for play-against-computer buttons (play and replay)
         for (let i = 0; i < playAgainstComputerButtons.length; i++) {
             playAgainstComputerButtons[i].addEventListener("click", function () {

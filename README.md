@@ -65,7 +65,7 @@ this expansion of the well-known game.
 
 ### Game Theory
 
-Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematicalt terms, it increases from $\binom{3}{2} = \frac{3*2}{2*1} = 3$ to $\binom{5}{2} = \frac{5*4}{2*1} = 10$.
+Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematicalt terms, it increases from $ \binom{3}{2} = \frac{3*2}{2*1} = 3 $ to $ \binom{5}{2} = \frac{5*4}{2*1} = 10 $.
 
 We can start by analysing the original 3-choice game.
 
