@@ -193,6 +193,10 @@ Similarly to the PvC game. the winner of the game is then clearly shown and the 
 
 ![PvP 3](./documents/readme-images/pvp-3.webp) 
 
+A simple Error 404 page that guides users directly back to the main game page.
+
+![Error 404](./documents/readme-images/404.webp)
+
 ## Technology \& Resources
 
 - **IDE :** [CodeAnywhere](https://app.codeanywhere.com/) and [Visual Studio Code](https://code.visualstudio.com/).
@@ -265,6 +269,10 @@ When playing on mobile devices, the results pages became either too long to fit 
 I fixed this by changing the display style to `grid` and organised the elements in this new way. I then created the `gridOrFlex` function to decide when to use this layout. This meant I could better make use of the horizontal space on the device. The example shown is for the PvP game.
 
 ![PvP Grid View](./documents/readme-images/pvp-grid.webp)
+
+- _Unresponsive Button on 404 Page_
+
+The *Return to game* button on the 404 page was not functioning. After examining both `error-script.js` and `404.html`, I realised it was because the script was incorrectly named in `404.html`. This was a simple fix, and the button now works as intended.
 
 ### Unresolved
 
