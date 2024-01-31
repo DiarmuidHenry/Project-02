@@ -24,8 +24,9 @@ let gameResult;
 let instructionsShowing = false;
 let smallScreen = window.matchMedia("(max-width: 767px)");
 
-// Declare a letant, which is the number of choices
+// Declare the number of choices as a variable
 let numberOfChoices = choices.length;
+
 // Number of winning results (or losing results)
 let numberOfWinningResults = (Math.floor(numberOfChoices / 2));
 
@@ -51,6 +52,7 @@ function adjustScore(gameResult) {
     let playerOneScoreSpan = document.getElementById("player-1-score-2p");
     let playerTwoScoreSpan = document.getElementById("player-2-score-2p");
 
+    // Adjust border to match result
     if (gameResult === "Player") {
         firstScore += 1;
         playerScoreSpan.innerHTML = firstScore;
@@ -77,7 +79,6 @@ function adjustScore(gameResult) {
         changeDisplayById("next-round-button", "none");
         gameOverAfterDelay();
     }
-
 }
 
 // Slight pause to show result, then go to game over page
@@ -106,7 +107,6 @@ function colourWinnerText(firstScore, secondScore) {
         firstScorePlace.style.color = "lime";
         secondScorePlace.style.color = "red";
     }
-
 }
 
 // Game over screen showing styled results, scores and new game buttons
@@ -289,7 +289,6 @@ function resetScores() {
     computerScoreSpan.innerHTML = computerScore;
     playerOneScoreSpan.innerHTML = playerOneScore;
     playerTwoScoreSpan.innerHTML = playerTwoScore;
-
 }
 
 // Reset borders of those that were previously chosen/won/lost
