@@ -272,7 +272,7 @@ I fixed this by changing the display style to `grid` and organised the elements 
 
 - _Unresponsive Button on 404 Page_
 
-The *Return to game* button on the 404 page was not functioning. After examining both `error-script.js` and `404.html`, I realised it was because the script was incorrectly named in `404.html`. This was a simple fix, and the button now works as intended.
+The *Return to Game* button on the 404 page was not functioning. After examining both `error-script.js` and `404.html`, I realised it was because the script was incorrectly named in `404.html`. This was a simple fix, and the button now works as intended.
 
 ### Unresolved
 
@@ -287,8 +287,8 @@ The *Return to game* button on the 404 page was not functioning. After examining
 |Test Item|Test Carried Out|Result|Pass/Fail|
 |-------------|------------------|-----------|-------|
 |Button hover background|Hover over any button/anchor|The background of the button fades to a darker colour|PASS|
-|*Instructions* button|Click on *Instructions* button|The drop down text appeared along with the image. The text in the button changed to *Return to game*|PASS|
-|*Return to game* button|Click on *Return to game* button|The drop down text disappeared. The text in the button changed back to *Instructions* and the 2 game start buttons appear|PASS|
+|*Instructions* button|Click on *Instructions* button|The drop down text appeared along with the image. The text in the button changed to *Return to Game*|PASS|
+|*Return to Game* button|Click on *Return to Game* button|The drop down text disappeared. The text in the button changed back to *Instructions* and the 2 game start buttons appear|PASS|
 |Page heading/title|Click on *Rock Paper Scissors Lizard Spock* heading|Homepage reloads|PASS|
 |*Play against the computer* button|Click on *Play against the computer* button|Player v Computer game loads correctly and starts|PASS|
 |*Play against a friend* button|Click on *Play against a friend* button|Player v Player game loads correctly and starts|PASS|
@@ -349,7 +349,7 @@ WAVE revealed no errors and no contrast errors. As this needed to be tested thro
 
 ### PageSpeed Insight Tests
 
-The page scored 100 on all metrics on computers and 96+ on mobile devices.
+The page scored 100 on all metrics on Desktop and 99+ on Mobile devices. [Click here to perform this test on your own device.](https://pagespeed.web.dev/analysis/https-diarmuidhenry-github-io-Project-02/4ubq8yky3z?form_factor=mobile).
 
 ![PageSpeed Result Desktop](./documents/readme-images/pagespeed-result-desktop.webp)
 
@@ -363,13 +363,13 @@ JSHint returned no errors, only 7 warnings about functions being contained withi
 
 ### HTML Code Validation
 
-HTML Checker showed no warnings or errors.
+[HTML Checker showed no warnings or errors.](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdiarmuidhenry.github.io%2FProject-02%2F)
 
 ![HTML Validation](./documents/readme-images/html-validation.webp)
 
 ### CSS Code Validation
 
-W3C CSS Validator found no errors.
+[W3C CSS Validator found no errors.](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdiarmuidhenry.github.io%2FProject-02%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
 ![CSS Validation](./documents/readme-images/css-validation.webp)
 
