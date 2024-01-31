@@ -38,6 +38,11 @@ while emotive messages, coloured results and changing images invoke emotive resp
     - [Home Page](#home-page-testing)
     - [Player v Computer (PvC)](#pvc-testing)
     - [Player v Player (PvP)](#pvp-testing)
+  - [Browser Testing](#browser-testing)
+    - [Mozilla Firefox](#mozilla-firefox)
+    - [Safari](#safari)
+    - [Microsoft Edge](#microsoft-edge)
+    - [Opera](#opera)
   - [PageSpeed Insights Tests](#pagespeed-insights-tests)
   - [HTML Code Validation](#html-code-validation)
   - [CSS Code Validation](#css-validation)
@@ -306,6 +311,26 @@ I fixed this by changing the display style to `grid` and organised the elements 
 |Scoreboard Updating|Click on *RESULTS* button|Game score is updated correctly for win/lose/draw|PASS|
 |*Next Round* button|Click on button|The scoreboard and results disappear, and screen reverts back to player 1 choice prompt|PASS|
 |Game stops when a player reaches 3 points|Click on icons until a score reaches 3|When first score reaches 3, the *Next Round* button does not appear, score shows briefly then users are brought to Homepage where the score and a message appears|PASS|
+
+### Browser Testing
+
+The above testing is performed using Chrome as the browser. These tests were repeated on the following browsers, all of which also passed in all criteria.
+
+#### Mozilla Firefox
+
+![Firefox Testing](./documents/readme-images/firefox.webp)
+
+#### Safari
+
+![Safari Testing](./documents/readme-images/safari.webp)
+
+#### Microsoft Edge
+
+![Microsoft Edge Testing](./documents/readme-images/edge.webp)
+
+#### Opera
+
+![Opera Testing](./documents/readme-images/opera.webp)
 
 ### WAVE Evaluation Tool
 
