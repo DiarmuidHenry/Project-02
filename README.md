@@ -2,16 +2,15 @@
 
 This project is a website where users can play the game Rock Paper Scissors Lizard Spock.
 
-The game is clear, easy to understand for those who are familiar or unfamiliar with 
+The game is clear and easy to understand, both for those who are familiar or unfamiliar with 
 the game and its history/structure.
 
 Pictures, unambiguous instructions and clear text make it easy to navigate and play, 
-while emotive messages, coloured results and changing images invoke emotive responses from user/s as they play.
+whilst emotive messages, coloured results and changing images invoke emotive responses from users as they play.
 
 ![Homepage on all devices](./documents/readme-images/all-screens.webp)
 
 [Deployed Website](https://diarmuidhenry.github.io/Project-02/)
-
 
 ## Table of Contents<!-- omit from toc -->
 - [Introduction](#introduction)
@@ -24,8 +23,14 @@ while emotive messages, coloured results and changing images invoke emotive resp
   - [User Goals](#user-goals)
   - [User Testimonials](#user-testimonials)
 - [Design \& Development](#design--development)
+  - [5 Planes of UX](#5-planes-of-ux)
+    - [Strategy](#strategy)
+    - [Scope](#scope)
+    - [Structure](#structure)
+    - [Skeleton](#skeleton)
+    - [Surface](#surface)
   - [Wireframes](#wireframes)
-    - [Desktop \& Tablet](#desktop)
+    - [Desktop \& Tablet](#desktop--tablet)
     - [Mobile](#mobile)
   - [Features](#features)
 - [Technology \& Resources](#technology--resources)
@@ -35,17 +40,18 @@ while emotive messages, coloured results and changing images invoke emotive resp
   - [Unresolved](#unresolved)
 - [Testing \& Validation](#testing--validation)
   - [Functional Testing of Website](#functional-testing-of-website)
-    - [Home Page](#home-page-testing)
-    - [Player v Computer (PvC)](#pvc-testing)
-    - [Player v Player (PvP)](#pvp-testing)
+    - [Home Page](#home-page)
+    - [Player v Computer (PvC)](#player-v-computer-pvc)
+    - [Player v Player (PvP)](#player-v-player-pvp)
   - [Browser Testing](#browser-testing)
     - [Mozilla Firefox](#mozilla-firefox)
     - [Safari](#safari)
     - [Microsoft Edge](#microsoft-edge)
     - [Opera](#opera)
-  - [PageSpeed Insights Tests](#pagespeed-insights-tests)
+  - [WAVE Evalutation Tool](#wave-evaluation-tool)
+  - [PageSpeed Insight Tests](#pagespeed-insight-tests)
   - [HTML Code Validation](#html-code-validation)
-  - [CSS Code Validation](#css-validation)
+  - [CSS Code Validation](#css-code-validation)
 - [Future Improvements/Development](#future-improvementsdevelopment)
 
 ## Introduction
@@ -59,12 +65,11 @@ rightfully explains that is in an expansion on the classic Rock Paper Scissors, 
 
 "Scissors cuts paper, paper covers rock, rock crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors decapitates lizard, lizard eats paper, paper disproves Spock, Spock vaporizes rock, and as it always has, rock crushes scissors."
 
-The game quickly gained popularity online, with a plethora of blogs, articles and merchandise being created based on
-this expansion of the well-known game.
+The game quickly gained popularity online, where it has appeared in many articles, social media posts, and even on various pieces of merchandise such as tshirts and mugs.
 
 ### Game Theory
 
-Instead of there being only 3 possible non-draw results (Rock v Paper, Paper v Scissors, Scissors v Rock and vice versa for each pair), the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematical terms, it increases from $\binom{3}{2} = \frac{3 \times 2}{2 \times 1} = 3$ to $\binom{5}{2} = \frac{5 \times 4}{2 \times 1} = 10$.
+Instead of there being only 3 possible non-draw results - Rock v Paper, Paper v Scissors, Scissors v Rock, and vice versa for each pair - the addition of the 2 extra choices - Lizard, Spock - increases this number to 10. In mathematical terms, it increases from $\binom{3}{2} = \frac{3 \times 2}{2 \times 1} = 3$ to $\binom{5}{2} = \frac{5 \times 4}{2 \times 1} = 10$.
 
 We can start by analysing the original 3-choice game.
 
@@ -78,7 +83,7 @@ By ordering these $2n+1$ items in a certain way, we can assure that each choice 
 
 Using this theory, we can quickly relabel our choices, and simplify the problem into a general game of $2n+1$ choices. This means that we can add superficial names/labels to a large number of choices and use them as our return, since all of the workings are done with our newly constructed sets.
 
-By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. For example, for a game with 101 choices, there would be $\binom{101}{2} = \frac{101 \times 100}{2 \times 1} = 5050$ possible pairs of choices. Instead of having to write out all 5050 results, you would only need to upload the releveant 101 images, and define the `choices` array once.
+By using this approach, this code can easily be adapted to a game with 7, 9, 11, 101 choices, with a similar structure. For example, for a game with 101 choices, there would be $\binom{101}{2} = \frac{101 \times 100}{2 \times 1} = 5050$ possible pairs of choices. Instead of having to write out all 5050 pairs of results, you would only need to upload the releveant 101 images, and define the `choices` array once.
 
 ## Aim
 
@@ -98,7 +103,7 @@ By using this approach, this code can easily be adapted to a game with 7, 9, 11,
 
 ## Potential Users
 
-The website would of interest to anyone who has seen/heard of the game through the Big Bang Theory episode. It will also be of interest for anyone who is with a friend, looking for a simple 2 player game that can be easily and fairly played on a single device.
+The website would be of interest to anyone who has seen/heard of the game through the Big Bang Theory episode. It will also be of interest for anyone who is with a friend, looking for a simple 2 player game that can be easily and fairly played on a single device.
 
 ### User Goals
 
@@ -106,9 +111,9 @@ The website would of interest to anyone who has seen/heard of the game through t
 
 - **Skill Development**: Users may aim to enhance their strategic thinking and decision making skills by playing the game regularly.
 
-- **Friendly Competition**: Engage in friendly competition with friends, family, or even against the computer, fostering a sense of camaraderie and sportsmanship.
+- **Friendly Competition**: Engage in friendly competition with friends or family, fostering a sense of camaraderie and sportsmanship.
 
-- **Learn the Game Rules**: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with clear explanations provided in the *Instructions* section.
+- **Learn the Game Rules**: Understand and learn the rules of the extended Rock Paper Scissors Lizard Spock game, with the clear explanations provided in the *Instructions* section.
 
 - **Accessible Gameplay**: Experience a user-friendly interface that ensures smooth gameplay, making it enjoyable for users of all ages and skill levels.
 
@@ -178,7 +183,7 @@ The winner of the game is then clearly shown and the user returns to an updated 
 
 ![PvC 2](./documents/readme-images/pvc-2.webp) 
 
-The Player v Player (PvP) game splits each round into more prompts, ensuring that neither player can see the other's choices.
+The Player v Player (PvP) game splits each round using more prompts, ensuring that neither player can see the other's choices.
 
 ![PvP 1](./documents/readme-images/pvp-1.webp)
 
@@ -194,19 +199,17 @@ Similarly to the PvC game. the winner of the game is then clearly shown and the 
 - **Languages :** HTML for basic page structure. CSS for styling. JavaScript for interactivity and execution of gameplay. Markdown for this readme.
 - **Template :** The [CodeInstitute template](https://github.com/Code-Institute-Org/ci-full-template) was used in order to install all the relevant tools for the code to function.
 - [Github](https://github.com/) was used to host the project. I used `git commit` regularly to create versions of the project at regular intervals. This meant that I could be more precise if I needed to `git reset`.
-- [Balsamiq](https://balsamiq.com/) was used to create wireframes for mobile, table and desktop.
-- [FlatIcon](https://www.flaticon.com/) was used to find royalty-free icons that I could safely use without worry of copyright infringement.
-- [Markdown Guide](https://www.markdownguide.org/cheat-sheet/) was used to help create the readme.
+- [Balsamiq](https://balsamiq.com/) was used to create wireframes for mobile, tablet and desktop.
 - [Favicon.io](https://favicon.io/favicon-generator/) was used to find the page's favicon.
 - [WAVE](https://wave.webaim.org/) and [PageSpeed Insights](https://pagespeed.web.dev/) testing tools were used to locate minor issues and check both accessibility and performance. 
 
 ## Deployment
 
-Once the basic design of the website was finished, I deployed it to GitHub Pages. [The history of all deployed version of the site can be found here](https://github.com/DiarmuidHenry/Project-02/deployments).
+Once the basic design of the website was finished, I deployed it to GitHub Pages. [The history of all deployed versions of the site can be found here](https://github.com/DiarmuidHenry/Project-02/deployments).
 
 ### How to Deploy to GitHub Pages
 
-1. Log in to github.com.
+1. Log in to [GitHub](https://github.com/).
 2. Select *Project-02* in my list of repositories.
 3. Click Settings > Pages.
 4. Under *Source*, select *Deploy from a branch*.
@@ -233,7 +236,7 @@ Whilst looking at my game with my mentor, I found that he often needed reminding
 
 - _Multiple Borders_
 
-Borders applied (`win-border`, for example) was not disappearing after the next choice was clicked.
+Borders applied (`win-border`, for example) were not disappearing after the next choice was clicked. In the below example, we can see that several icons still have the `lose-border` styling applied.
 
 ![Multiple Frames](./documents/readme-images/multiple-frames.webp)
 
@@ -251,7 +254,7 @@ I solved this by moving the event listeners from inside the `startComputerGame` 
 
 - _Conflicting Specificity_
 
-When adding media queries, I was having problem with specificity. I found out that this was because my approach to it was to add styles directly into the HTML from javascript. This meant it could not be overwritten, as `style = ""` has the highest specificity. I tried first to fix this by altering the way I changed the display property: I simply created style classes called `.display-flex`, `.display-block` and `.display-none` in `style.css` and added this style class to the object. However, this didn't work, as I had more specific changes to the display based on id in other places in the code. I finally solved it by altering the `changeDisplayById` function to include the media query in itself. This way, I avoided having excessive usage of `!important` and I didn't have to do a large restructure of the CSS styling.
+When adding media queries, I was having problem with specificity. I found out that this was because my approach to it was to add styles directly into the HTML from javascript. This meant it could not be overwritten, as `style = ""` has the highest specificity. I tried first to fix this by altering the way I changed the display property: I created style classes called `.display-flex`, `.display-block` and `.display-none` in `style.css` and added this style class to the object. However, this didn't work, as I had more specific changes to the display based on id in other places in the code. I finally solved it by altering the `changeDisplayById` function to include the media query in itself. This way, I avoided having excessive usage of `!important` and I didn't have to do a large restructure of the CSS styling.
 
 - _Poor View on Mobile Devices_
 
@@ -259,7 +262,7 @@ When playing on mobile devices, the results pages became either too long to fit 
 
 ![PvP Flex View](./documents/readme-images/pvp-flex.webp)
 
-I fixed this by changing the display style to `grid` and organised the elements in this new way. This meant I could better make use of the horizontal space on the device. The example shown is for the PvP game.
+I fixed this by changing the display style to `grid` and organised the elements in this new way. I then created the `gridOrFlex` function to decide when to use this layout. This meant I could better make use of the horizontal space on the device. The example shown is for the PvP game.
 
 ![PvP Grid View](./documents/readme-images/pvp-grid.webp)
 
@@ -271,16 +274,16 @@ I fixed this by changing the display style to `grid` and organised the elements 
 
 ### Functional Testing of Website
 
-#### Home/Start Page
+#### Home Page
 
 |Test Item|Test Carried Out|Result|Pass/Fail|
 |-------------|------------------|-----------|-------|
 |Button hover background|Hover over any button/anchor|The background of the button fades to a darker colour|PASS|
-|*Instructions* button|Click on button|The drop down text appeared along with the image. The text in the button changed to *Return to game*|PASS|
-|*Return to game* button|Click on button|The drop down text disappeared. The text in the button changed back to *Instructions* and the 2 game start buttons appear|PASS|
+|*Instructions* button|Click on *Instructions* button|The drop down text appeared along with the image. The text in the button changed to *Return to game*|PASS|
+|*Return to game* button|Click on *Return to game* button|The drop down text disappeared. The text in the button changed back to *Instructions* and the 2 game start buttons appear|PASS|
 |Page heading/title|Click on *Rock Paper Scissors Lizard Spock* heading|Homepage reloads|PASS|
-|*Play against the computer* button|Click on button|Player v Computer game loads correctly and starts|PASS|
-|*Play against a friend* button|Click on button|Player v Player game loads correctly and starts|PASS|
+|*Play against the computer* button|Click on *Play against the computer* button|Player v Computer game loads correctly and starts|PASS|
+|*Play against a friend* button|Click on *Play against a friend* button|Player v Player game loads correctly and starts|PASS|
 
 #### Player v Computer (PvC)
 
@@ -291,9 +294,9 @@ I fixed this by changing the display style to `grid` and organised the elements 
 |Win/Lose/Draw border - Player|Click on player choice icon|The relevant border colour appers on the player's choice|PASS|
 |Computer's random choice|Click on player choice icon|The computer's choice appears. From repeating the test, I can see it is being randomly assigned|PASS|
 |Win/Lose/Draw border - Computer|Click on player choice icon|The relevant border colour appers on the computer's choice|PASS|
-|Result message|Click on player choice icon|Message appears with the correct result and the correct names of both plaer and computer choice|PASS|
-|Scoreboard Updating|Click on icon|Game score is updated correctly for win/lose/draw|PASS|
-|Game stops when player/computer reaches 10 points|Click on icons until a score reaches 10|When first score reaches 10, players choice buttons disable, score shows briefly then user is brought to Homepage where the score and a message appears|PASS|
+|Result message|Click on player choice icon|Message appears with the correct result and the correct names of both the player and computer's choices|PASS|
+|Scoreboard Updating|Click on player choice icon|Game score is updated correctly for win/lose/draw|PASS|
+|Game Ending|Play multiple rounds until a score reaches 10|When first score reaches 10, players choice buttons disable, score shows briefly, then user is brought to Homepage where the score and a win/lose message appears|PASS|
 
 #### Player v Player (PvP)
 
@@ -301,16 +304,16 @@ I fixed this by changing the display style to `grid` and organised the elements 
 |-------------|------------------|-----------|-------|
 |Page heading/title|Click on *Rock Paper Scissors Lizard Spock* heading|Homepage reloads|PASS|
 |Player 1 choice prompt|None: loads when game loads from homepgage|Prompt appears at start of game|PASS|
-|Player 1 *Play* button|Click on button|Player 1's choices appear|PASS|
+|Player 1 *Play* button|Click on *Play* button|Player 1's choices appear|PASS|
 |Player 1 selection|Click on player 1 choice icon|The game accepts it as player 1's choice. The border of the selected icon appears white to indicate this. The choices then disappear and player 2 choice prompt appears|PASS|
-|Player 2 *Play* button|Click on button|Player 2's choices appear|PASS|
+|Player 2 *Play* button|Click on *Play* button|Player 2's choices appear|PASS|
 |Player 2 selection|Click on player 2 choice icon|The game accepts it as player 2's choice. The border of the selected icon appears white to indicate this. The choices then disappear and the pre-results page appears|PASS|
 |*RESULT* button|Click on *RESULTS* button|The result of that round appears.|PASS|
 |Result message|Click on *RESULTS* button|Message appears with the correct result and the correct names of both player 1 and player 2's choices.|PASS|
-|Win/Lose/Draw borders|Click on *RESULTS* button|The winning player's choice appears with a green border. The losing player's choice appears with a red border. In the case of a draw, both appear with grey border|PASS|
+|Win/Lose/Draw borders|Click on *RESULTS* button|The winning player's choice appears with a green border. The losing player's choice appears with a red border. In the case of a draw, both appear with a grey border|PASS|
 |Scoreboard Updating|Click on *RESULTS* button|Game score is updated correctly for win/lose/draw|PASS|
-|*Next Round* button|Click on button|The scoreboard and results disappear, and screen reverts back to player 1 choice prompt|PASS|
-|Game stops when a player reaches 3 points|Click on icons until a score reaches 3|When first score reaches 3, the *Next Round* button does not appear, score shows briefly then users are brought to Homepage where the score and a message appears|PASS|
+|*Next Round* button|Click on *Next Round* button|The scoreboard and results disappear, and screen reverts back to player 1 choice prompt|PASS|
+|Game Ending|Play mutiple rounds until a score reaches 3|When first score reaches 3, the *Next Round* button does not appear, score shows briefly, then users are brought to Homepage where the score and a win/lose message appears|PASS|
 
 ### Browser Testing
 
@@ -364,14 +367,14 @@ W3C CSS Validator found no errors.
 
 ## Future Improvements/Development
 
-- Extend the game so that players can upload their own icon images, or even just give names to their own custom choices. This could lead to a game where, for example, all 11 members of a football team could be choices, meaning the players in the team could play as themselves, against the others in the team. Due to the setup of the JavaScript code \(See [Game Theory](#game-theory) above\), this would be quite straightforward.
+- Extend the game so that players can upload their own icon images, or even just give names to their own custom choices. This could lead to a game where, for example, all 11 members of a football team could be choices, meaning the players in the team could play as themselves, against the others in the team. Due to the setup of the JavaScript code \(See [Game Theory](#game-theory) above\), this would be quite straightforward. However, changes/additions to styling would need to be made in order to fit the larger number of icons on screen.
 
 - Improve on the styling and look of the page to make it look more professional.
 
-- Include animation on the chosen icons, not just changing frame styles.
+- Include animation on the chosen icons, not just changing border styles.
 
 ## Acknowledgments
 
 - Luke Buchanan: my mentor, for giving clear, constructive feedback during the entire process.
 - The Slack community, for the plethora of questions that have been previously asked and answered.
-- Tutor Assistance, for helping solve the problems that I just couldn't get my head around.
+- Tutor Assistance, for helping point me in the right direciton when discussing problems that I just couldn't get my head around.
